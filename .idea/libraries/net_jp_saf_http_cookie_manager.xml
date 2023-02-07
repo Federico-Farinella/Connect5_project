@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="net.jp.saf.http.cookie.manager" type="repository">
+    <properties maven-id="net.jp.saf.http.cookie:cookie-manager:0.1.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/jp/saf/http/cookie/cookie-manager/0.1.0/cookie-manager-0.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

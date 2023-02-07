@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.GUIControllers.FirstScreenGUI">
+    <children>
+        <HBox alignment="CENTER" prefHeight="102.0" prefWidth="320.0" style="-fx-background-color: BLACK;">
+         <children>
+            <Label prefHeight="40.0" prefWidth="262.0" text="CONNECT 5" textFill="WHITE">
+               <font>
+                  <Font name="Stalin One" size="25.0" />
+               </font>
+            </Label>
+         </children>
+        </HBox>
+      <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: rgb(179,252,252);">
+         <children>
+            <TextField layoutX="60.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField layoutX="60.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-background-radius: 10; -fx-border-radius: 10;" />
+            <Label layoutX="71.0" layoutY="41.0" prefHeight="23.0" prefWidth="182.0" text="Email Centro Sportivo" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Stalin One" size="9.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="126.0" prefHeight="23.0" prefWidth="157.0" text="Inserisci Password" textAlignment="CENTER">
+               <font>
+                  <Font name="Stalin One" size="9.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="279.0" prefHeight="92.0" prefWidth="303.0" text="Se sei il gestore di un centro sportivo e vuoi entrare nella nostra squadra, contattaci via Email all' indirizzo &quot;connect5_italy@gmail.com&quot;. Riceverai il nostro supporto entro un tempo massimo di 48 ore" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Arial Black" size="11.0" />
+               </font>
+            </Label>
+            <Button fx:id="backBtnLog1" layoutX="189.0" layoutY="221.0" mnemonicParsing="false" onAction="#back" prefHeight="42.0" prefWidth="71.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Confirm" textFill="#fffdfd">
+               <font>
+                  <Font name="Sarpanch" size="12.0" />
+               </font>
+            </Button>
+            <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
+               <children>
+                  <ImageView fx:id="btnBack" fitHeight="35.0" fitWidth="45.0" onMouseReleased="#back" onTouchReleased="#back">
+                     <image>
+                        <Image url="@images/backArrow.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnHome" fitHeight="46.0" fitWidth="48.0" onMouseReleased="#home" onTouchReleased="#home">
+                     <image>
+                        <Image url="@images/homeImage.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>

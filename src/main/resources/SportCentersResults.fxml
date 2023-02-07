@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="570.0" prefWidth="320.0" style="-fx-background: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.GUIControllers.SportCentersResultsGUI">
+   <children>
+      <ScrollPane hbarPolicy="NEVER" layoutY="80.0" prefHeight="494.0" prefWidth="320.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+         <content>
+            <VBox fx:id="box" alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefWidth="320.0" spacing="10.0" style="-fx-background-color: transparent;">
+               <children>
+                  <GridPane fx:id="grid" alignment="CENTER" prefHeight="102.0" prefWidth="310.0" style="-fx-background-color: rgb(179,252,252); -fx-background-radius: 5;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.20001220703125" minWidth="10.0" prefWidth="137.5999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.59996337890624" minWidth="10.0" prefWidth="228.80002441406248" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="45.599996948242186" minHeight="10.0" prefHeight="38.39998779296875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="79.80000915527344" minHeight="10.0" prefHeight="61.60001220703125" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" style="-fx-border-radius: 0,0,10,10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Button mnemonicParsing="false" style="-fx-background-color: black; -fx-background-radius: 20;" text="MAP" textFill="#c4c0c0">
+                                 <font>
+                                    <Font name="Sarpanch" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btn1" mnemonicParsing="false" style="-fx-background-color: black; -fx-background-radius: 20;" text="Info" textFill="#c4c0c0">
+                                 <font>
+                                    <Font name="Sarpanch" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="54.0" fitWidth="78.0" nodeOrientation="INHERIT" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@./images/sfondo.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Roman Sport City" textAlignment="CENTER" wrappingWidth="174.13665771484375" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Stalin One" size="11.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </GridPane>
+                  <GridPane fx:id="grid1" alignment="CENTER" layoutX="30.0" layoutY="30.0" prefHeight="102.0" prefWidth="310.0" style="-fx-background-color: rgb(179,252,252); -fx-background-radius: 5;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.20001220703125" minWidth="10.0" prefWidth="137.5999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.59996337890624" minWidth="10.0" prefWidth="228.80002441406248" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="45.599996948242186" minHeight="10.0" prefHeight="38.39998779296875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="79.80000915527344" minHeight="10.0" prefHeight="61.60001220703125" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Button mnemonicParsing="false" style="-fx-background-color: black; -fx-background-radius: 20;" text="MAP" textFill="#c4c0c0">
+                                 <font>
+                                    <Font name="Sarpanch" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btn11" mnemonicParsing="false" style="-fx-background-color: black; -fx-background-radius: 20;" text="Info" textFill="#c4c0c0">
+                                 <font>
+                                    <Font name="Sarpanch" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="54.0" fitWidth="78.0" nodeOrientation="INHERIT" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@./images/sfondo.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Roman Sport City" textAlignment="CENTER" wrappingWidth="188.53668212890625" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Stalin One" size="11.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </GridPane>
+                  <GridPane fx:id="grid11" alignment="CENTER" layoutX="30.0" layoutY="173.0" prefHeight="102.0" prefWidth="310.0" style="-fx-background-color: rgb(179,252,252); -fx-background-radius: 5;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.20001220703125" minWidth="10.0" prefWidth="137.5999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.59996337890624" minWidth="10.0" prefWidth="228.80002441406248" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="45.599996948242186" minHeight="10.0" prefHeight="38.39998779296875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="79.80000915527344" minHeight="10.0" prefHeight="61.60001220703125" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Button mnemonicParsing="false" style="-fx-background-color: black; -fx-background-radius: 20;" text="MAP" textFill="#c4c0c0">
+                                 <font>
+                                    <Font name="Sarpanch" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btn111" mnemonicParsing="false" style="-fx-background-color: black; -fx-background-radius: 20;" text="Info" textFill="#c4c0c0">
+                                 <font>
+                                    <Font name="Sarpanch" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="54.0" fitWidth="78.0" nodeOrientation="INHERIT" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@./images/sfondo.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Roman Sport City" textAlignment="CENTER" wrappingWidth="188.53668212890625" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Stalin One" size="11.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </GridPane>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="50.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252); -fx-border-color: black;">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="45.0" onMouseReleased="#back">
+               <image>
+                  <Image url="@images/backArrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnHome" fitHeight="46.0" fitWidth="48.0" onMouseReleased="#home" onTouchReleased="#home">
+               <image>
+                  <Image url="@images/homeImage.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

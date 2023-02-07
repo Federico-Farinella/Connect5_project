@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.GUIControllers.CreateAccountGUI">
+   <children>
+      <HBox alignment="CENTER" prefHeight="102.0" prefWidth="320.0" style="-fx-background-color: BLACK;">
+         <children>
+            <Label prefHeight="40.0" prefWidth="262.0" text="CONNECT 5" textFill="WHITE">
+               <font>
+                  <Font name="Stalin One" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: rgb(179,252,252);">
+         <children>
+            <TextField fx:id="insertEmail" layoutX="60.0" layoutY="209.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="34.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField fx:id="insertPassword" layoutX="60.0" layoutY="284.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="34.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-background-radius: 10; -fx-border-radius: 10;" />
+            <Label layoutX="75.0" layoutY="189.0" prefHeight="19.0" prefWidth="169.0" text="Inserisci Email Valida" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Stalin One" size="9.0" />
+               </font>
+            </Label>
+            <Label layoutX="81.0" layoutY="252.0" prefHeight="19.0" prefWidth="162.0" text="Inserisci Password" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Stalin One" size="9.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnConfirmCreate" layoutX="189.0" layoutY="347.0" mnemonicParsing="false" onAction="#confirmCreate" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Confirm" textFill="#fffdfd">
+               <font>
+                  <Font name="Sarpanch" size="12.0" />
+               </font>
+            </Button>
+            <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
+               <children>
+                  <ImageView fx:id="btnBack" fitHeight="35.0" fitWidth="45.0" onMouseReleased="#back">
+                     <image>
+                        <Image url="@images/backArrow.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnHome" fitHeight="46.0" fitWidth="48.0" onMouseReleased="#home" onTouchReleased="#home">
+                     <image>
+                        <Image url="@images/homeImage.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Text fill="#026363" layoutX="17.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(La password deve contenere almeno 6 caratteri)" textAlignment="CENTER" wrappingWidth="285.33673095703125">
+               <font>
+                  <Font name="Sarpanch" size="11.0" />
+               </font>
+            </Text>
+            <TextField fx:id="insertSurname" layoutX="61.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="34.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField fx:id="insertName" layoutX="61.0" layoutY="59.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="34.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-background-radius: 10; -fx-border-radius: 10;" />
+            <Label layoutX="122.0" layoutY="113.0" prefHeight="19.0" prefWidth="79.0" text="Cognome" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Stalin One" size="9.0" />
+               </font>
+            </Label>
+            <Label layoutX="136.0" layoutY="39.0" prefHeight="19.0" prefWidth="47.0" text="Nome" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Stalin One" size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorLabel" layoutX="33.0" layoutY="331.0" prefHeight="57.0" prefWidth="137.0" text="Invalid email.  Please insert a valid email" textFill="RED" visible="false" wrapText="true">
+               <font>
+                  <Font name="Sarpanch" size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

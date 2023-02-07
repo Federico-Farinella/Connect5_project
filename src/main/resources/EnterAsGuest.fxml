@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.GUIControllers.LoggedGUI">
+   <children>
+      <HBox alignment="CENTER" prefHeight="102.0" prefWidth="320.0" style="-fx-background-color: BLACK;">
+         <children>
+            <Label prefHeight="40.0" prefWidth="262.0" text="CONNECT 5" textFill="WHITE">
+               <font>
+                  <Font name="Stalin One" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: rgb(179,252,252);">
+         <children>
+            <VBox alignment="CENTER" prefHeight="366.0" prefWidth="320.0" spacing="90.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#searchSportCenters" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: BLACK; -fx-background-radius: 20;" text="Search for Sport Centers" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Sarpanch" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="155.0" style="-fx-background-color: BLACK; -fx-background-radius: 20;" text="Consult Weather" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Sarpanch" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="45.0" onMouseReleased="#back">
+                     <image>
+                        <Image url="@images/backArrow.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnHome" fitHeight="46.0" fitWidth="48.0" onMouseReleased="#home" onTouchReleased="#home">
+                     <image>
+                        <Image url="@images/homeImage.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
