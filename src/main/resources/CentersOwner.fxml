@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5Project.GUIControllers.FirstScreenGUI">
+<AnchorPane prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5.GUIControllers.FirstScreenGUI">
     <children>
         <HBox alignment="CENTER" prefHeight="102.0" prefWidth="320.0" style="-fx-background-color: BLACK;">
          <children>
@@ -47,7 +47,7 @@
             </Button>
             <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
                <children>
-                  <Button fx:id="btnBack" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="78.0" style="-fx-background-color: transparent;">
+                  <Button mnemonicParsing="false"  prefHeight="48.0" prefWidth="78.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="45.0">
                            <image>
@@ -56,7 +56,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnHome" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;">
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="48.0">
                            <image>
