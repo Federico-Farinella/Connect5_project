@@ -36,7 +36,6 @@ public class FootballPlayerDao {
             dbUser = prop.getProperty("dbUser");
             pass = prop.getProperty("pass");
             conn = JdbcConnect.getUserConnection(dbUser, pass);
-            propsInput = new FileInputStream(configFilePath);
             dbUser = prop.getProperty("dbUser");
             pass = prop.getProperty("pass");
             conn = JdbcConnect.getUserConnection(dbUser, pass);
