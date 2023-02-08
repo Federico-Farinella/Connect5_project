@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.GUIControllers.LoginGUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5Project.GUIControllers.LoginGUI">
     <children>
         <HBox alignment="CENTER" prefHeight="102.0" prefWidth="320.0" style="-fx-background-color: BLACK;">
          <children>
@@ -21,7 +21,7 @@
             </Label>
          </children>
         </HBox>
-      <Pane layoutY="102.0" prefHeight="388.0" prefWidth="320.0" style="-fx-background-color: rgb(179,252,252);">
+      <Pane layoutY="102.0" prefHeight="391.0" prefWidth="320.0" style="-fx-background-color: rgb(179,252,252);">
          <children>
             <TextField fx:id="insertEmailLog" layoutX="60.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="34.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-border-radius: 10; -fx-background-radius: 10;" />
             <TextField fx:id="insertPassLog" layoutX="60.0" layoutY="169.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="34.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-border-radius: 10; -fx-background-radius: 10;" />
@@ -62,9 +62,9 @@
             </Label>
          </children>
       </Pane>
-      <HBox alignment="CENTER" layoutY="489.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
+      <HBox alignment="CENTER" layoutY="490.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
          <children>
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="78.0" style="-fx-background-color: transparent;">
+            <Button fx:id="btnBack1" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="78.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="45.0">
                      <image>
@@ -73,7 +73,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;">
+            <Button fx:id="btnHome1" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="48.0">
                      <image>
