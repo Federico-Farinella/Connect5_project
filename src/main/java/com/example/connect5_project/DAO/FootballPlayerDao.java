@@ -27,8 +27,7 @@ public class FootballPlayerDao {
         String dbUser;
         String pass;
         JdbcConnect conn;
-        try (FileInputStream propsInput = new FileInputStream(configFilePath);
-            ){
+        try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
             Properties prop = new Properties();
             prop.load(propsInput);
             dbUser = prop.getProperty("dbUser");
