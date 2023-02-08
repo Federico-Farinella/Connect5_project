@@ -38,9 +38,9 @@ public class FootballPlayerDao {
             System.out.println("Stringa vuota: " + pass);
             JdbcConnect conn = JdbcConnect.getUserConnection(dbUser, pass);
             System.out.println("Fin qui ok");
-            Connection connection = conn.getConnection();
+            //Connection connection = conn.getConnection();
             System.out.println("Fin qui anche");
-            Statement stmt = connection.createStatement();
+            Statement stmt = conn.getConnection().createStatement();
             String sql = "SELECT email FROM user WHERE email = '" + email + "';";
             ResultSet rs = stmt.executeQuery(sql);
             System.out.println("Qui dopo prima query");
