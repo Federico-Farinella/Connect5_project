@@ -66,7 +66,7 @@ public class FootballPlayerDao {
             String sql2 = "SELECT * FROM user WHERE email = '" + email + "' AND Password = '" + password + "';";
             //stmt2 = conn.getConnection().createStatement();
             rs = stmt2.executeQuery(sql2);
-            stmt.close();
+            //stmt.close();
             if (!rs.first()) {
                 beanOut.setResponse("Password incorrect");
                 return beanOut;
