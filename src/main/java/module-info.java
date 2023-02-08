@@ -5,15 +5,15 @@ module com.example.connect5_project {
     requires org.junit.jupiter.api;
 
 
-    opens com.example.connect_five to javafx.fxml;
-    exports com.example.connect_five;
-    exports com.example.connect_five.GUIControllers;
-    opens com.example.connect_five.GUIControllers to javafx.fxml;
-    exports com.example.connect_five.models;
-    opens com.example.connect_five.models to javafx.fxml;
-    exports com.example.connect_five.bean;
-    opens com.example.connect_five.bean to javafx.fxml;
-    exports com.example.connect_five.models.booking_Decorator;
-    opens com.example.connect_five.models.booking_Decorator to javafx.fxml;
-    exports com.example.connect_five.history;
+    opens com.example.connect_5_project to javafx.fxml;
+    exports com.example.connect_5_project;
+    exports com.example.connect_5_project.GUIControllers;
+    opens com.example.connect_5_project.GUIControllers to javafx.fxml;
+    exports com.example.connect_5_project.models;
+    opens com.example.connect_5_project.models to javafx.fxml;
+    exports com.example.connect_5_project.bean;
+    opens com.example.connect_5_project.bean to javafx.fxml;
+    exports com.example.connect_5_project.models.booking_Decorator;
+    opens com.example.connect_5_project.models.booking_Decorator to javafx.fxml;
+    exports com.example.connect_5_project.history;
 }
