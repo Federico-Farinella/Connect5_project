@@ -24,7 +24,7 @@ public class FootballPlayerDao {
         String password = user.getPassword();
         LoginBeanOut beanOut = new LoginBeanOut();
 
-        FileInputStream propsInput;
+        FileInputStream propsInput = null;
         String dbUser;
         String pass;
         JdbcConnect conn;Statement stmt = null;
@@ -106,6 +106,13 @@ public class FootballPlayerDao {
                     stmt.close();
                 } catch (SQLException e) {
                     beanOut.setResponse("Error closing statement");
+                }
+            }
+            if (propsInput != null) {
+                try {
+                    propsInput.close();
+                } catch (IOException e) {
+                    beanOut.setResponse("Error closing FileInputStream");
                 }
             }
         }
