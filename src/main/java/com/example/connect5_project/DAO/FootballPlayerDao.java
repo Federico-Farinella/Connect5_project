@@ -8,10 +8,7 @@ import com.example.connect5_project.utility.JdbcConnect;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 
 public class FootballPlayerDao {
@@ -43,14 +40,16 @@ public class FootballPlayerDao {
             Statement stmt = conn.getConnection().createStatement();
             String sql = "SELECT email FROM user WHERE email = '" + email + "';";
             ResultSet rs = stmt.executeQuery(sql);
+            stmt.close();
             System.out.println("Qui dopo prima query");
             if (!rs.first()) {
                 beanOut.setResponse("Email not registered");
-                stmt.close();
+                //stmt.close();
                 return beanOut;
             }
 
             String sql2 = "SELECT * FROM user WHERE email = '" + email + "' AND Password = '" + password + "';";
+            stmt = conn.getConnection().createStatement();
             rs = stmt.executeQuery(sql2);
             stmt.close();
             if (!rs.first()) {
