@@ -25,19 +25,48 @@ public class FootballPlayerDao {
         LoginBeanOut beanOut = new LoginBeanOut();
 
         FileInputStream propsInput;
+        String dbUser;
+        String pass;
+        JdbcConnect conn;Statement stmt = null;
+        /*try {
+            propsInput = new FileInputStream(configFilePath);
+            Properties prop = new Properties();
+            prop.load(propsInput);
+            propsInput.close();
+            dbUser = prop.getProperty("dbUser");
+            pass = prop.getProperty("pass");
+            conn = JdbcConnect.getUserConnection(dbUser, pass);
+        } catch (FileNotFoundException e) {
+            //ret = "Config file not found";
+            beanOut.setResponse("Config file not found");
+        } catch (IOException e) {
+            //ret = "Config file not loaded";
+            beanOut.setResponse("Config file not loaded");
+        } catch (SQLException e) {
+            //ret = "Error with database connection";
+            beanOut.setResponse("Error with database connection");
+        } catch (ClassNotFoundException e) {
+            //ret = "Driver to connect database not found";
+            beanOut.setResponse("Driver to connect database not found");
+        } finally {
+            if (conn.getConnection() != null)
+                conn.getConnection().close();
+        } */
         try {
             propsInput = new FileInputStream(configFilePath);
             Properties prop = new Properties();
             prop.load(propsInput);
             propsInput.close();
-            String dbUser = prop.getProperty("dbUser");
-            String pass = prop.getProperty("pass");
-            System.out.println("Stringa vuota: " + pass);
-            JdbcConnect conn = JdbcConnect.getUserConnection(dbUser, pass);
+            dbUser = prop.getProperty("dbUser");
+            pass = prop.getProperty("pass");
+            conn = JdbcConnect.getUserConnection(dbUser, pass);
+
+
+            //System.out.println("Stringa vuota: " + pass);
             System.out.println("Fin qui ok");
             //Connection connection = conn.getConnection();
             System.out.println("Fin qui anche");
-            Statement stmt = conn.getConnection().createStatement();
+            stmt = conn.getConnection().createStatement();
             String sql = "SELECT email FROM user WHERE email = '" + email + "';";
             ResultSet rs = stmt.executeQuery(sql);
             stmt.close();
@@ -71,6 +100,14 @@ public class FootballPlayerDao {
         } catch (ClassNotFoundException e) {
             //ret = "Driver to connect database not found";
             beanOut.setResponse("Driver to connect database not found");
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    beanOut.setResponse("Error closing statement");
+                }
+            }
         }
 
         System.out.println(beanOut.getResponse());
