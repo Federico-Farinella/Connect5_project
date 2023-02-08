@@ -7,8 +7,8 @@ module com.example.connect5_project {
 
     opens com.example.connect5_project to javafx.fxml;
     exports com.example.connect5_project;
-    exports com.example.connect5_project.GUIControllers;
-    opens com.example.connect5_project.GUIControllers to javafx.fxml;
+    exports com.example.connect5_project.gui_cntrollers;
+    opens com.example.connect5_project.gui_cntrollers to javafx.fxml;
     exports com.example.connect5_project.models;
     opens com.example.connect5_project.models to javafx.fxml;
     exports com.example.connect5_project.bean;

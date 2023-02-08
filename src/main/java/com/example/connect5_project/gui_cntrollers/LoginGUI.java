@@ -1,4 +1,4 @@
-package com.example.connect5_project.GUIControllers;
+package com.example.connect5_project.gui_cntrollers;
 
 import com.example.connect5_project.Login;
 import com.example.connect5_project.bean.LoginBeanIn;

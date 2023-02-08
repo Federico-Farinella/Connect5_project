@@ -1,7 +1,8 @@
-package com.example.connect5_project.GUIControllers;
+package com.example.connect5_project.gui_cntrollers;
 
 import com.example.connect5_project.bean.CreateAccountBean;
 import com.example.connect5_project.history.History;
+import com.example.connect5_project.history.Navigate;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,34 +14,43 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class CreateAccountGUI {
+public class CreateAccountGUI {  // Devo sostituire il ritorno di confirmCreate con un bean mettendo dentro un response
     @FXML
-    TextField insertName, insertSurname, insertEmail, insertPassword;
+    TextField insertName;
+    @FXML
+    TextField insertSurname;
+    @FXML
+    TextField insertEmail;
+    @FXML
+    TextField insertPassword;
     @FXML
     Button btnConfirmCreate;
     @FXML
     Label errorLabel;
 
+    private Navigate navigate;
+
     public void back(MouseEvent e) throws Exception {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        System.out.println(window);
         window.setScene(History.pagine.lastElement());
         History.pagine.pop();
     }
 
     public void home(MouseEvent e) throws Exception {
         Stage window;
+        navigate.getPages().clear();
         History.pagine.clear();
-        Parent root = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
+        Parent root = loader.load();
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
     public void confirmCreate(){
         CreateAccountBean bean = new CreateAccountBean(insertName.getText(), insertSurname.getText(), insertEmail.getText(), insertPassword.getText());
-        Boolean validEmail = bean.isValidEmail(bean.getEmail());
-        if (validEmail == false) {
+        boolean validEmail = bean.isValidEmail(bean.getEmail());
+        if (!validEmail) {
             errorLabel.setText("Invalid email.  Please insert a valid email");
             errorLabel.setVisible(true);
             return;
@@ -49,8 +59,8 @@ public class CreateAccountGUI {
             System.out.println("Valid email. OK");
         }
 
-        Boolean validPass = bean.isValidPassword(bean.getPassword());
-        if (validPass == false) {
+        boolean validPass = bean.isValidPassword(bean.getPassword());
+        if (!validPass) {
             errorLabel.setText("Password contains less than 6 characters");
             errorLabel.setVisible(true);
         }
