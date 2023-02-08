@@ -24,39 +24,19 @@ public class FootballPlayerDao {
         String password = user.getPassword();
         LoginBeanOut beanOut = new LoginBeanOut();
 
-        FileInputStream propsInput = null;
         String dbUser;
         String pass;
-        JdbcConnect conn;Statement stmt = null;
-        /*try {
-            propsInput = new FileInputStream(configFilePath);
+        try {
+            JdbcConnect conn;
+            Statement stmt;
+            FileInputStream propsInput = new FileInputStream(configFilePath);
             Properties prop = new Properties();
             prop.load(propsInput);
-            propsInput.close();
+            //propsInput.close();
             dbUser = prop.getProperty("dbUser");
             pass = prop.getProperty("pass");
             conn = JdbcConnect.getUserConnection(dbUser, pass);
-        } catch (FileNotFoundException e) {
-            //ret = "Config file not found";
-            beanOut.setResponse("Config file not found");
-        } catch (IOException e) {
-            //ret = "Config file not loaded";
-            beanOut.setResponse("Config file not loaded");
-        } catch (SQLException e) {
-            //ret = "Error with database connection";
-            beanOut.setResponse("Error with database connection");
-        } catch (ClassNotFoundException e) {
-            //ret = "Driver to connect database not found";
-            beanOut.setResponse("Driver to connect database not found");
-        } finally {
-            if (conn.getConnection() != null)
-                conn.getConnection().close();
-        } */
-        try {
             propsInput = new FileInputStream(configFilePath);
-            Properties prop = new Properties();
-            prop.load(propsInput);
-            propsInput.close();
             dbUser = prop.getProperty("dbUser");
             pass = prop.getProperty("pass");
             conn = JdbcConnect.getUserConnection(dbUser, pass);
@@ -100,23 +80,7 @@ public class FootballPlayerDao {
         } catch (ClassNotFoundException e) {
             //ret = "Driver to connect database not found";
             beanOut.setResponse("Driver to connect database not found");
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    beanOut.setResponse("Error closing statement");
-                }
-            }
-            if (propsInput != null) {
-                try {
-                    propsInput.close();
-                } catch (IOException e) {
-                    beanOut.setResponse("Error closing FileInputStream");
-                }
-            }
         }
-
         System.out.println(beanOut.getResponse());
         //ret = "Ok";
         return beanOut;
