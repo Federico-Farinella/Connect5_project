@@ -8,9 +8,6 @@ import com.example.connect5_project.utility.CurrentUser;
 
 public class Login {
 
-    public Login() {
-    }
-
     public LoginBeanOut loginVerify(LoginBeanIn beanIn) {
         String email = beanIn.getEmail();
         String password = beanIn.getPassword();
@@ -25,20 +22,10 @@ public class Login {
                 || beanOut.getResponse().equals("Driver to connect database not found")) {
             beanOut.setResponse("Error");
         } else if (beanOut.getResponse().equals("Match")) {
-            /*String sessionId = UUID.randomUUID().toString();
-            Cookie sessionCookie = new Cookie("sessionId", sessionId);
-            HttpServletResponse response;*/
             CurrentUser currentUser = CurrentUser.getInstance();
             currentUser.setUser(beanOut.getUser());
 
         }
-
         return beanOut;
-        // Continua dal FootballPlayerDao
-
-        /*if (beanIn.getEmail().equals("myEmail"))
-            //System.out.println("Email Corretta");
-            return "Email Corretta";
-        return "Email Non Corretta";*/
     }
 }

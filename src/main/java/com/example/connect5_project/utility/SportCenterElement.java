@@ -1,6 +1,9 @@
 package com.example.connect5_project.utility;
 
+import com.example.connect5_project.gui_cntrollers.SportCentersResultsGUI;
 import com.example.connect5_project.models.CentroSportivo;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,6 +27,7 @@ public class SportCenterElement {
     }
 
     public SportCenterElement(ArrayList<CentroSportivo> list) {
+        SportCentersResultsGUI contr = new SportCentersResultsGUI();
         panels = new ArrayList<>();
         GridPane pane;
         //int i=0;
@@ -43,6 +47,7 @@ public class SportCenterElement {
             lab.setText(item.getName());
             lab.setTextFill(Paint.valueOf("black"));
             lab.setFont(Font.font("Stalin One", 10));
+            lab.setId("Name");
             lab.setWrapText(true);
             //lab.setStyle("-fx-background-color: white");
             //pane.setGridLinesVisible(true);
@@ -64,6 +69,16 @@ public class SportCenterElement {
             go.setFont(Font.font("Sarpanch", 13));
             go.setStyle("-fx-background-color: black;" + "-fx-background-radius:10");
             go.setTextFill(Paint.valueOf("white"));
+            go.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        contr.chooseCenter(event);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
             box.getChildren().add(go);
 
         /*Button info = new Button("Info");

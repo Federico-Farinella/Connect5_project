@@ -16,4 +16,5 @@ module com.example.connect5_project {
     exports com.example.connect5_project.models.booking_Decorator;
     opens com.example.connect5_project.models.booking_Decorator to javafx.fxml;
     exports com.example.connect5_project.history;
+    exports com.example.connect5_project.controllers;
 }

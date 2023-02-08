@@ -49,16 +49,24 @@
             </Label>
             <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="45.0" onMouseReleased="#back">
-                     <image>
-                        <Image url="@images/backArrow.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="btnHome" fitHeight="46.0" fitWidth="48.0" onMouseReleased="#home" onTouchReleased="#home">
-                     <image>
-                        <Image url="@images/homeImage.png" />
-                     </image>
-                  </ImageView>
+                  <Button fx:id="btnBack1" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="78.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="45.0">
+                           <image>
+                              <Image url="@images/backArrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnHome1" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="48.0">
+                           <image>
+                              <Image url="@images/homeImage.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
          </children>

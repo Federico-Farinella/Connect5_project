@@ -4,9 +4,6 @@ public class LoginBeanIn {
     private String email;
     private String password;
 
-    public LoginBeanIn() {
-    }
-
     public String getEmail() {
         return email;
     }

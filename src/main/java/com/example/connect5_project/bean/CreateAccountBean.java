@@ -2,7 +2,10 @@ package com.example.connect5_project.bean;
 
 public class CreateAccountBean {
     Boolean validEmail;
-    String name, surname, email, password;
+    String name;
+    String surname;
+    String email;
+    String password;
 
     public CreateAccountBean(String name, String surname, String email, String password){
         this.name = name;

@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class FirstScreenGUI {
+    Navigate navigate;
     @FXML
     Button btnLog;
     @FXML
@@ -25,9 +26,9 @@ public class FirstScreenGUI {
         //backRoot = btnLog.getParent();
         //this.backRoot = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));
         //pagine.add(FXMLLoader.load(getClass().getResource("/Connect5.fxml"))); pagine era Stack<Parent>
-        Navigate navigate = new Navigate();
+        navigate = new Navigate();
         navigate.pushPage(((Node) e.getSource()).getScene());
-        History.pagine.add(((Node) e.getSource()).getScene());
+        //History.pagine.add(((Node) e.getSource()).getScene());
         //i++;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         Parent root = loader.load();
@@ -41,6 +42,7 @@ public class FirstScreenGUI {
 
     }
     public void createAccount(ActionEvent e) throws Exception {
+        navigate = new Navigate();
         Stage window;
         History.pagine.add(((Node) e.getSource()).getScene());
         Parent root = FXMLLoader.load(getClass().getResource("/CreateAccount.fxml"));

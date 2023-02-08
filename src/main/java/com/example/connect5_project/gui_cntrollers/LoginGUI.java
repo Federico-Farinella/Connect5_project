@@ -108,7 +108,7 @@ public class LoginGUI {
                 insertEmailLog.setText("");
                 insertPassLog.setText("");
                 Stage window;
-                Navigate navigate = new Navigate();
+                //Navigate navigate = new Navigate();
                 navigate.pushPage(((Node) e.getSource()).getScene());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Logged.fxml"));
                 Parent root = loader.load();
@@ -119,9 +119,9 @@ public class LoginGUI {
                 window.setScene(new Scene(root));
             }
         }
-        if (ret.getResponse().equals("Error")) {
+        /*if (ret.getResponse().equals("Error")) {
             errorLabel.setText("Error, we're working on fixing the issues, come back later");
-        }
+        }*/
 
         errorLabel.setVisible(true);
         System.out.println(ret);

@@ -55,7 +55,7 @@ public class CentriSportiviDAO {
                 resultBean.setDaoResponse("Match");
                 resultBean.setListOfCenters(rs);
             }
-            return resultBean;
+            //return resultBean;
             //resultBean = new SearchResultBean();
             //ArrayList<CentroSportivo> array = resultBean.modelling(rs);
             //resultBean.setListOfCenters(rs);
@@ -64,10 +64,10 @@ public class CentriSportiviDAO {
             return resultBean;
         }
         //array = resultBean.setListOfCenters(rs);
-        //return resultBean;
+        return resultBean;
     }
 
-    public SearchResultBean dbSearchCentersByName(String name) throws Exception { //Cambiato return anche qui
+    public SearchResultBean dbSearchCentersByName(String name) { //Cambiato return anche qui
         String dbUser;
         String pass;
         JdbcConnect jdbc;
@@ -103,11 +103,13 @@ public class CentriSportiviDAO {
                 resultBean.setListOfCenters(rs);
                 resultBean.setDaoResponse("Match");
             }
-            return resultBean;
+        } catch (SQLException e) {
+            resultBean.setDaoResponse("Error creating statement");
         }
+        return resultBean;
     }
 
-    public SearchResultBean dbSearchCentersByCity(String city) throws Exception{
+    public SearchResultBean dbSearchCentersByCity(String city) {
         String dbUser;
         String pass;
         JdbcConnect jdbc;
@@ -141,7 +143,10 @@ public class CentriSportiviDAO {
                 resultBean.setListOfCenters(rs);
                 resultBean.setDaoResponse("Match");
             }
-            return resultBean;
+            //return resultBean;
+        } catch (SQLException e) {
+            resultBean.setDaoResponse("Error creating statement");
         }
+        return  resultBean;
     }
 }

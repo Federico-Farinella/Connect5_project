@@ -5,14 +5,9 @@ import com.example.connect5_project.models.CentroSportivo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchResultBean {
-    private static String name;
-    private static String city;
-    private static String address;
-    private static String owner;
-    //private static ImageView image;
-    private static String image;
     private static Float fieldPrice;
     private ArrayList<CentroSportivo> listOfCenters;
     private String daoResponse;
@@ -33,13 +28,17 @@ public class SearchResultBean {
         ArrayList<CentroSportivo> centers = new ArrayList<>();
         CentroSportivo cent;
         if (rs.first()) {
+            String name;
+            String city;
+            String address;
+            String owner;
+            String image;
             do {
                 name = rs.getString("Name");
                 city = rs.getString("City");
                 address = rs.getString("Address");
                 owner = rs.getString("OwnerEmail");
                 image = rs.getString("Image");
-                //field_price = 0.0;
                 fieldPrice = rs.getFloat("BasePrice");
                 cent = new CentroSportivo(name, city, address, owner, image, fieldPrice);
                 centers.add(cent);
@@ -48,10 +47,16 @@ public class SearchResultBean {
         listOfCenters = centers;
     }
 
-    public ArrayList<CentroSportivo> modelling(ResultSet rs) throws SQLException {
+    public List<CentroSportivo> modelling(ResultSet rs) throws SQLException {
         ArrayList<CentroSportivo> centers = new ArrayList<>();
         CentroSportivo cnt;
+
         if (rs.first()) {
+            String name;
+            String city;
+            String address;
+            String owner;
+            String image;
             do {
                 name = rs.getString("Name");
                 city = rs.getString("City");

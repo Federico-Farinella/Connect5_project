@@ -29,7 +29,7 @@ public class LoggedGUI {
         return labelWelcome;
     }
 
-    public void back(MouseEvent e) throws Exception {
+    public void back(ActionEvent e) throws Exception {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         System.out.println(window);
@@ -39,7 +39,7 @@ public class LoggedGUI {
         //History.pagine.pop();
     }
 
-    public void home(MouseEvent e) throws Exception {
+    public void home(ActionEvent e) throws Exception {
         Stage window;
         History.pagine.clear();
         Parent root = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));
@@ -50,7 +50,7 @@ public class LoggedGUI {
     public void searchSportCenters(ActionEvent e) throws Exception {
         Stage window;
         //History.pagine.add(((Node) e.getSource()).getScene());
-        navigate.pages.add(((Node) e.getSource()).getScene());
+        navigate.pushPage(((Node) e.getSource()).getScene());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/SearchSportCenters.fxml"));
         Parent root = loader.load();
         SearchSportCentersGUI control = loader.getController();
