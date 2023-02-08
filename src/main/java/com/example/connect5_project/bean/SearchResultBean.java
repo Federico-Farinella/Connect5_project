@@ -15,6 +15,15 @@ public class SearchResultBean {
     private static String image;
     private static Float fieldPrice;
     private ArrayList<CentroSportivo> listOfCenters;
+    private String daoResponse;
+
+    public String getDaoResponse() {
+        return daoResponse;
+    }
+
+    public void setDaoResponse(String daoResponse) {
+        this.daoResponse = daoResponse;
+    }
 
     public ArrayList<CentroSportivo> getListOfCenters() {
         return listOfCenters;

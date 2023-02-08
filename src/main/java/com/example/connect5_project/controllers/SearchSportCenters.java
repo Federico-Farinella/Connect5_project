@@ -24,10 +24,10 @@ public class SearchSportCenters {
     public SearchResultBean find(String name, String citta) throws Exception {
         //conn = JdbcConnect.getUserConnection();
         CentriSportiviDAO cDao = new CentriSportiviDAO();
-        ResultSet rs = cDao.dbSearchCenters(name, citta);
-        SearchResultBean resultBean = new SearchResultBean();
+        return cDao.dbSearchCenters(name, citta);
+        /*SearchResultBean resultBean = new SearchResultBean();
         resultBean.setListOfCenters(rs);
-        return resultBean;
+        return resultBean;*/
         //CONTINUA DA QUI!!! UNA VOLTA ACQUISITA LA LISTA ANDREBBE MANTENUTA TEMPORANEAMENTE IN CASO DI UN FUTURO BACK BUTTON
         // BISOGNA PASSARE LA LISTA ALLA CONTROLLERGUI E FARE IN MODO CHE I RISULTATI VENGANO LISTATI!!!
         //Map<String, String> list =
@@ -37,10 +37,10 @@ public class SearchSportCenters {
     public SearchResultBean findByCity(String city) throws Exception {
         //conn = JdbcConnect.getUserConnection();
         CentriSportiviDAO cDao = new CentriSportiviDAO();
-        ResultSet rs = cDao.dbSearchCentersByCity(city);
-        SearchResultBean resultBean = new SearchResultBean();
-        resultBean.setListOfCenters(rs);
-        return resultBean;
+        //ResultSet rs = cDao.dbSearchCentersByCity(city);
+        //SearchResultBean resultBean = new SearchResultBean();
+        //resultBean.setListOfCenters(rs);
+        return cDao.dbSearchCentersByCity(city);
     }
 
     //public ArrayList<SearchResult> find() {

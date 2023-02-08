@@ -45,7 +45,7 @@ public class FootballPlayerDao {
         }
 
         try (Statement stmt = conn.getConnection().createStatement();
-        Statement stmt2 = conn.getConnection().createStatement()){
+        Statement stmt2 = conn.getConnection().createStatement()) {
 
             System.out.println("Stringa vuota: " + pass);
             //JdbcConnect conn = JdbcConnect.getUserConnection(dbUser, pass);
