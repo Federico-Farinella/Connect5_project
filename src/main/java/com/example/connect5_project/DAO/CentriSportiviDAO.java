@@ -22,6 +22,7 @@ public class CentriSportiviDAO {
         ResultSet rs = stmt.executeQuery(sql);
         SearchResultBean resultBean = new SearchResultBean();
         ArrayList<CentroSportivo> array = resultBean.modelling(rs);
+        stmt.close();
 
         return rs;
     }
@@ -33,6 +34,7 @@ public class CentriSportiviDAO {
 
         String sql = "SELECT * FROM sport_center WHERE Name = '" + name + "';";
         ResultSet rs = stmt.executeQuery(sql);
+        stmt.close();
         return rs;
     }
 
@@ -43,6 +45,7 @@ public class CentriSportiviDAO {
 
         String sql = "SELECT * FROM sport_center WHERE City = '" + city + "';";
         ResultSet rs = stmt.executeQuery(sql);
+        stmt.close();
         return rs;
     }
 }

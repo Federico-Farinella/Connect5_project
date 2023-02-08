@@ -32,6 +32,7 @@ public class FootballPlayerDao {
             propsInput = new FileInputStream(configFilePath);
             Properties prop = new Properties();
             prop.load(propsInput);
+            propsInput.close();
             String dbUser = prop.getProperty("dbUser");
             String pass = prop.getProperty("pass");
             System.out.println("Stringa vuota: " + pass);
@@ -45,11 +46,13 @@ public class FootballPlayerDao {
             System.out.println("Qui dopo prima query");
             if (!rs.first()) {
                 beanOut.setResponse("Email not registered");
+                stmt.close();
                 return beanOut;
             }
 
             String sql2 = "SELECT * FROM user WHERE email = '" + email + "' AND Password = '" + password + "';";
             rs = stmt.executeQuery(sql2);
+            stmt.close();
             if (!rs.first()) {
                 beanOut.setResponse("Password incorrect");
                 return beanOut;
