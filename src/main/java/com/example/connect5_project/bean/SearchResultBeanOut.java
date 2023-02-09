@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultBean {
+public class SearchResultBeanOut {
     private static Float fieldPrice;
     private ArrayList<CentroSportivo> listOfCenters;
     private String daoResponse;

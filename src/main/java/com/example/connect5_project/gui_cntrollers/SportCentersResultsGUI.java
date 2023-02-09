@@ -11,12 +11,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SportCentersResultsGUI {
@@ -47,8 +50,9 @@ public class SportCentersResultsGUI {
         return booking_controller;
     }
 
-    public void setBooking_controller(BookingController booking_controller) {
+    public void setBookingController(BookingController booking_controller) {
         this.booking_controller = booking_controller;
+        System.out.println("Setting Booking Controller: " + this.booking_controller);
     }
 
     public VBox getBox() {
@@ -68,7 +72,7 @@ public class SportCentersResultsGUI {
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
         System.out.println(window);
-        navigate.pages.pop();
+        //navigate.pages.pop();
         window.setScene(navigate.getPages().lastElement());
         navigate.pages.pop();
         //History.pagine.pop();
@@ -85,11 +89,32 @@ public class SportCentersResultsGUI {
     }
 
     public void chooseCenter(ActionEvent e) throws Exception {
+        System.out.println("Booking_controller step 2: " + booking_controller);
         Node source = (Node) e.getSource();
         GridPane gridPane = (GridPane) source.getParent().getParent();
         System.out.println(gridPane);
         Label name = (Label) gridPane.lookup("#Name");
         System.out.println(name.getText());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChooseBookingData.fxml"));
+        Parent root = loader.load();
+        ChooseBookingDataGUI choose_data_controller = loader.getController();
+        booking_controller.setChoosenCenter(name.getText());
+        System.out.println("City of choosen center: " + booking_controller.getChoosenCenter().getCity());
+        choose_data_controller.setBookingController(booking_controller);
+        DatePicker datePicker = choose_data_controller.getDatePicker();
+        LocalDate min_date = LocalDate.now();
+        LocalDate max_date = LocalDate.now().plusDays(7);
+        datePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isAfter(max_date) || item.isBefore(min_date));
+                    }});
+        navigate.pushPage(((Node) e.getSource()).getScene());
+        choose_data_controller.setNavigate(navigate);
+        Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
+
         //String name = node.getParent().
     }
 

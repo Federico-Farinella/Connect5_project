@@ -1,6 +1,6 @@
 package com.example.connect5_project.dao;
 
-import com.example.connect5_project.bean.SearchResultBean;
+import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.models.CentroSportivo;
 import com.example.connect5_project.utility.JdbcConnect;
 
@@ -18,13 +18,13 @@ public class CentriSportiviDAO {
     /*JdbcConnect jdbc;
     Connection conn;
     ResultSet rs;*/
-    public SearchResultBean dbSearchCenters(String name, String city) {  //Cambiato return da ResultSet a SearchResultBean
+    public SearchResultBeanOut dbSearchCenters(String name, String city) {  //Cambiato return da ResultSet a SearchResultBean
         String dbUser;
         String pass;
         JdbcConnect jdbc;
         //Connection conn;
         ArrayList<CentroSportivo> array;
-        SearchResultBean resultBean = new SearchResultBean();
+        SearchResultBeanOut resultBean = new SearchResultBeanOut();
         //jdbc = JdbcConnect.getUserConnection();
         //conn = jdbc.getConnection();
         try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
@@ -67,13 +67,13 @@ public class CentriSportiviDAO {
         return resultBean;
     }
 
-    public SearchResultBean dbSearchCentersByName(String name) { //Cambiato return anche qui
+    public SearchResultBeanOut dbSearchCentersByName(String name) { //Cambiato return anche qui
         String dbUser;
         String pass;
         JdbcConnect jdbc;
         //Connection conn;
         ArrayList<CentroSportivo> array;
-        SearchResultBean resultBean = new SearchResultBean();
+        SearchResultBeanOut resultBean = new SearchResultBeanOut();
 
         try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
             Properties prop = new Properties();
@@ -109,13 +109,13 @@ public class CentriSportiviDAO {
         return resultBean;
     }
 
-    public SearchResultBean dbSearchCentersByCity(String city) {
+    public SearchResultBeanOut dbSearchCentersByCity(String city) {
         String dbUser;
         String pass;
         JdbcConnect jdbc;
         //Connection conn;
         ArrayList<CentroSportivo> array;
-        SearchResultBean resultBean = new SearchResultBean();
+        SearchResultBeanOut resultBean = new SearchResultBeanOut();
 
         try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
             Properties prop = new Properties();

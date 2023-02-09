@@ -26,8 +26,8 @@ public class SportCenterElement {
         return panels;
     }
 
-    public SportCenterElement(ArrayList<CentroSportivo> list) {
-        SportCentersResultsGUI contr = new SportCentersResultsGUI();
+    public SportCenterElement(ArrayList<CentroSportivo> list, SportCentersResultsGUI contr) {
+        //SportCentersResultsGUI contr = new SportCentersResultsGUI();
         panels = new ArrayList<>();
         GridPane pane;
         //int i=0;

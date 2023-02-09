@@ -1,10 +1,9 @@
 package com.example.connect5_project.gui_cntrollers;
 
-import com.example.connect5_project.bean.SearchResultBean;
+import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.bean.SearchResultsBeanIn;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.controllers.SearchSportCenters;
-import com.example.connect5_project.controllers.TakeBookingController;
 import com.example.connect5_project.dao.CentriSportiviDAO;
 import com.example.connect5_project.history.Navigate;
 import com.example.connect5_project.utility.SportCenterElement;
@@ -18,7 +17,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -29,6 +27,7 @@ import java.util.ArrayList;
 
 public class SearchSportCentersGUI {
     private Navigate navigate;
+    private BookingController booking_controller;
     @FXML private TextField nomeCentroS;
     @FXML private TextField cittaCentroS;
     @FXML private TextField viaCentroS;
@@ -61,6 +60,8 @@ public class SearchSportCentersGUI {
     //@FXML private ListView list;
     @FXML
     private Button btnSearch;
+    @FXML
+    private Label errorLab;
 
 
 
@@ -71,24 +72,31 @@ public class SearchSportCentersGUI {
         SearchSportCenters ctrl = new SearchSportCenters();
         System.out.println("SearchSportCentersGui qui sono:-1");
         CentriSportiviDAO cDao = new CentriSportiviDAO();
-        SearchResultBean list;
-        BookingController booking_controller = new BookingController();
+        SearchResultBeanOut list;
+        booking_controller = new BookingController();
         SearchResultsBeanIn bean_in = new SearchResultsBeanIn();
         if (name.equals("") && city.equals("")) {
-            list = new SearchResultBean();
-            list.setDaoResponse("Both fields empty");
+            errorLab.setText("All fields empty");
+            errorLab.setVisible(true);
+            //list = new SearchResultBeanOut();
+            //list.setDaoResponse("Both fields empty");
+            return;
             //return list;
         } else if (!name.equals("") && city.equals("")) {
             bean_in.setSearch_mode("Name");
             bean_in.setName(name);
+            nomeCentroS.setText("");
         } else if (name.equals("")) {
             bean_in.setSearch_mode("City");
             bean_in.setCity(city);
-            list = cDao.dbSearchCentersByCity(city);
+            cittaCentroS.setText("");
+            //list = cDao.dbSearchCentersByCity(city);
         } else {
             bean_in.setSearch_mode("Name and city");
             bean_in.setName(name);
             bean_in.setCity(city);
+            nomeCentroS.setText("");
+            cittaCentroS.setText("");
         }
         list = booking_controller.searchCenters(bean_in);
         //list = booking_controller.
@@ -99,12 +107,14 @@ public class SearchSportCentersGUI {
         //SportCenterListElements.setList(list.getListOfCenters());
 
         //History.pagine.add(((Node) e.getSource()).getScene());
+        errorLab.setVisible(false);
         navigate.pushPage(((Node) e.getSource()).getScene());
         System.out.println("SearchSportCentersGui qui sono:1");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/SportCentersResults.fxml"));
         System.out.println("SearchSportCentersGui qui sono:2");
         Parent root = loader.load();
         SportCentersResultsGUI control = loader.getController();
+        control.setBookingController(this.booking_controller);
         control.setList(list.getListOfCenters());
         control.setNavigate(navigate);
         if (list.getListOfCenters() == null) {
@@ -121,13 +131,15 @@ public class SearchSportCentersGUI {
             control.getBox().getChildren().add(lab);
 
         } else {
-            SportCenterElement centerElement = new SportCenterElement(list.getListOfCenters());
+            SportCenterElement centerElement = new SportCenterElement(list.getListOfCenters(), control);
             ArrayList<GridPane> array = centerElement.getPanels();
             for (GridPane item : array) {
                 control.getBox().getChildren().add(item);
             }
         }
-        control.setBooking_controller(booking_controller);
+        //booking_controller.setCentersResultsList(list.getListOfCenters());
+        System.out.println("Booking_controller: " + booking_controller);
+        //control.setBooking_controller(booking_controller);
         //Parent root = FXMLLoader.load(getClass().getResource("/SportCentersResults.fxml"));
         Stage window =(Stage) btnSearch.getScene().getWindow();
         System.out.println("SearchSportCentersGui qui sono:3");
