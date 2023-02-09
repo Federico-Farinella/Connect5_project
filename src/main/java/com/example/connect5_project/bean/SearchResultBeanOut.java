@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultBeanOut {
-    private static Float fieldPrice;
+    private Float fieldPrice;
     private List<CentroSportivo> listOfCenters;
     private String daoResponse;
 

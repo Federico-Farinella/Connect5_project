@@ -21,7 +21,7 @@ public class DailyAvailabilityBeanOut {
         return weatherByHour;
     }
 
-    public void setWeatherByHour(HashMap<String, ArrayList<String>> weatherByHour) {  // Vediamo se qui HashMap va bene a Sonar
+    public void setWeatherByHour(Map<String, ArrayList<String>> weatherByHour) {  // Vediamo se qui HashMap va bene a Sonar
         this.weatherByHour = weatherByHour;
     }
 }
