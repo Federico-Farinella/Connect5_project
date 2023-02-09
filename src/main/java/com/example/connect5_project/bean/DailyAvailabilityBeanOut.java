@@ -1,24 +1,27 @@
 package com.example.connect5_project.bean;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class DailyAvailabilityBeanOut {
-    HashMap<String, ArrayList<String>> weather_by_hour;
+    /*HashMap<String, ArrayList<String>> weatherByHour;
 
     public HashMap<String, ArrayList<String>> getWeatherByHour() {
-        return weather_by_hour;
+        return weatherByHour;
     }
 
     public void setWeatherByHour(HashMap<String, ArrayList<String>> weather_by_hour) {
-        this.weather_by_hour = weather_by_hour;
-    }
-    /*private LocalDate date_to_search;
-
-    public void setDateToSearch(LocalDate date) {
-        date_to_search = date;
+        this.weatherByHour = weather_by_hour;
     }*/
+    Map<String, ArrayList<String>> weatherByHour;
+
+    public Map<String, ArrayList<String>> getWeatherByHour() {
+        return weatherByHour;
+    }
+
+    public void setWeatherByHour(HashMap<String, ArrayList<String>> weather_by_hour) {  // Vediamo se qui HashMap va bene a Sonar
+        this.weatherByHour = weather_by_hour;
+    }
 }

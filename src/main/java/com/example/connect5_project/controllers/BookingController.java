@@ -50,7 +50,7 @@ public class BookingController {
 
     public DailyAvailabilityBeanOut getAvailability(DailyAvailabilityBeanIn bean_in) {
         WeatherApiBeanOut bean_weather_out = new WeatherApiBeanOut();
-        bean_weather_out.setGapDay(bean_in.getDate_to_search());
+        bean_weather_out.setGapDay(bean_in.getDateToSearch());
         bean_weather_out.setCity(choosen_center.getCity());
         WeatherBoundary weather_boundary = new WeatherBoundary();
         WeatherApiBeanIn bean_weather_in = new WeatherApiBeanIn();
