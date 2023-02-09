@@ -77,14 +77,12 @@ public class AvailabilityControlGUI {
         String condition;
         String is_day;
         for (ImageView im : images) {
-            System.out.println(i);
             System.out.println(weatherResponse.get(Integer.toString(i)));
-            //resource = null;
             condition = weatherResponse.get(Integer.toString(i)).get(0);
             is_day = weatherResponse.get(Integer.toString(i)).get(1);
             System.out.println("Tempo ora " + i + ": " + condition);
             switch (condition) {
-                case ("\"Sunny\"") -> { // Continua da qui bisogna sistemare le classi e metodi per ottenere un HashMap in weather e manipolare immagini da visualizzare
+                case ("\"Sunny\"") -> {
                     System.out.println("Ok");
                     resource = getClass().getResource("/images_weather/Sun.png");
                     System.out.println("Yes");
@@ -108,7 +106,6 @@ public class AvailabilityControlGUI {
                         resource = getClass().getResource("/images_weather/PatchyRain_Day.png");
                     } else {
                         resource = getClass().getResource("/images_weather/Moon&Rain.png");
-                        //resource = getClass().getResource("/images/Rain.png");
                     }
                 }
                 case ("\"Patchy light drizzle\""), ("\"Light drizzle\"") ->  //|| ("\"Light drizzle\"")): {
@@ -135,8 +132,6 @@ public class AvailabilityControlGUI {
         images.add(im20to21);
         images.add(im21to22);
         images.add(im22to23);
-        //lab_center_name.setText(booking_controller.getChoosenCenter().getName());
-        //lab_date.setText(booking_controller);
     }
 
     public void back(ActionEvent e) throws Exception {
@@ -144,15 +139,12 @@ public class AvailabilityControlGUI {
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
         System.out.println(window);
-        //navigate.pages.pop();
         window.setScene(navigate.getPages().lastElement());
         navigate.pages.pop();
-        //History.pagine.pop();
     }
 
     public void home(ActionEvent e) throws Exception {
         Stage window;
-        //History.pagine.clear();
         navigate.pages.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
         Parent root = loader.load();

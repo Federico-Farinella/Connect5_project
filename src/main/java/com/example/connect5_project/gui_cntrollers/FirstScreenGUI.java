@@ -1,7 +1,5 @@
 package com.example.connect5_project.gui_cntrollers;
 
-//import com.sun.javafx.charts.Legend;
-
 import com.example.connect5_project.history.History;
 import com.example.connect5_project.history.Navigate;
 import javafx.event.ActionEvent;
@@ -22,14 +20,8 @@ public class FirstScreenGUI {
 
     public void login(ActionEvent e) throws Exception{
         Stage window;
-        //System.out.println("Button LOGIN");
-        //backRoot = btnLog.getParent();
-        //this.backRoot = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));
-        //pagine.add(FXMLLoader.load(getClass().getResource("/Connect5.fxml"))); pagine era Stack<Parent>
-        navigate = new Navigate();
+
         navigate.pushPage(((Node) e.getSource()).getScene());
-        //History.pagine.add(((Node) e.getSource()).getScene());
-        //i++;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         Parent root = loader.load();
         LoginGUI contr = loader.getController();
@@ -42,29 +34,10 @@ public class FirstScreenGUI {
 
     }
     public void createAccount(ActionEvent e) throws Exception {
-        navigate = new Navigate();
         Stage window;
         History.pagine.add(((Node) e.getSource()).getScene());
         Parent root = FXMLLoader.load(getClass().getResource("/CreateAccount.fxml"));
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    /*public void loginVerify(ActionEvent e) throws Exception {
-        System.out.println(btnLog);
-        System.out.println(insertEmailLog);
-        String email = insertEmailLog.getText();
-        System.out.println(email);
-        //Login login = new Login();
-        String ret = Login.loginVerify(email);
-        System.out.println(ret);
-    }*/
-
-    public void enterAsGuest(ActionEvent e) throws Exception {
-        Stage window;
-        History.pagine.add(((Node) e.getSource()).getScene());
-        Parent root = FXMLLoader.load(getClass().getResource("/EnterAsGuest.fxml"));
-        window =(Stage) btnLog.getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
@@ -75,10 +48,8 @@ public class FirstScreenGUI {
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
-
-    public void createAccount() {
-
+    public void initialize() {
+        navigate = new Navigate();
     }
-
 
 }

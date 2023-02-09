@@ -14,19 +14,13 @@ import java.util.Properties;
 
 public class CentriSportiviDAO {
     String configFilePath = "src/main/resources/config.properties";
-    //static Connection conn;
-    /*JdbcConnect jdbc;
-    Connection conn;
-    ResultSet rs;*/
+
     public SearchResultBeanOut dbSearchCenters(String name, String city) {  //Cambiato return da ResultSet a SearchResultBean
         String dbUser;
         String pass;
         JdbcConnect jdbc;
-        //Connection conn;
         ArrayList<CentroSportivo> array;
         SearchResultBeanOut resultBean = new SearchResultBeanOut();
-        //jdbc = JdbcConnect.getUserConnection();
-        //conn = jdbc.getConnection();
         try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
             Properties prop = new Properties();
             prop.load(propsInput);
@@ -49,16 +43,10 @@ public class CentriSportiviDAO {
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.first()) {
                 resultBean.setDaoResponse("Not match");
-                //stmt.close();
-                //return resultBean;
             } else {
                 resultBean.setDaoResponse("Match");
                 resultBean.setListOfCenters(rs);
             }
-            //return resultBean;
-            //resultBean = new SearchResultBean();
-            //ArrayList<CentroSportivo> array = resultBean.modelling(rs);
-            //resultBean.setListOfCenters(rs);
         } catch (SQLException e) {
             resultBean.setDaoResponse("Error opening database connession");
             return resultBean;
@@ -71,7 +59,7 @@ public class CentriSportiviDAO {
         String dbUser;
         String pass;
         JdbcConnect jdbc;
-        //Connection conn;
+
         ArrayList<CentroSportivo> array;
         SearchResultBeanOut resultBean = new SearchResultBeanOut();
 
@@ -97,8 +85,6 @@ public class CentriSportiviDAO {
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.first()) {
                 resultBean.setDaoResponse("Not match");
-                //stmt.close();
-                //return resultBean;
             } else {
                 resultBean.setListOfCenters(rs);
                 resultBean.setDaoResponse("Match");
@@ -113,7 +99,7 @@ public class CentriSportiviDAO {
         String dbUser;
         String pass;
         JdbcConnect jdbc;
-        //Connection conn;
+
         ArrayList<CentroSportivo> array;
         SearchResultBeanOut resultBean = new SearchResultBeanOut();
 
@@ -143,7 +129,6 @@ public class CentriSportiviDAO {
                 resultBean.setListOfCenters(rs);
                 resultBean.setDaoResponse("Match");
             }
-            //return resultBean;
         } catch (SQLException e) {
             resultBean.setDaoResponse("Error creating statement");
         }

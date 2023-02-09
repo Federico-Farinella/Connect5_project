@@ -5,23 +5,17 @@ import com.example.connect5_project.boundary.WeatherBoundary;
 import com.example.connect5_project.dao.CentriSportiviDAO;
 import com.example.connect5_project.models.CentroSportivo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookingController {
     private List<CentroSportivo> centers_results_list;
     private CentroSportivo choosen_center;
 
-    /*public void setCentersResultsList(ArrayList<CentroSportivo> centers_results_list) {
-        this.centers_results_list = centers_results_list;
-    }*/
-
     public CentroSportivo getChoosenCenter() {
         return choosen_center;
     }
 
     public void setChoosenCenter(String name) {
-        //this.choosen_center = choosen_center;
         for (CentroSportivo center : centers_results_list) {
             if (center.getName().equals(name)) {
                 choosen_center = center;
@@ -31,7 +25,7 @@ public class BookingController {
     }
 
     public SearchResultBeanOut searchCenters(SearchResultsBeanIn bean_in) {
-        String search_mode = bean_in.getSearch_mode();
+        String search_mode = bean_in.getSearchMode();
         SearchResultBeanOut bean_to = new SearchResultBeanOut();
         CentriSportiviDAO cDao = new CentriSportiviDAO();
         switch (search_mode) {
@@ -61,6 +55,5 @@ public class BookingController {
         bean_out.setWeatherByHour(bean_weather_in.getWeatherByHour());
         System.out.println("BookingController: " + bean_out.getWeatherByHour().get(Integer.toString(15)));
         return bean_out;
-        //weather_boundary.weitherCity(bean_weather_out);
     }
 }

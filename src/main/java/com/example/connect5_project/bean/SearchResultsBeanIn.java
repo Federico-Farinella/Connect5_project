@@ -1,16 +1,16 @@
 package com.example.connect5_project.bean;
 
 public class SearchResultsBeanIn {
-    String search_mode;
+    String searchMode;
     String name;
     String city;
 
-    public String getSearch_mode() {
-        return search_mode;
+    public String getSearchMode() {
+        return searchMode;
     }
 
-    public void setSearch_mode(String search_mode) {
-        this.search_mode = search_mode;
+    public void setSearchMode(String search_mode) {
+        this.searchMode = search_mode;
     }
 
     public String getName() {

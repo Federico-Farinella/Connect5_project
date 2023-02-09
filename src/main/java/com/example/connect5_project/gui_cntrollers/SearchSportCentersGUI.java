@@ -83,16 +83,16 @@ public class SearchSportCentersGUI {
             return;
             //return list;
         } else if (!name.equals("") && city.equals("")) {
-            bean_in.setSearch_mode("Name");
+            bean_in.setSearchMode("Name");
             bean_in.setName(name);
             nomeCentroS.setText("");
         } else if (name.equals("")) {
-            bean_in.setSearch_mode("City");
+            bean_in.setSearchMode("City");
             bean_in.setCity(city);
             cittaCentroS.setText("");
             //list = cDao.dbSearchCentersByCity(city);
         } else {
-            bean_in.setSearch_mode("Name and city");
+            bean_in.setSearchMode("Name and city");
             bean_in.setName(name);
             bean_in.setCity(city);
             nomeCentroS.setText("");

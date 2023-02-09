@@ -12,10 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class ChooseBookingDataGUI {
 
@@ -58,28 +56,20 @@ public class ChooseBookingDataGUI {
         availability_controller.setNavigate(navigate);
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
-        //LocalDate date_to_search = datePicker.getValue();
-        //bean_out = booking_controller.getAvailability(bean_in);
-
     }
 
     public void back(ActionEvent e) throws IOException {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-
-        System.out.println(window);
-        //navigate.pages.pop();
         window.setScene(navigate.getPages().lastElement());
         navigate.pages.pop();
     }
 
     public void home (ActionEvent e) throws IOException {
-        Stage window;
-        //History.pagine.clear();
         navigate.pages.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
         Parent root = loader.load();
-        window = (Stage)((Node) e.getSource()).getScene().getWindow();
+        Stage window = (Stage)((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
 }

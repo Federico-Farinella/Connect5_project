@@ -30,11 +30,15 @@ public class CreateAccountGUI {  // Devo sostituire il ritorno di confirmCreate 
 
     private Navigate navigate;
 
+    public void setNavigate(Navigate navigate) {
+        this.navigate = navigate;
+    }
+
     public void back(MouseEvent e) throws Exception {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        window.setScene(History.pagine.lastElement());
-        History.pagine.pop();
+        window.setScene(navigate.getPages().lastElement());
+        navigate.getPages().pop();
     }
 
     public void home(MouseEvent e) throws Exception {

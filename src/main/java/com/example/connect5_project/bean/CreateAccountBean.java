@@ -26,18 +26,12 @@ public class CreateAccountBean {
         return password;
     }
 
-    public Boolean isValidEmail(String email) {
-        Boolean ret = true;
-        if (!email.endsWith("@gmail.com"))
-            ret = false;
-        return ret;
+    public boolean isValidEmail(String email) {
+        return email.endsWith("@gmail.com");
+
     }
 
-    public Boolean isValidPassword(String password){
-        Boolean ret = true;
-        if (password.length()<6) {
-            ret = false;
-        }
-        return ret;
+    public boolean isValidPassword(String password){
+        return password.length() >= 6;
     }
 }
