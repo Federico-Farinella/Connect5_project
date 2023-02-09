@@ -3,6 +3,10 @@ module com.example.connect5_project {
     requires javafx.fxml;
     requires java.sql;
     requires org.junit.jupiter.api;
+    requires com.fasterxml.jackson.annotation;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
+    requires okhttp3;
 
 
     opens com.example.connect5_project to javafx.fxml;
@@ -17,4 +21,5 @@ module com.example.connect5_project {
     opens com.example.connect5_project.models.booking_Decorator to javafx.fxml;
     exports com.example.connect5_project.history;
     exports com.example.connect5_project.controllers;
+    exports com.example.connect5_project.weather_service;
 }

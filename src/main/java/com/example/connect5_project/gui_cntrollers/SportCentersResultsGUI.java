@@ -99,11 +99,14 @@ public class SportCentersResultsGUI {
         Parent root = loader.load();
         ChooseBookingDataGUI choose_data_controller = loader.getController();
         booking_controller.setChoosenCenter(name.getText());
+
+        /////////
+        System.out.println("Qui di ritorno da setChoosenCenter: " + booking_controller.getChoosenCenter().getName());
         System.out.println("City of choosen center: " + booking_controller.getChoosenCenter().getCity());
         choose_data_controller.setBookingController(booking_controller);
         DatePicker datePicker = choose_data_controller.getDatePicker();
         LocalDate min_date = LocalDate.now();
-        LocalDate max_date = LocalDate.now().plusDays(7);
+        LocalDate max_date = LocalDate.now().plusDays(2);
         datePicker.setDayCellFactory(d ->
                 new DateCell() {
                     @Override public void updateItem(LocalDate item, boolean empty) {

@@ -24,14 +24,14 @@
       </HBox>
       <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: rgb(179,252,252);">
          <children>
-            <Button fx:id="btnSearch" contentDisplay="CENTER" layoutX="197.0" layoutY="319.0" mnemonicParsing="false" onAction="#search" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Search" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="btnSearch" contentDisplay="CENTER" layoutX="113.0" layoutY="242.0" mnemonicParsing="false" onAction="#search" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Search" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Sarpanch" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="145.0" layoutY="36.0" prefHeight="26.0" prefWidth="26.0" text="Via" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="57.0" layoutY="64.0" prefHeight="26.0" prefWidth="201.0" text="Choose a date" textAlignment="CENTER">
                <font>
-                  <Font name="Stalin One" size="9.0" />
+                  <Font name="Stalin One" size="14.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
@@ -61,7 +61,7 @@
                   <Font name="Sarpanch" size="13.0" />
                </font>
             </Label>
-            <DatePicker fx:id="datePicker" layoutX="72.0" layoutY="116.0" promptText="Insert date until 7 days" style="-fx-border-color: black;" />
+            <DatePicker fx:id="datePicker" layoutX="62.0" layoutY="141.0" prefHeight="32.0" prefWidth="192.0" promptText="Up to two days from today" style="-fx-border-color: black;" />
          </children>
       </Pane>
    </children>

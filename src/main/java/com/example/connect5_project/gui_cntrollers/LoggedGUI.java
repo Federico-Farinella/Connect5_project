@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class LoggedGUI {
     Navigate navigate;
     @FXML
@@ -40,22 +42,22 @@ public class LoggedGUI {
     }
 
     public void home(ActionEvent e) throws Exception {
-        Stage window;
         History.pagine.clear();
-        Parent root = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));
-        window = (Stage)((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
+        Parent root = loader.load();
+        //Parent root = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));
+        Stage window = (Stage)((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
-    public void searchSportCenters(ActionEvent e) throws Exception {
-        Stage window;
+    public void searchSportCenters(ActionEvent e) throws IOException {
         //History.pagine.add(((Node) e.getSource()).getScene());
         navigate.pushPage(((Node) e.getSource()).getScene());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/SearchSportCenters.fxml"));
         Parent root = loader.load();
         SearchSportCentersGUI control = loader.getController();
         control.setNavigate(navigate);
-        window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
 }
