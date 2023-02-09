@@ -9,7 +9,7 @@ public class DailyAvailabilityBeanIn {
         return dateToSearch;
     }
 
-    public void setDateToSearch(LocalDate date_to_search) {
-        this.dateToSearch = date_to_search;
+    public void setDateToSearch(LocalDate dateToSearch) {
+        this.dateToSearch = dateToSearch;
     }
 }

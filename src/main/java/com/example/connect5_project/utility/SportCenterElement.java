@@ -16,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SportCenterElement {
     //Continuerò da qui dopo aver fatto pratica nel progetto "TabellaRisultati"
@@ -26,7 +27,7 @@ public class SportCenterElement {
         return panels;
     }
 
-    public SportCenterElement(ArrayList<CentroSportivo> list, SportCentersResultsGUI contr) {
+    public SportCenterElement(List<CentroSportivo> list, SportCentersResultsGUI contr) {
         //SportCentersResultsGUI contr = new SportCentersResultsGUI();
         panels = new ArrayList<>();
         GridPane pane;

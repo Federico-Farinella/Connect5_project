@@ -6,9 +6,10 @@ import com.example.connect5_project.dao.CentriSportiviDAO;
 import com.example.connect5_project.models.CentroSportivo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BookingController {
-    private ArrayList<CentroSportivo> centers_results_list;
+    private List<CentroSportivo> centers_results_list;
     private CentroSportivo choosen_center;
 
     /*public void setCentersResultsList(ArrayList<CentroSportivo> centers_results_list) {

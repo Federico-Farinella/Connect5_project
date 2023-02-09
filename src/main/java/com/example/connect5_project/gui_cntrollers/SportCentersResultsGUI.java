@@ -21,10 +21,11 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SportCentersResultsGUI {
     private Navigate navigate;
-    private ArrayList<CentroSportivo> list;
+    private List<CentroSportivo> list;
     @FXML
     VBox box;
     @FXML
@@ -38,11 +39,11 @@ public class SportCentersResultsGUI {
     //static int i = 0;
 
 
-    public ArrayList<CentroSportivo> getList() {
+    public List<CentroSportivo> getList() {
         return list;
     }
 
-    public void setList(ArrayList<CentroSportivo> list) {
+    public void setList(List<CentroSportivo> list) {
         this.list = list;
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SearchResultBeanOut {
     private static Float fieldPrice;
-    private ArrayList<CentroSportivo> listOfCenters;
+    private List<CentroSportivo> listOfCenters;
     private String daoResponse;
 
     public String getDaoResponse() {
@@ -20,7 +20,7 @@ public class SearchResultBeanOut {
         this.daoResponse = daoResponse;
     }
 
-    public ArrayList<CentroSportivo> getListOfCenters() {
+    public List<CentroSportivo> getListOfCenters() {
         return listOfCenters;
     }
 
