@@ -14,25 +14,28 @@ public class WeatherBoundary {
     public WeatherApiBeanIn weitherCity(WeatherApiBeanOut bean_out) {
         WeatherApiBeanIn bean_in = new WeatherApiBeanIn();
         String configFilePath = "src/main/resources/config_weather.properties";
-        FileInputStream propsInput;
+        //FileInputStream propsInput;
+        Properties prop;
         System.out.println("Inizio metodo weitherCity API2");
-        try {
-            propsInput = new FileInputStream(configFilePath);
-
-
+        try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
+            //propsInput = new FileInputStream(configFilePath);
+            prop = new Properties();
+            prop.load(propsInput);
         } catch (FileNotFoundException e) {
-            configFilePath = "config1.properties";
-            try {
-                propsInput = new FileInputStream((configFilePath));
-            } catch (FileNotFoundException e2) {
-                bean_in.setResponse(false);
-                bean_in.setRespDescription("Error opening Api's configuration file");
-                return bean_in;
-            }
+            //configFilePath = "config1.properties";
+            bean_in.setResponse(false);
+            bean_in.setRespDescription("API configuration's file not found");
+            return bean_in;
+        } catch (IOException e) {
+            bean_in.setResponse(false);
+            bean_in.setRespDescription("Error loading API configuration's file");
+            return bean_in;
         }
 
-        Properties prop = new Properties();
-        try {
+        String key = prop.getProperty("key");
+
+        //Properties prop = new Properties();
+        /*try {
             prop.load(propsInput);
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,7 +44,7 @@ public class WeatherBoundary {
             return bean_in;
         }
         String key = prop.getProperty("key");
-        System.out.println(key);
+        System.out.println(key);*/
 
         WeatherService service = new WeatherService();
         System.out.println("Dati da mandare al Weather service: Gap day, City: " + bean_out.getGap_day() + ", " + bean_out.getCity());

@@ -46,7 +46,6 @@ public class ChooseBookingDataGUI {
         DailyAvailabilityBeanIn bean_in = new DailyAvailabilityBeanIn();
         bean_in.setDateToSearch(datePicker.getValue());
         DailyAvailabilityBeanOut bean_out = booking_controller.getAvailability(bean_in);
-        System.out.println("Prova meteo: " + bean_out.getWeatherByHour().get(0));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/daily_availability_weather.fxml"));
         Parent root = loader.load();
         AvailabilityControlGUI availability_controller = loader.getController();
