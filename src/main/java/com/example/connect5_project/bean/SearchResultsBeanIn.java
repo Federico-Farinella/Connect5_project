@@ -9,8 +9,8 @@ public class SearchResultsBeanIn {
         return searchMode;
     }
 
-    public void setSearchMode(String search_mode) {
-        this.searchMode = search_mode;
+    public void setSearchMode(String searchMode) {
+        this.searchMode = searchMode;
     }
 
     public String getName() {
@@ -29,4 +29,16 @@ public class SearchResultsBeanIn {
         this.city = city;
     }
 
+    public void setCli(String searchType, String field) {
+        switch (searchType) {
+            case ("Name") -> {
+                this.setSearchMode(searchType);
+                this.setName(field);
+            }
+            case ("City") -> {
+                this.setSearchMode(searchType);
+                this.setCity(field);
+            }
+        }
+    }
 }

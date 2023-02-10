@@ -17,7 +17,12 @@ public class SearchResultBeanOut {
     }
 
     public void setDaoResponse(String daoResponse) {
-        this.daoResponse = daoResponse;
+        if (daoResponse.equals("Config file not found") || daoResponse.equals("Driver to connect database not found")
+            || daoResponse.equals("Error with database connection") || daoResponse.equals("Error creating statement")) {
+            this.daoResponse = "Error data";
+        }
+        else
+            this.daoResponse = daoResponse;
     }
 
     public List<CentroSportivo> getListOfCenters() {

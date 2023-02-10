@@ -12,19 +12,19 @@ public class LoginCLI {
         while (true) {
             String email = "";
             String password = "";
-            System.out.println("Insert your email");
+            System.out.println("Insert your email\n\nOr type back or exit.");
             LoginBeanIn beanIn = new LoginBeanIn();
             while (true) {
                 email = console.nextLine();
                 if (email.equals("")) {
-                    System.out.println("Field email cannot be empty.\n\nInsert your email");  //NOSONAR
+                    System.out.println("Field email cannot be empty.\nInsert your email\n\nOr type back or exit.");  //NOSONAR
                     continue;
                 }
                 else if (email.equals("back")){
                     return;
                 }
                 if (!beanIn.setEmail(email)) {
-                    System.out.println("You have not entered a correct email..\n\nInsert your email");  //NOSONAR
+                    System.out.println("You have not entered a correct email..\n\nInsert your email\n\nOr type back or exit.");  //NOSONAR
                 }
                 else
                     break;
@@ -33,7 +33,7 @@ public class LoginCLI {
                 System.out.println("Insert password");  //NOSONAR
                 password = console.nextLine();
                 if (password.equals("")) {
-                    System.out.println("Field password cannot be empty.\n\nInsert your email");  //NOSONAR
+                    System.out.println("Field password cannot be empty.\n\nInsert your email\n\nOr type back or exit.");  //NOSONAR
                 } else
                     break;
             }
@@ -51,7 +51,7 @@ public class LoginCLI {
                 case ("Error") -> {
                     System.out.println("We are working to resolve some problems.\nTry later.");  //NOSONAR
                 }
-                case ("MATCH") -> {
+                case ("Match") -> {
                     LoggedCLI logged = new LoggedCLI();
                     logged.setScanner(console);
                     logged.main();

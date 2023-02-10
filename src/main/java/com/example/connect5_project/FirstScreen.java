@@ -27,7 +27,8 @@ public class FirstScreen extends Application {
 
     public static void main(String[] args) {
 
-        if (!args[0].equals("0")) {
+        //if (!args[0].equals("0")) {
+        if (args.length == 0) {
             launch();
         } else {
             Connect5CLI firstScreen = new Connect5CLI();

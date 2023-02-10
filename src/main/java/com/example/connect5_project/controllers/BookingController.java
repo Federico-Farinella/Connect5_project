@@ -26,6 +26,7 @@ public class BookingController {
 
     public SearchResultBeanOut searchCenters(SearchResultsBeanIn bean_in) {
         String search_mode = bean_in.getSearchMode();
+        System.out.println("Booking Controller, searvhCenters. Print search_mode: " + search_mode);
         SearchResultBeanOut bean_to = new SearchResultBeanOut();
         CentriSportiviDAO cDao = new CentriSportiviDAO();
         switch (search_mode) {
@@ -55,5 +56,9 @@ public class BookingController {
         bean_out.setWeatherByHour(bean_weather_in.getWeatherByHour());
         System.out.println("BookingController: " + bean_out.getWeatherByHour().get(Integer.toString(15)));
         return bean_out;
+    }
+
+    public void setCentersResultsList(List<CentroSportivo> centers_results_list) {
+        this.centers_results_list = centers_results_list;
     }
 }
