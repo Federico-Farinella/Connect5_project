@@ -53,7 +53,7 @@ public class LoginCLI {
                 }
                 case ("MATCH") -> {
                     LoggedCLI logged = new LoggedCLI();
-                    console.close();
+                    logged.setScanner(console);
                     logged.main();
                 }
             }
