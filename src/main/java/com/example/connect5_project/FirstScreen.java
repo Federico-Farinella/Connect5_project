@@ -1,5 +1,6 @@
 package com.example.connect5_project;
 
+import com.example.connect5_project.cli_controllers.Connect5CLI;
 import com.example.connect5_project.models.User;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -8,8 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class FirstScreen extends Application {
     @Override
@@ -24,6 +26,12 @@ public class FirstScreen extends Application {
 
 
     public static void main(String[] args) {
-        launch();
+
+        if (!args[0].equals("0")) {
+            launch();
+        } else {
+            Connect5CLI firstScreen = new Connect5CLI();
+            firstScreen.main();
+        }
     }
 }

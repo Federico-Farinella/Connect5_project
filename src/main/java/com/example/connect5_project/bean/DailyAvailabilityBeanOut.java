@@ -6,15 +6,7 @@ import java.util.Map;
 
 
 public class DailyAvailabilityBeanOut {
-    /*HashMap<String, ArrayList<String>> weatherByHour;
-
-    public HashMap<String, ArrayList<String>> getWeatherByHour() {
-        return weatherByHour;
-    }
-
-    public void setWeatherByHour(HashMap<String, ArrayList<String>> weather_by_hour) {
-        this.weatherByHour = weather_by_hour;
-    }*/
+    // Potrei aggiungere un response con gestione del risultato nella GUI
     Map<String, ArrayList<String>> weatherByHour;
 
     public Map<String, ArrayList<String>> getWeatherByHour() {
