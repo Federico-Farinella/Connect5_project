@@ -1,6 +1,7 @@
 package com.example.connect5_project.bean;
 
 import com.example.connect5_project.models.CentroSportivo;
+import com.example.connect5_project.utility.SportCenterElements;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

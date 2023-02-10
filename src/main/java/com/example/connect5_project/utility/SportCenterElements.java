@@ -18,7 +18,7 @@ import javafx.scene.text.TextAlignment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SportCenterElement {
+public class SportCenterElements {
     //Continuerò da qui dopo aver fatto pratica nel progetto "TabellaRisultati"
     ArrayList<GridPane> panels;
     //GridPane pane;
@@ -27,7 +27,7 @@ public class SportCenterElement {
         return panels;
     }
 
-    public SportCenterElement(List<CentroSportivo> list, SportCentersResultsGUI contr) {
+    public SportCenterElements(List<CentroSportivo> list, SportCentersResultsGUI contr) {
         //SportCentersResultsGUI contr = new SportCentersResultsGUI();
         panels = new ArrayList<>();
         GridPane pane;
@@ -105,7 +105,7 @@ public class SportCenterElement {
         }
     }
 
-    public SportCenterElement( ) {
+    public SportCenterElements( ) {
         GridPane pane;
         pane = new GridPane();
         pane.setAlignment(Pos.CENTER);

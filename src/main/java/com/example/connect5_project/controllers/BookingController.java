@@ -8,7 +8,7 @@ import com.example.connect5_project.models.CentroSportivo;
 import java.util.List;
 
 public class BookingController {
-    private List<CentroSportivo> centers_results_list;
+    private List<CentroSportivo> centersResultsList;
     private CentroSportivo choosen_center;
 
     public CentroSportivo getChoosenCenter() {
@@ -16,7 +16,7 @@ public class BookingController {
     }
 
     public void setChoosenCenter(String name) {
-        for (CentroSportivo center : centers_results_list) {
+        for (CentroSportivo center : centersResultsList) {
             if (center.getName().equals(name)) {
                 choosen_center = center;
                 System.out.println("Choosen center : " + choosen_center.getName());
@@ -40,7 +40,7 @@ public class BookingController {
                 bean_to = cDao.dbSearchCenters(bean_in.getName(), bean_in.getCity());
             }
         }
-        centers_results_list = bean_to.getListOfCenters();
+        centersResultsList = bean_to.getListOfCenters();
         return bean_to;
     }
 
@@ -58,7 +58,7 @@ public class BookingController {
         return bean_out;
     }
 
-    public void setCentersResultsList(List<CentroSportivo> centers_results_list) {
-        this.centers_results_list = centers_results_list;
+    public void setCentersResultsList(List<CentroSportivo> centersResultsList) {
+        this.centersResultsList = centersResultsList;
     }
 }
