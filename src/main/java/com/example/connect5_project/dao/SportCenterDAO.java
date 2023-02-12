@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-public class CentriSportiviDAO {
+public class SportCenterDAO {
     String configFilePath = "src/main/resources/config.properties";
 
     public SearchResultBeanOut dbSearchCenters(String name, String city) {  //Cambiato return da ResultSet a SearchResultBean

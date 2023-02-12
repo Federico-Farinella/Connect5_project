@@ -54,7 +54,7 @@
                   <Font name="Sarpanch" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="22.0" prefWidth="120.0" text="Not available" GridPane.columnIndex="2">
+            <Label fx:id="avail15" alignment="CENTER" prefHeight="22.0" prefWidth="120.0" GridPane.columnIndex="2">
                <font>
                   <Font name="Sarpanch" size="15.0" />
                </font>
@@ -115,42 +115,42 @@
                   <Font name="Sarpanch" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="170.0" layoutY="21.0" prefHeight="22.0" prefWidth="110.0" text="Available" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="avail16" alignment="CENTER" layoutX="170.0" layoutY="21.0" prefHeight="22.0" prefWidth="110.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="Sarpanch" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="170.0" layoutY="71.0" prefHeight="22.0" prefWidth="112.0" text="Available" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label fx:id="avail17" alignment="CENTER" layoutX="170.0" layoutY="71.0" prefHeight="22.0" prefWidth="112.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font name="Sarpanch" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="170.0" layoutY="120.0" prefHeight="22.0" prefWidth="112.0" text="Available" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label fx:id="avail18" alignment="CENTER" layoutX="170.0" layoutY="120.0" prefHeight="22.0" prefWidth="112.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font name="Sarpanch" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="170.0" layoutY="169.0" prefHeight="22.0" prefWidth="114.0" text="Available" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Label fx:id="avail19" alignment="CENTER" layoutX="170.0" layoutY="169.0" prefHeight="22.0" prefWidth="114.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font name="Sarpanch" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="170.0" layoutY="219.0" prefHeight="22.0" prefWidth="111.0" text="Available" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <Label fx:id="avail20" alignment="CENTER" layoutX="170.0" layoutY="219.0" prefHeight="22.0" prefWidth="111.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <font>
                   <Font name="Sarpanch" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="170.0" layoutY="268.0" prefHeight="22.0" prefWidth="113.0" text="Available" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <Label fx:id="avail21" alignment="CENTER" layoutX="170.0" layoutY="268.0" prefHeight="22.0" prefWidth="113.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <font>
                   <Font name="Sarpanch" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="170.0" layoutY="317.0" prefHeight="22.0" prefWidth="118.0" text="Available" GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <Label fx:id="avail22" alignment="CENTER" layoutX="170.0" layoutY="317.0" prefHeight="22.0" prefWidth="118.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
                <font>
                   <Font name="Sarpanch" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="btnSearch" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="btnReserve15" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="Sarpanch" size="10.0" />
                </font>
@@ -158,7 +158,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnSearch1" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="19.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button fx:id="btnReserve16" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="19.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="Sarpanch" size="10.0" />
                </font>
@@ -166,7 +166,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnSearch11" alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="68.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button fx:id="btnReserve17" alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="68.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font name="Sarpanch" size="10.0" />
                </font>
@@ -174,7 +174,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnSearch111" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="118.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button fx:id="btnReserve18" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="118.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="Sarpanch" size="10.0" />
                </font>
@@ -182,7 +182,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnSearch1111" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="168.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button fx:id="btnReserve19" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="168.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="Sarpanch" size="10.0" />
                </font>
@@ -190,7 +190,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnSearch11111" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="216.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button fx:id="btnReserve20" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="216.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="Sarpanch" size="10.0" />
                </font>
@@ -198,7 +198,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnSearch111111" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="266.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <Button fx:id="btnReserve21" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="266.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <font>
                   <Font name="Sarpanch" size="10.0" />
                </font>
@@ -206,7 +206,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnSearch1111111" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="316.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <Button fx:id="btnReserve22" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="316.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <font>
                   <Font name="Sarpanch" size="10.0" />
                </font>

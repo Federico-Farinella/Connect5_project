@@ -1,5 +1,6 @@
 package com.example.connect5_project.gui_cntrollers;
 
+import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.history.Navigate;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,35 +18,74 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class AvailabilityControlGUI {
     @FXML
-    ImageView im15to16;
+    private ImageView im15to16;
     @FXML
-    ImageView im16to17;
+    private ImageView im16to17;
     @FXML
-    ImageView im17to18;
+    private ImageView im17to18;
     @FXML
-    ImageView im18to19;
+    private ImageView im18to19;
     @FXML
-    ImageView im19to20;
+    private ImageView im19to20;
     @FXML
-    ImageView im20to21;
+    private ImageView im20to21;
     @FXML
-    ImageView im21to22;
+    private ImageView im21to22;
     @FXML
-    ImageView im22to23;
+    private ImageView im22to23;
     @FXML
-    Label lab_center_name;
+    private Label lab_center_name;
     @FXML
-    Label lab_date;
+    private Label lab_date;
+
+    @FXML
+    private Label avail15;
+    @FXML
+    private Label avail16;
+    @FXML
+    private Label avail17;
+    @FXML
+    private Label avail18;
+    @FXML
+    private Label avail19;
+    @FXML
+    private Label avail20;
+    @FXML
+    private Label avail21;
+    @FXML
+    private Label avail22;
+
+    @FXML
+    private Button btnReserve15;
+    @FXML
+    private Button btnReserve16;
+    @FXML
+    private Button btnReserve17;
+    @FXML
+    private Button btnReserve18;
+    @FXML
+    private Button btnReserve19;
+    @FXML
+    private Button btnReserve20;
+    @FXML
+    private Button btnReserve21;
+    @FXML
+    private Button btnReserve22;
+
 
     Navigate navigate;
 
     BookingController booking_controller;
-    private ArrayList<ImageView> images ;
+
+    private List<ImageView> images;
+    private List<Label> hourAvailability;
+    private List<Button> buttonsToReserve;
 
     public Label getLabCenterName() {
         return lab_center_name;
@@ -66,12 +107,14 @@ public class AvailabilityControlGUI {
         this.navigate = navigate;
     }
 
-    public void setBooking_controller(BookingController booking_controller) {
+    public void setBookingController(BookingController booking_controller) {
         this.booking_controller = booking_controller;
     }
 
-    public void setImages (Map<String, ArrayList<String>> weatherResponse) {
+    public void setImages (DailyAvailabilityBeanOut beanOut) {
         // Sonarcloud mi ha fatto sostituire hashMap con Map
+
+        Map<String, ArrayList<String>> weatherResponse = beanOut.getWeatherByHour();
         int i = 15;
         URL resource;
         String condition;
@@ -122,6 +165,67 @@ public class AvailabilityControlGUI {
         }
     }
 
+    public void setAvailability(DailyAvailabilityBeanOut beanOut) {
+        Map<String, String> dailyAvailability = beanOut.getDailyAvailability().getDailyAvailability();
+        int i = 15;
+        int j = 0;
+        for (Label lab : hourAvailability) {
+            if (dailyAvailability.get(Integer.toString(i)).equals("0"))
+                lab.setText("Available");
+            else {
+                lab.setText("Not available");
+                buttonsToReserve.get(j).setVisible(false);
+                buttonsToReserve.get(j).setDisable(true);
+            }
+            i++;
+            j++;
+        }
+    }
+
+    public synchronized void choosenBookingHour(ActionEvent event) {
+        Button typedButton = (Button) event.getSource();
+        //Devo sistemare da qui!!!!!!!!!!!!!!!!!!!!!!!
+        switch (typedButton.getId()) {
+            case ("btnReserve15") ->
+                    booking_controller.takeBooking("15");
+            case ("btnReserve16") ->
+                    booking_controller.takeBooking("16");
+            case ("btnReserve17") ->
+                    booking_controller.takeBooking("17");
+            case ("btnReserve18") ->
+                    booking_controller.takeBooking("18");
+            case ("btnReserve19") ->
+                    booking_controller.takeBooking("19");
+            case ("btnReserve20") ->
+                    booking_controller.takeBooking("20");
+            case ("btnReserve21") ->
+                    booking_controller.takeBooking("21");
+            case ("btnReserve22") ->
+                    booking_controller.takeBooking("22");
+        }
+        /*switch (typedButton.getId()) {
+            case ("btnReserve15") ->
+                    booking_controller.takeBooking("15");
+            case ("btnReserve16") ->
+                    booking_controller.takeBooking("16");
+            case ("btnReserve17") ->
+                    booking_controller.takeBooking("17");
+            case ("btnReserve18") ->
+                    booking_controller.takeBooking("18");
+            case ("btnReserve19") ->
+                    booking_controller.takeBooking("19");
+            case ("btnReserve20") ->
+                    booking_controller.takeBooking("20");
+            case ("btnReserve21") ->
+                    booking_controller.takeBooking("21");
+            case ("btnReserve22") ->
+                    booking_controller.takeBooking("22");
+        }*/
+
+    }
+
+
+
     public void initialize() {
         images = new ArrayList<>();
         images.add(im15to16);
@@ -132,6 +236,28 @@ public class AvailabilityControlGUI {
         images.add(im20to21);
         images.add(im21to22);
         images.add(im22to23);
+
+        hourAvailability = new ArrayList<>();
+        hourAvailability.add(avail15);
+        hourAvailability.add(avail16);
+        hourAvailability.add(avail17);
+        hourAvailability.add(avail18);
+        hourAvailability.add(avail19);
+        hourAvailability.add(avail20);
+        hourAvailability.add(avail21);
+        hourAvailability.add(avail22);
+
+        buttonsToReserve = new ArrayList<>();
+        buttonsToReserve.add(btnReserve15);
+        buttonsToReserve.add(btnReserve16);
+        buttonsToReserve.add(btnReserve17);
+        buttonsToReserve.add(btnReserve18);
+        buttonsToReserve.add(btnReserve19);
+        buttonsToReserve.add(btnReserve20);
+        buttonsToReserve.add(btnReserve21);
+        buttonsToReserve.add(btnReserve22);
+
+
     }
 
     public void back(ActionEvent e) throws Exception {

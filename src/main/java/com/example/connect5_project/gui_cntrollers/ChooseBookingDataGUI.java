@@ -4,6 +4,7 @@ import com.example.connect5_project.bean.DailyAvailabilityBeanIn;
 import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.history.Navigate;
+import com.example.connect5_project.models.FieldDailyAvailability;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,7 @@ import java.io.IOException;
 
 public class ChooseBookingDataGUI {
 
-    private BookingController booking_controller;
+    private BookingController bookingController;
     private Navigate navigate;
 
     @FXML
@@ -36,24 +37,30 @@ public class ChooseBookingDataGUI {
     }
 
     public void setBookingController(BookingController booking_controller) {
-        this.booking_controller = booking_controller;
+        this.bookingController = booking_controller;
     }
 
     public void search(ActionEvent e) throws Exception {
-        System.out.println("Qui appena spingo bottone dopo la data: " + booking_controller.getChoosenCenter().getName());
+        System.out.println("Qui appena spingo bottone dopo la data: " + bookingController.getChoosenCenter().getName());
         DailyAvailabilityBeanIn bean_in = new DailyAvailabilityBeanIn();
         bean_in.setDateToSearch(datePicker.getValue());
-        DailyAvailabilityBeanOut bean_out = booking_controller.getAvailability(bean_in);
+        DailyAvailabilityBeanOut bean_out = bookingController.getDailyWeather(bean_in);
+
+        FieldDailyAvailability availability = bookingController.getDailyAvailability(bean_in);
+        bean_out.setDailyAvailability(availability);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/daily_availability_weather.fxml"));
         Parent root = loader.load();
-        AvailabilityControlGUI availability_controller = loader.getController();
-        availability_controller.setBooking_controller(booking_controller);
-        availability_controller.setImages(bean_out.getWeatherByHour());
-        availability_controller.setLabCenterName(booking_controller.getChoosenCenter().getName());
-        availability_controller.setLabDate(datePicker.getValue().toString());
+        AvailabilityControlGUI availabilityController = loader.getController();
+        availabilityController.setBookingController(bookingController);
+        availabilityController.setImages(bean_out);
+        availabilityController.setAvailability(bean_out);
+
+        availabilityController.setLabCenterName(bookingController.getChoosenCenter().getName());
+        availabilityController.setLabDate(datePicker.getValue().toString());
 
         navigate.pushPage(((Node) e.getSource()).getScene());
-        availability_controller.setNavigate(navigate);
+        availabilityController.setNavigate(navigate);
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }

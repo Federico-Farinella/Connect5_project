@@ -7,6 +7,7 @@ module com.example.connect5_project {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires okhttp3;
+    requires mysql.connector.java;
 
 
     opens com.example.connect5_project to javafx.fxml;

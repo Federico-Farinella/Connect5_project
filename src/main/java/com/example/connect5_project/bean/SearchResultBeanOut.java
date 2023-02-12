@@ -31,6 +31,7 @@ public class SearchResultBeanOut {
     }
 
     public void setListOfCenters(ResultSet rs) throws SQLException {
+        //posso mettere un boolean di ritorno cosi gestisco l eccezione sql qui dentro e torno false in caso
         ArrayList<CentroSportivo> centers = new ArrayList<>();
         CentroSportivo cent;
         if (rs.first()) {

@@ -30,12 +30,12 @@ public class JdbcConnect {
         this.connection = DriverManager.getConnection(dbUrl, dbUser, password);
     }
 
-    public static JdbcConnect getUserConnection() throws ClassNotFoundException, SQLException { //Aggiunto per perfezionare pattern Singleton, andrebbe cancellato del codice ripetuto piu giu
+    /*public static JdbcConnect getUserConnection() throws ClassNotFoundException, SQLException { //Aggiunto per perfezionare pattern Singleton, andrebbe cancellato del codice ripetuto piu giu
         if (jdbcConn == null) {
             jdbcConn = new JdbcConnect();
         }
         return jdbcConn;
-    }
+    }*/
 
     public static JdbcConnect getUserConnection(String dbUser, String password) throws ClassNotFoundException, SQLException { //Aggiunto per perfezionare pattern Singleton, andrebbe cancellato del codice ripetuto piu giu
         if (jdbcConn == null) {

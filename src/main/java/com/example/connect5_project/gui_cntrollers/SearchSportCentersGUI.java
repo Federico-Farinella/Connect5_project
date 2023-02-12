@@ -4,7 +4,7 @@ import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.bean.SearchResultsBeanIn;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.controllers.SearchSportCenters;
-import com.example.connect5_project.dao.CentriSportiviDAO;
+import com.example.connect5_project.dao.SportCenterDAO;
 import com.example.connect5_project.history.Navigate;
 import com.example.connect5_project.utility.SportCenterElements;
 import javafx.event.ActionEvent;
@@ -71,7 +71,7 @@ public class SearchSportCentersGUI {
         //String via = viaCentroS.getText();
         SearchSportCenters ctrl = new SearchSportCenters();
         System.out.println("SearchSportCentersGui qui sono:-1");
-        CentriSportiviDAO cDao = new CentriSportiviDAO();
+        SportCenterDAO cDao = new SportCenterDAO();
         SearchResultBeanOut list;
         booking_controller = new BookingController();
         SearchResultsBeanIn bean_in = new SearchResultsBeanIn();

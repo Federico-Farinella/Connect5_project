@@ -2,24 +2,32 @@ package com.example.connect5_project.controllers;
 
 import com.example.connect5_project.bean.*;
 import com.example.connect5_project.boundary.WeatherBoundary;
-import com.example.connect5_project.dao.CentriSportiviDAO;
+import com.example.connect5_project.dao.DailiAvailabilityDao;
+import com.example.connect5_project.dao.SportCenterDAO;
 import com.example.connect5_project.models.CentroSportivo;
+import com.example.connect5_project.models.FieldDailyAvailability;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class BookingController {
     private List<CentroSportivo> centersResultsList;
-    private CentroSportivo choosen_center;
+    private CentroSportivo choosenCenter;
+    private LocalDate choosenDate;
+    private String choosenHour;
+
+
 
     public CentroSportivo getChoosenCenter() {
-        return choosen_center;
+        return choosenCenter;
     }
+
 
     public void setChoosenCenter(String name) {
         for (CentroSportivo center : centersResultsList) {
             if (center.getName().equals(name)) {
-                choosen_center = center;
-                System.out.println("Choosen center : " + choosen_center.getName());
+                choosenCenter = center;
+                System.out.println("Choosen center : " + choosenCenter.getName());
             }
         }
     }
@@ -28,7 +36,7 @@ public class BookingController {
         String search_mode = bean_in.getSearchMode();
         System.out.println("Booking Controller, searvhCenters. Print search_mode: " + search_mode);
         SearchResultBeanOut bean_to = new SearchResultBeanOut();
-        CentriSportiviDAO cDao = new CentriSportiviDAO();
+        SportCenterDAO cDao = new SportCenterDAO();
         switch (search_mode) {
             case ("Name") -> {
                 bean_to = cDao.dbSearchCentersByName(bean_in.getName());
@@ -44,21 +52,37 @@ public class BookingController {
         return bean_to;
     }
 
-    public DailyAvailabilityBeanOut getAvailability(DailyAvailabilityBeanIn bean_in) {
-        WeatherApiBeanOut bean_weather_out = new WeatherApiBeanOut();
-        bean_weather_out.setGapDay(bean_in.getDateToSearch());
-        bean_weather_out.setCity(choosen_center.getCity());
-        WeatherBoundary weather_boundary = new WeatherBoundary();
-        WeatherApiBeanIn bean_weather_in = new WeatherApiBeanIn();
-        bean_weather_in = weather_boundary.weitherCity(bean_weather_out);
-        System.out.println("Booking Controller analyze bean_weather_in returned: " + bean_weather_in.getWeatherByHour());
+    public DailyAvailabilityBeanOut getDailyWeather(DailyAvailabilityBeanIn beanIn) {
+        choosenDate = beanIn.getDateToSearch();
+        WeatherApiBeanOut beanWeatherOut = new WeatherApiBeanOut();
+        beanWeatherOut.setGapDay(beanIn.getDateToSearch());
+        beanWeatherOut.setCity(choosenCenter.getCity());
+        WeatherBoundary weatherBoundary = new WeatherBoundary();
+        WeatherApiBeanIn beanWeatherIn; //  = new WeatherApiBeanIn();
+        beanWeatherIn = weatherBoundary.weitherCity(beanWeatherOut);
+
+        //DailiAvailabilityDao dao = new DailiAvailabilityDao();
+        //FieldDailyAvailability dailyAvailability = dao.dbSearchAvailability(choosenCenter, beanIn.getDateToSearch());
+
+
+        System.out.println("Booking Controller analyze beanWeatherIn returned: " + beanWeatherIn.getWeatherByHour());
         DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut();
-        bean_out.setWeatherByHour(bean_weather_in.getWeatherByHour());
+        bean_out.setWeatherByHour(beanWeatherIn.getWeatherByHour());
         System.out.println("BookingController: " + bean_out.getWeatherByHour().get(Integer.toString(15)));
         return bean_out;
     }
 
+    public FieldDailyAvailability getDailyAvailability(DailyAvailabilityBeanIn beanIn) {
+        DailiAvailabilityDao dao = new DailiAvailabilityDao();
+        this.choosenDate = beanIn.getDateToSearch();
+        return dao.dbSearchAvailability(choosenCenter, choosenDate);
+    }
+
     public void setCentersResultsList(List<CentroSportivo> centersResultsList) {
         this.centersResultsList = centersResultsList;
+    }
+
+    public void takeBooking(String hour) {
+
     }
 }
