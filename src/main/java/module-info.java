@@ -23,4 +23,5 @@ module com.example.connect5_project {
     exports com.example.connect5_project.history;
     exports com.example.connect5_project.controllers;
     exports com.example.connect5_project.weather_service;
+    exports com.example.connect5_project.models.bookings_decorator;
 }

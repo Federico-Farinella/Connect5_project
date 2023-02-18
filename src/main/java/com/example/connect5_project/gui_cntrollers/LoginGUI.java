@@ -53,7 +53,8 @@ public class LoginGUI {
 
     public void home(ActionEvent e) throws Exception {
         Stage window;
-        History.pagine.clear();
+        //History.pagine.clear();
+        navigate.getPages().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));
         Parent root = loader.load();
@@ -113,6 +114,7 @@ public class LoginGUI {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Logged.fxml"));
                 Parent root = loader.load();
                 LoggedGUI controlGui = loader.getController();
+                this.navigate.setCountPagesAfterLogin(0);
                 controlGui.setNavigate(navigate);
                 controlGui.getLabelWelcome().setText("Welcome\n" + ret.getUser().getNickName());
                 window = (Stage) ((Node)e.getSource()).getScene().getWindow();

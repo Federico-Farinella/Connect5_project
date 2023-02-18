@@ -15,9 +15,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoggedGUI {
-    Navigate navigate;
+     private Navigate navigate;
     @FXML
-    Label labelWelcome;
+     private Label labelWelcome;
 
     public Navigate getNavigate() {
         return navigate;
@@ -31,7 +31,7 @@ public class LoggedGUI {
         return labelWelcome;
     }
 
-    public void back(ActionEvent e) throws Exception {
+    /*public void back(ActionEvent e) throws Exception {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         System.out.println(window);
@@ -39,7 +39,7 @@ public class LoggedGUI {
         navigate.pages.pop();
         //window.setScene(History.pagine.lastElement());
         //History.pagine.pop();
-    }
+    }*/
 
     public void home(ActionEvent e) throws Exception {
         History.pagine.clear();
@@ -53,6 +53,7 @@ public class LoggedGUI {
     public void searchSportCenters(ActionEvent e) throws IOException {
         //History.pagine.add(((Node) e.getSource()).getScene());
         navigate.pushPage(((Node) e.getSource()).getScene());
+        navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin() + 1);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/SearchSportCenters.fxml"));
         Parent root = loader.load();
         SearchSportCentersGUI control = loader.getController();
@@ -60,4 +61,5 @@ public class LoggedGUI {
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
+
 }

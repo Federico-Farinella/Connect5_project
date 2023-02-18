@@ -11,6 +11,15 @@ public class FieldDailyAvailability {
 
      private String response;
 
+     public FieldDailyAvailability() {
+
+     }
+
+     public FieldDailyAvailability(ResultSet res, String response) {
+         this.setDailyAvailability(res);
+         this.response = response;
+     }
+
     public Map<String, String> getDailyAvailability() {
         return dailyAvailability;
     }
@@ -23,7 +32,7 @@ public class FieldDailyAvailability {
         this.response = response;
     }
 
-    public void setDailyAvailability(ResultSet rs) throws SQLException {
+    public void setDailyAvailability(ResultSet rs) {
         Map<String, String> availability = new HashMap<>();
         try {
             if (rs.first()) {

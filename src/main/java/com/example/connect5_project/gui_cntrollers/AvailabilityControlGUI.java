@@ -13,9 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,9 +79,9 @@ public class AvailabilityControlGUI {
     private Button btnReserve22;
 
 
-    Navigate navigate;
+    private Navigate navigate;
 
-    BookingController booking_controller;
+    BookingController bookingController;
 
     private List<ImageView> images;
     private List<Label> hourAvailability;
@@ -108,7 +108,7 @@ public class AvailabilityControlGUI {
     }
 
     public void setBookingController(BookingController booking_controller) {
-        this.booking_controller = booking_controller;
+        this.bookingController = booking_controller;
     }
 
     public void setImages (DailyAvailabilityBeanOut beanOut) {
@@ -182,27 +182,42 @@ public class AvailabilityControlGUI {
         }
     }
 
-    public synchronized void choosenBookingHour(ActionEvent event) {
+    public synchronized void choosenBookingHour(ActionEvent event) throws IOException {
         Button typedButton = (Button) event.getSource();
         //Devo sistemare da qui!!!!!!!!!!!!!!!!!!!!!!!
         switch (typedButton.getId()) {
             case ("btnReserve15") ->
-                    booking_controller.takeBooking("15");
+                    bookingController.setChoosenHour("15");
             case ("btnReserve16") ->
-                    booking_controller.takeBooking("16");
+                    bookingController.setChoosenHour("16");
             case ("btnReserve17") ->
-                    booking_controller.takeBooking("17");
+                    bookingController.setChoosenHour("17");
             case ("btnReserve18") ->
-                    booking_controller.takeBooking("18");
+                    bookingController.setChoosenHour("18");
             case ("btnReserve19") ->
-                    booking_controller.takeBooking("19");
+                    bookingController.setChoosenHour("19");
             case ("btnReserve20") ->
-                    booking_controller.takeBooking("20");
+                    bookingController.setChoosenHour("20");
             case ("btnReserve21") ->
-                    booking_controller.takeBooking("21");
+                    bookingController.setChoosenHour("21");
             case ("btnReserve22") ->
-                    booking_controller.takeBooking("22");
+                    bookingController.setChoosenHour("22");
         }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/SetBookingOptional.fxml"));
+        Parent root = loader.load();
+        SetBookingOptionalGUI controlOptionalGui = loader.getController();
+        controlOptionalGui.setBookingController(bookingController);
+        controlOptionalGui.setLabCenterName(bookingController.getChoosenCenter().getName());
+        controlOptionalGui.setLabDate(bookingController.getChoosenDate());
+        controlOptionalGui.setLabHour(bookingController.getChoosenHour() + ".00");
+        navigate.pushPage(((Node) event.getSource()).getScene());
+        navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()+1);
+        controlOptionalGui.setNavigate(navigate);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
+
+
         /*switch (typedButton.getId()) {
             case ("btnReserve15") ->
                     booking_controller.takeBooking("15");
@@ -261,20 +276,36 @@ public class AvailabilityControlGUI {
     }
 
     public void back(ActionEvent e) throws Exception {
-        Stage window;
+        /*Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
         System.out.println(window);
         window.setScene(navigate.getPages().lastElement());
+        navigate.pages.pop();*/
+        Stage window;
+        window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+        System.out.println(window);
+        //navigate.pages.pop();
+        window.setScene(navigate.getPages().lastElement());
         navigate.pages.pop();
+        navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
     }
 
     public void home(ActionEvent e) throws Exception {
-        Stage window;
-        navigate.pages.clear();
+        /*navigate.pages.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
         Parent root = loader.load();
+        Stage window = (Stage)((Node) e.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));*/
+        Stage window;
+        int currentPagesAfterLogin = navigate.getCountPagesAfterLogin();
+        for (int i = 0; i < currentPagesAfterLogin-1 ; i++) {
+            navigate.getPages().pop();
+        }
+        navigate.setCountPagesAfterLogin(0);
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
+        window.setScene(navigate.getPages().lastElement());
+        navigate.getPages().pop();
     }
 }

@@ -2,10 +2,16 @@ package com.example.connect5_project.controllers;
 
 import com.example.connect5_project.bean.*;
 import com.example.connect5_project.boundary.WeatherBoundary;
+import com.example.connect5_project.dao.BookingDao;
 import com.example.connect5_project.dao.DailiAvailabilityDao;
 import com.example.connect5_project.dao.SportCenterDAO;
+import com.example.connect5_project.models.Booking;
 import com.example.connect5_project.models.CentroSportivo;
 import com.example.connect5_project.models.FieldDailyAvailability;
+import com.example.connect5_project.models.User;
+import com.example.connect5_project.models.bookings_decorator.ConcreteBasic;
+import com.example.connect5_project.models.bookings_decorator.Optional;
+import com.example.connect5_project.utility.CurrentUser;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,19 +24,6 @@ public class BookingController {
 
 
 
-    public CentroSportivo getChoosenCenter() {
-        return choosenCenter;
-    }
-
-
-    public void setChoosenCenter(String name) {
-        for (CentroSportivo center : centersResultsList) {
-            if (center.getName().equals(name)) {
-                choosenCenter = center;
-                System.out.println("Choosen center : " + choosenCenter.getName());
-            }
-        }
-    }
 
     public SearchResultBeanOut searchCenters(SearchResultsBeanIn bean_in) {
         String search_mode = bean_in.getSearchMode();
@@ -78,11 +71,49 @@ public class BookingController {
         return dao.dbSearchAvailability(choosenCenter, choosenDate);
     }
 
+    public boolean confirmBooking(boolean withReferee, boolean withTunics) {
+        User user = CurrentUser.getInstance().getUser();
+        Booking booking = new Booking(choosenCenter, user, choosenDate, choosenHour);
+        if (withReferee)
+            booking.setWithReferee();
+        if (withTunics)
+            booking.setWithReferee();
+
+        BookingDao dao = new BookingDao();
+        String ret = dao.saveBooking(booking);
+        System.out.println("Booking Controller: return della DaoBooking: " + ret);
+        return ret.equals("Booking registered");
+
+    }
+
     public void setCentersResultsList(List<CentroSportivo> centersResultsList) {
         this.centersResultsList = centersResultsList;
     }
 
-    public void takeBooking(String hour) {
 
+    public CentroSportivo getChoosenCenter() {
+        return choosenCenter;
+    }
+
+
+    public void setChoosenCenter(String name) {
+        for (CentroSportivo center : centersResultsList) {
+            if (center.getName().equals(name)) {
+                choosenCenter = center;
+                System.out.println("Choosen center : " + choosenCenter.getName());
+            }
+        }
+    }
+
+    public LocalDate getChoosenDate() {
+        return choosenDate;
+    }
+
+    public String getChoosenHour() {
+        return choosenHour;
+    }
+
+    public void setChoosenHour(String choosenHour) {
+        this.choosenHour = choosenHour;
     }
 }

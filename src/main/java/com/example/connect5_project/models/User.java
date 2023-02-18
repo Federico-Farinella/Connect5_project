@@ -51,4 +51,8 @@ public class User {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
+
+    public String getEmail() {
+        return email;
+    }
 }

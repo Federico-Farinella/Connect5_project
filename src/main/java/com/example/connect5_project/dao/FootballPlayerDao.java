@@ -12,6 +12,7 @@ import java.util.Properties;
 
 public class FootballPlayerDao {
     String configFilePath = "src/main/resources/config.properties";
+
     public FootballPlayerDao(){
     }
 

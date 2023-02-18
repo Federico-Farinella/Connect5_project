@@ -31,6 +31,10 @@ public class SearchSportCentersGUI {
     @FXML private TextField nomeCentroS;
     @FXML private TextField cittaCentroS;
     @FXML private TextField viaCentroS;
+    @FXML
+    private Button btnSearch;
+    @FXML
+    private Label errorLab;
 
     public void setNavigate(Navigate navigate) {
         this.navigate = navigate;
@@ -40,7 +44,8 @@ public class SearchSportCentersGUI {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         System.out.println(window);
-        window.setScene(navigate.pages.lastElement());
+        window.setScene(navigate.getPages().lastElement());
+        navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
         navigate.pages.pop();
         //window.setScene(History.pagine.lastElement());
         //History.pagine.pop();
@@ -48,22 +53,22 @@ public class SearchSportCentersGUI {
 
     public void home(ActionEvent e) throws Exception {
         Stage window;
-        navigate.pages.clear();
+        int currentPagesAfterLogin = navigate.getCountPagesAfterLogin();
+        for (int i = 0; i < currentPagesAfterLogin-1 ; i++) {
+            navigate.getPages().pop();
+        }
+        navigate.setCountPagesAfterLogin(0);
+        //navigate.getPages().clear();
         //History.pagine.clear();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
-        Parent root = loader.load();
-        //Parent root = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
+        //Parent root = loader.load();     // tolta avendo introdotto variabile countPagesAfterLogin
+        //Parent root = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));  // Anche questa
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
+        window.setScene(navigate.getPages().lastElement());
+        navigate.getPages().pop();
+        //window.setScene(new Scene(root)); // Anche questa
+
     }
-
-    //@FXML private ListView list;
-    @FXML
-    private Button btnSearch;
-    @FXML
-    private Label errorLab;
-
-
 
     public void search(ActionEvent e) throws Exception {
         String name = nomeCentroS.getText();
@@ -109,6 +114,7 @@ public class SearchSportCentersGUI {
         //History.pagine.add(((Node) e.getSource()).getScene());
         errorLab.setVisible(false);
         navigate.pushPage(((Node) e.getSource()).getScene());
+        navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin() + 1); // Aggiunto avendo introdotto countPagesAfterLogin
         System.out.println("SearchSportCentersGui qui sono:1");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/SportCentersResults.fxml"));
         System.out.println("SearchSportCentersGui qui sono:2");

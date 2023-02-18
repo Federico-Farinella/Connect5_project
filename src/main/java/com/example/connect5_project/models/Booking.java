@@ -8,17 +8,18 @@ import com.example.connect5_project.models.bookings_decorator.Optional;
 import java.time.LocalDate;
 
 public class Booking {
+    private CentroSportivo sportCenter;
+    private User user;
     private final LocalDate date;
     private final String hour;
     private Optional options;
-    private final float price;
 
-    public Booking (LocalDate date, String hour, float price) {    // price non andrà messo ma andrà messo il centro sportivo
-        this.options = new ConcreteBasic(price);  // qui accederò a price dal centro sportivo
-
+    public Booking (CentroSportivo sportCenter, User user, LocalDate date, String hour) {    // price non andrà messo ma andrà messo il centro sportivo
+        this.options = new ConcreteBasic(sportCenter.getFieldPrice());  // qui accederò a price dal centro sportivo
+        this.sportCenter = sportCenter;
+        this.user = user;
         this.date = date;
         this.hour = hour;
-        this.price = price;
     }
 
     public void setWithReferee() {
@@ -31,11 +32,27 @@ public class Booking {
         this.setOptional(optional);
     }
 
+    public CentroSportivo getSportCenter() {
+        return sportCenter;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
     public void setOptional(Optional optional) {
         this.options = optional;
     }
 
-    public Optional getOptions() {
+    public Optional getOptional() {
         return options;
     }
 }

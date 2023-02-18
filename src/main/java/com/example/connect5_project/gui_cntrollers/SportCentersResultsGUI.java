@@ -20,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SportCentersResultsGUI {
@@ -35,7 +34,7 @@ public class SportCentersResultsGUI {
 
     //ArrayList<GridPane> list;
 
-    private BookingController booking_controller;
+    private BookingController bookingController;
     //static int i = 0;
 
 
@@ -47,13 +46,13 @@ public class SportCentersResultsGUI {
         this.list = list;
     }
 
-    public BookingController getBooking_controller() {
-        return booking_controller;
+    public BookingController getBookingController() {
+        return bookingController;
     }
 
     public void setBookingController(BookingController booking_controller) {
-        this.booking_controller = booking_controller;
-        System.out.println("Setting Booking Controller: " + this.booking_controller);
+        this.bookingController = booking_controller;
+        System.out.println("Setting Booking Controller: " + this.bookingController);
     }
 
     public VBox getBox() {
@@ -76,21 +75,31 @@ public class SportCentersResultsGUI {
         //navigate.pages.pop();
         window.setScene(navigate.getPages().lastElement());
         navigate.pages.pop();
+        navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
         //History.pagine.pop();
     }
 
     public void home(MouseEvent e) throws Exception {
-        Stage window;
+        /*Stage window;
         //History.pagine.clear();
         navigate.pages.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
         Parent root = loader.load();
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
+        window.setScene(new Scene(root));*/
+        Stage window;
+        int currentPagesAfterLogin = navigate.getCountPagesAfterLogin();
+        for (int i = 0; i < currentPagesAfterLogin-1 ; i++) {
+            navigate.getPages().pop();
+        }
+        navigate.setCountPagesAfterLogin(0);
+        window = (Stage)((Node) e.getSource()).getScene().getWindow();
+        window.setScene(navigate.getPages().lastElement());
+        navigate.getPages().pop();
     }
 
     public void chooseCenter(ActionEvent e) throws Exception {
-        System.out.println("Booking_controller step 2: " + booking_controller);
+        System.out.println("Booking_controller step 2: " + bookingController);
         Node source = (Node) e.getSource();
         GridPane gridPane = (GridPane) source.getParent().getParent();
         System.out.println(gridPane);
@@ -99,12 +108,12 @@ public class SportCentersResultsGUI {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChooseBookingData.fxml"));
         Parent root = loader.load();
         ChooseBookingDataGUI choose_data_controller = loader.getController();
-        booking_controller.setChoosenCenter(name.getText());
+        bookingController.setChoosenCenter(name.getText());
 
         /////////
-        System.out.println("Qui di ritorno da setChoosenCenter: " + booking_controller.getChoosenCenter().getName());
-        System.out.println("City of choosen center: " + booking_controller.getChoosenCenter().getCity());
-        choose_data_controller.setBookingController(booking_controller);
+        System.out.println("Qui di ritorno da setChoosenCenter: " + bookingController.getChoosenCenter().getName());
+        System.out.println("City of choosen center: " + bookingController.getChoosenCenter().getCity());
+        choose_data_controller.setBookingController(bookingController);
         DatePicker datePicker = choose_data_controller.getDatePicker();
         LocalDate min_date = LocalDate.now();
         LocalDate max_date = LocalDate.now().plusDays(2);
@@ -115,6 +124,7 @@ public class SportCentersResultsGUI {
                         setDisable(item.isAfter(max_date) || item.isBefore(min_date));
                     }});
         navigate.pushPage(((Node) e.getSource()).getScene());
+        navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()+1);
         choose_data_controller.setNavigate(navigate);
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));

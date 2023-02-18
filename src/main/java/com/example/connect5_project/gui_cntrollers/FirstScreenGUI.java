@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class FirstScreenGUI {
-    Navigate navigate;
+     private Navigate navigate;
     @FXML
     Button btnLog;
     @FXML
