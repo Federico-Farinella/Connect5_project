@@ -25,7 +25,7 @@ public class FirstScreen extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {  // anche qui riga 35 gestire eccezione
 
         //if (!args[0].equals("0")) {
         if (args.length == 0) {

@@ -5,6 +5,9 @@ import com.example.connect5_project.boundary.WeatherBoundary;
 import com.example.connect5_project.dao.BookingDao;
 import com.example.connect5_project.dao.DailiAvailabilityDao;
 import com.example.connect5_project.dao.SportCenterDAO;
+import com.example.connect5_project.exceptions.DbConnectException;
+import com.example.connect5_project.exceptions.MyException;
+import com.example.connect5_project.exceptions.SportCenterException;
 import com.example.connect5_project.models.Booking;
 import com.example.connect5_project.models.CentroSportivo;
 import com.example.connect5_project.models.FieldDailyAvailability;
@@ -25,24 +28,31 @@ public class BookingController {
 
 
 
-    public SearchResultBeanOut searchCenters(SearchResultsBeanIn bean_in) {
+    public SearchResultBeanOut searchCenters(SearchResultsBeanIn bean_in) throws MyException {
         String search_mode = bean_in.getSearchMode();
         System.out.println("Booking Controller, searvhCenters. Print search_mode: " + search_mode);
         SearchResultBeanOut bean_to = new SearchResultBeanOut();
         SportCenterDAO cDao = new SportCenterDAO();
-        switch (search_mode) {
-            case ("Name") -> {
-                bean_to = cDao.dbSearchCentersByName(bean_in.getName());
+        try {
+            switch (search_mode) {
+                case ("Name") -> {
+                    bean_to = cDao.dbSearchCentersByName(bean_in.getName());
+                }
+                case ("City") -> {
+                    bean_to = cDao.dbSearchCentersByCity(bean_in.getCity());
+                }
+                case ("Name and city") -> {
+                    bean_to = cDao.dbSearchCenters(bean_in.getName(), bean_in.getCity());
+                }
             }
-            case ("City") -> {
-                bean_to = cDao.dbSearchCentersByCity(bean_in.getCity());
-            }
-            case ("Name and city") -> {
-                bean_to = cDao.dbSearchCenters(bean_in.getName(), bean_in.getCity());
-            }
+            centersResultsList = bean_to.getListOfCenters();
+            return bean_to;
+        } catch (SportCenterException e) {
+            if (e.getMessage().equals("Not match"))
+                throw e;
+            else
+                throw new SportCenterException("Error. Try later");
         }
-        centersResultsList = bean_to.getListOfCenters();
-        return bean_to;
     }
 
     public DailyAvailabilityBeanOut getDailyWeather(DailyAvailabilityBeanIn beanIn) {
@@ -65,10 +75,20 @@ public class BookingController {
         return bean_out;
     }
 
-    public FieldDailyAvailability getDailyAvailability(DailyAvailabilityBeanIn beanIn) {
+    public FieldDailyAvailability getDailyAvailability(DailyAvailabilityBeanIn beanIn) throws MyException {
+        //System.out.println("getAvailability 0");
         DailiAvailabilityDao dao = new DailiAvailabilityDao();
         this.choosenDate = beanIn.getDateToSearch();
-        return dao.dbSearchAvailability(choosenCenter, choosenDate);
+        FieldDailyAvailability dailyAvailability;
+        try {
+            //System.out.println("getAvailability 1: try block");
+            dailyAvailability = dao.dbSearchAvailability(choosenCenter, choosenDate);
+        } catch (MyException e) {
+            //System.out.println("getAvailability 1: catch block");
+            String messageToGuiController = "Error with accessing data. Please try later";
+            throw new DbConnectException(messageToGuiController);
+        }
+        return dailyAvailability;
     }
 
     public boolean confirmBooking(boolean withReferee, boolean withTunics) {

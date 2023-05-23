@@ -43,6 +43,8 @@ public class AvailabilityControlGUI {
     private Label lab_center_name;
     @FXML
     private Label lab_date;
+    @FXML
+    private Label lab_price;
 
     @FXML
     private Label avail15;
@@ -103,6 +105,10 @@ public class AvailabilityControlGUI {
         this.lab_date.setText(lab_date);
     }
 
+    public void setLabPrice(String lab_price) {
+        this.lab_price.setText(lab_price);
+    }
+
     public void setNavigate(Navigate navigate) {
         this.navigate = navigate;
     }
@@ -144,15 +150,21 @@ public class AvailabilityControlGUI {
                 case ("\"Overcast\"") -> resource = getClass().getResource("/images_weather/Overcast.png");
                 case ("\"Cloudy\"") -> resource = getClass().getResource("/images_weather/Clouds_Right.png");
 
-                case ("\"Patchy rain possible\"") -> {
+                case ("\"Patchy rain possible\""), ("\"Moderate rain at times\""), ("\"Moderate or heavy rain shower\""), ("\"Light rain shower\"")  -> {
                     if (Objects.equals(is_day, "1")) {
                         resource = getClass().getResource("/images_weather/PatchyRain_Day.png");
                     } else {
                         resource = getClass().getResource("/images_weather/Moon&Rain.png");
                     }
                 }
-                case ("\"Patchy light drizzle\""), ("\"Light drizzle\"") ->  //|| ("\"Light drizzle\"")): {
+                case ("\"Patchy light drizzle\""), ("\"Light drizzle\"")  ->  //|| ("\"Light drizzle\"")): {
                         resource = getClass().getResource("/images_weather/Rain.png");
+
+                case ("\"Patchy light rain with thunder\""), ("\"Thundery outbreaks possible\"") ->  //|| ("\"Light drizzle\"")): {
+                        resource = getClass().getResource("/images_weather/Clouds_Thunder_64.png");
+
+                case ("\"Moderate or heavy rain with thunder\"") ->
+                        resource = getClass().getResource("/images_weather/Thunderstorms_64.png");
 
                 default -> resource = null;
                 // Mi manca , pioggia leggera da sostituire con quella che ho messo Rain_4 che sarà pioggia pesante?, temporale, neve

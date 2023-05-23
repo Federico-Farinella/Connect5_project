@@ -19,16 +19,16 @@
             </VBox>
          </content>
       </ScrollPane>
-      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252); -fx-border-color: black;">
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(0,162,11); -fx-border-color: black;">
          <children>
             <ImageView fitHeight="35.0" fitWidth="45.0" onMouseReleased="#back">
                <image>
-                  <Image url="@images/backArrow.png" />
+                  <Image url="@images/back_24.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btnHome" fitHeight="46.0" fitWidth="48.0" onMouseReleased="#home" onTouchReleased="#home">
                <image>
-                  <Image url="@images/homeImage.png" />
+                  <Image url="@images/home_24.png" />
                </image>
             </ImageView>
          </children>

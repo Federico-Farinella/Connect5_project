@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class LoggedCLI {
     Scanner console;
 
-    public void main() {
+    public void main() throws Exception {  // Anche qui (riga 25) gestire l eccezione che parte dalla sportcenterdao al posto del responsebean
         while (true) {
             System.out.println("1- Search for sport center\n2- Manage your bookings\n\n\tOr type back or exit.");
             String choose = "";

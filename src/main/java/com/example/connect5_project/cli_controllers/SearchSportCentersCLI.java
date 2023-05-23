@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class SearchSportCentersCLI {
     private Scanner console;
 
-    public void main() {
+    public void main() throws Exception { // Anche qui devo gestire la cosa delle eccezioni da sportcenterdao (riga 34)
         //Continua da qui
         SearchResultsBeanIn beanIn;
         while (true) {

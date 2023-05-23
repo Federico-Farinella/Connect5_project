@@ -5,6 +5,7 @@ import com.example.connect5_project.bean.SearchResultsBeanIn;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.controllers.SearchSportCenters;
 import com.example.connect5_project.dao.SportCenterDAO;
+import com.example.connect5_project.exceptions.SportCenterException;
 import com.example.connect5_project.history.Navigate;
 import com.example.connect5_project.utility.SportCenterElements;
 import javafx.event.ActionEvent;
@@ -103,7 +104,6 @@ public class SearchSportCentersGUI {
             nomeCentroS.setText("");
             cittaCentroS.setText("");
         }
-        list = booking_controller.searchCenters(bean_in);
         //list = booking_controller.
         //list = cDao.dbSearchCentersByCity(city);
         //SearchResultBean list = ctrl.findByCity(city);
@@ -121,11 +121,22 @@ public class SearchSportCentersGUI {
         Parent root = loader.load();
         SportCentersResultsGUI controlGui = loader.getController();
         controlGui.setBookingController(this.booking_controller);
-        controlGui.setList(list.getListOfCenters());
         controlGui.setNavigate(navigate);
-        if (list.getListOfCenters() == null) {
-            System.out.println("Ora creo la label");
-            Label lab = new Label("No results found for your query");
+
+        try {
+            list = booking_controller.searchCenters(bean_in);
+            controlGui.setList(list.getListOfCenters());
+            SportCenterElements centerElement = new SportCenterElements(list.getListOfCenters(), controlGui);
+            ArrayList<GridPane> array = centerElement.getPanels();
+            for (GridPane item : array) {
+                controlGui.getBox().getChildren().add(item);
+            }
+        } catch (SportCenterException exception) {
+            Label lab;
+            if (exception.getMessage().equals("Not match"))
+                lab = new Label("No results found for your query");
+            else
+                lab = new Label("Problem encountered. We are sorry for the inconvenience. Try later");
             lab.setPrefWidth(180.0);
             lab.setPrefHeight(70.0);
             lab.setAlignment(Pos.CENTER);
@@ -136,13 +147,8 @@ public class SearchSportCentersGUI {
             lab.setWrapText(true);
             controlGui.getBox().getChildren().add(lab);
 
-        } else {
-            SportCenterElements centerElement = new SportCenterElements(list.getListOfCenters(), controlGui);
-            ArrayList<GridPane> array = centerElement.getPanels();
-            for (GridPane item : array) {
-                controlGui.getBox().getChildren().add(item);
-            }
         }
+
         //booking_controller.setCentersResultsList(list.getListOfCenters());
         System.out.println("Booking_controller: " + booking_controller);
         //controlGui.setBooking_controller(booking_controller);

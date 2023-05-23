@@ -10,8 +10,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.gui_cntrollers.SearchSportCentersGUI">
+<AnchorPane prefHeight="570.0" prefWidth="320.0" style="-fx-background-color: GREEN;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.gui_cntrollers.SearchSportCentersGUI">
    <children>
+      <ImageView fitHeight="468.0" fitWidth="320.0" layoutY="102.0">
+         <image>
+            <Image url="@images/campo_progetto.jpg" />
+         </image>
+      </ImageView>
       <HBox alignment="CENTER" prefHeight="102.0" prefWidth="320.0" style="-fx-background-color: BLACK;">
          <children>
             <Label prefHeight="40.0" prefWidth="262.0" text="CONNECT 5" textFill="WHITE">
@@ -21,7 +26,7 @@
             </Label>
          </children>
       </HBox>
-      <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: rgb(179,252,252);">
+      <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: transparent;">
          <children>
             <Button fx:id="btnSearch" contentDisplay="CENTER" layoutX="197.0" layoutY="319.0" mnemonicParsing="false" onAction="#search" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Search" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -31,28 +36,28 @@
             <TextField fx:id="nomeCentroS" layoutX="60.0" layoutY="59.0" prefHeight="34.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-border-radius: 10; -fx-background-radius: 10;" />
             <TextField fx:id="cittaCentroS" layoutX="60.0" layoutY="154.0" prefHeight="34.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-background-radius: 10; -fx-border-radius: 10;" />
             <TextField fx:id="viaCentroS" layoutX="60.0" layoutY="249.0" prefHeight="34.0" prefWidth="200.0" style="-fx-border-color: BLACK; -fx-background-radius: 10; -fx-border-radius: 10;" />
-            <Label layoutX="68.0" layoutY="40.0" prefHeight="18.0" prefWidth="183.0" text="Nome Centro Sportivo" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="34.0" prefHeight="26.0" prefWidth="200.0" style="-fx-text-fill: BLACK;" text="Sport Center's Name">
                <font>
-                  <Font name="Stalin One" size="9.0" />
+                  <Font name="Stalin One" size="10.0" />
                </font>
             </Label>
-            <Label layoutX="137.0" layoutY="131.0" prefHeight="26.0" prefWidth="45.0" text="Città" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="131.0" prefHeight="26.0" prefWidth="48.0" style="-fx-text-fill: BLACK;" text="City" textAlignment="CENTER">
                <font>
-                  <Font name="Stalin One" size="9.0" />
+                  <Font name="Stalin One" size="10.0" />
                </font>
             </Label>
-            <Label layoutX="147.0" layoutY="226.0" prefHeight="26.0" prefWidth="26.0" text="Via" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="125.0" layoutY="226.0" prefHeight="26.0" prefWidth="71.0" style="-fx-text-fill: BLACK;" text="Street" textAlignment="CENTER">
                <font>
-                  <Font name="Stalin One" size="9.0" />
+                  <Font name="Stalin One" size="10.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
+            <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: transparent;">
                <children>
                   <Button fx:id="btnBack1" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="78.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="45.0">
                            <image>
-                              <Image url="@images/backArrow.png" />
+                              <Image url="@images/back_24.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -61,7 +66,7 @@
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="48.0">
                            <image>
-                              <Image url="@images/homeImage.png" />
+                              <Image url="@images/home_24.png" />
                            </image>
                         </ImageView>
                      </graphic>

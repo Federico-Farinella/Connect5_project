@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class LoginCLI {
     Scanner console;
-    public void main() {
+    public void main() throws Exception { // riga 57 leggi altre cli devo gestire eccezioni al posto di responsedao
         while (true) {
             String email = "";
             String password = "";

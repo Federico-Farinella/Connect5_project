@@ -7,11 +7,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.gui_cntrollers.ChooseBookingDataGUI">
+<AnchorPane prefHeight="570.0" prefWidth="320.0" style="-fx-background-color: GREEN;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.gui_cntrollers.ChooseBookingDataGUI">
    <children>
       <HBox alignment="CENTER" prefHeight="102.0" prefWidth="320.0" style="-fx-background-color: BLACK;">
          <children>
@@ -22,47 +20,48 @@
             </Label>
          </children>
       </HBox>
-      <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: rgb(179,252,252);">
+      <ImageView fitHeight="468.0" fitWidth="320.0" layoutY="102.0">
+         <image>
+            <Image url="@images/campo_progetto.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnSearch" contentDisplay="CENTER" layoutX="113.0" layoutY="353.0" mnemonicParsing="false" onAction="#search" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Search" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Sarpanch" size="12.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="57.0" layoutY="174.0" prefHeight="26.0" prefWidth="201.0" style="-fx-text-fill: BLACK;" text="Choose a date" textAlignment="CENTER">
+         <font>
+            <Font name="Stalin One" size="14.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutY="490.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: transparent;">
          <children>
-            <Button fx:id="btnSearch" contentDisplay="CENTER" layoutX="113.0" layoutY="242.0" mnemonicParsing="false" onAction="#search" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Search" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Sarpanch" size="12.0" />
-               </font>
+            <Button fx:id="btnBack1" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="78.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="45.0">
+                     <image>
+                        <Image url="@images/back_24.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Label alignment="CENTER" layoutX="57.0" layoutY="64.0" prefHeight="26.0" prefWidth="201.0" text="Choose a date" textAlignment="CENTER">
-               <font>
-                  <Font name="Stalin One" size="14.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
-               <children>
-                  <Button fx:id="btnBack1" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="78.0" style="-fx-background-color: transparent;">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="45.0">
-                           <image>
-                              <Image url="@images/backArrow.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btnHome1" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;">
-                     <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="48.0">
-                           <image>
-                              <Image url="@images/homeImage.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
-            <Label fx:id="errorLab" alignment="CENTER" layoutX="29.0" layoutY="322.0" prefHeight="40.0" prefWidth="129.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
-               <font>
-                  <Font name="Sarpanch" size="13.0" />
-               </font>
-            </Label>
-            <DatePicker fx:id="datePicker" layoutX="62.0" layoutY="141.0" prefHeight="32.0" prefWidth="192.0" promptText="Up to two days from today" style="-fx-border-color: black;" />
+            <Button fx:id="btnHome1" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="48.0">
+                     <image>
+                        <Image url="@images/home_24.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
-      </Pane>
+      </HBox>
+      <DatePicker fx:id="datePicker" layoutX="62.0" layoutY="245.0" prefHeight="32.0" prefWidth="192.0" promptText="Up to two days from today" style="-fx-border-color: black;" />
+      <Label fx:id="labelNoDate" alignment="CENTER" layoutX="82.0" layoutY="424.0" prefHeight="40.0" prefWidth="168.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+         <font>
+            <Font name="Sarpanch" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

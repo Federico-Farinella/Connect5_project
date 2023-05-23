@@ -6,7 +6,7 @@ import javafx.application.Application;
 import java.util.Scanner;
 
 public class Connect5CLI {
-    public void main() {
+    public void main() throws Exception { //anche qui riga 28 gestire eccezione sportcenterdao invece di responsebean
         while (true) {
             System.out.println("Welcome in Connect5 family!!!\nAre you signed in?\n" +
                     "1- Login\n2-Create account\n\nType the respective number and press enter");  //NOSONAR

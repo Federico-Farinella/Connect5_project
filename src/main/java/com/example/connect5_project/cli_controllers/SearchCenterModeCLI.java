@@ -11,7 +11,7 @@ public class SearchCenterModeCLI {
     private BookingController controller;
     private String choose;
 
-    public void search(String choose) {
+    public void search(String choose) throws Exception {  // devo togliere throws exception e gestirla (riga 77)
         SearchResultsBeanIn beanIn = new SearchResultsBeanIn();
         SearchResultBeanOut bean_out = new SearchResultBeanOut();
         while (true) {

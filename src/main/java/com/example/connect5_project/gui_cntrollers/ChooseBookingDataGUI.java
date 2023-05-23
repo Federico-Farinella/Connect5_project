@@ -3,6 +3,8 @@ package com.example.connect5_project.gui_cntrollers;
 import com.example.connect5_project.bean.DailyAvailabilityBeanIn;
 import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
 import com.example.connect5_project.controllers.BookingController;
+import com.example.connect5_project.exceptions.DbConnectException;
+import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.history.Navigate;
 import com.example.connect5_project.models.FieldDailyAvailability;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +26,9 @@ public class ChooseBookingDataGUI {
 
     @FXML
     private DatePicker datePicker;
+
+    @FXML
+    private Label labelNoDate;
 
     public DatePicker getDatePicker() {
         return datePicker;
@@ -41,30 +47,47 @@ public class ChooseBookingDataGUI {
     }
 
     public void search(ActionEvent e) throws IOException {
-        System.out.println("Qui appena spingo bottone dopo la data: " + bookingController.getChoosenCenter().getName());
-        DailyAvailabilityBeanIn beanIn = new DailyAvailabilityBeanIn();
-        beanIn.setDateToSearch(datePicker.getValue());
+        if (datePicker.getValue() == null) {
+            labelNoDate.setText("You have not selected any dates");
+            labelNoDate.setVisible(true);
+        } else {
+            System.out.println("Qui appena spingo bottone dopo la data: " + bookingController.getChoosenCenter().getName());
+            DailyAvailabilityBeanIn beanIn = new DailyAvailabilityBeanIn();
+            beanIn.setDateToSearch(datePicker.getValue());
 
-        DailyAvailabilityBeanOut beanOut = bookingController.getDailyWeather(beanIn);
+            DailyAvailabilityBeanOut beanOut = bookingController.getDailyWeather(beanIn);
 
-        FieldDailyAvailability availability = bookingController.getDailyAvailability(beanIn);
-        beanOut.setDailyAvailability(availability);
+            FieldDailyAvailability availability = null;
+            try {
+                availability = bookingController.getDailyAvailability(beanIn);
+            } catch (MyException exception) {
+                //availability = null; // messo per prova...
+                labelNoDate.setText(exception.getMessage());
+                labelNoDate.setVisible(true);
+                return;
+            }
+            beanOut.setDailyAvailability(availability); // non mi convince forse meglio passare alla gui successiva direttamente
+            // il model FieldDailyAvailability!!!
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/daily_availability_weather.fxml"));
-        Parent root = loader.load();
-        AvailabilityControlGUI availabilityController = loader.getController();
-        availabilityController.setBookingController(bookingController);
-        availabilityController.setImages(beanOut);
-        availabilityController.setAvailability(beanOut);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/daily_availability_weather.fxml"));
+            Parent root = loader.load();
+            AvailabilityControlGUI availabilityController = loader.getController();
+            availabilityController.setBookingController(bookingController);
+            availabilityController.setImages(beanOut);
+            availabilityController.setAvailability(beanOut);
 
-        availabilityController.setLabCenterName(bookingController.getChoosenCenter().getName());
-        availabilityController.setLabDate(datePicker.getValue().toString());
+            availabilityController.setLabCenterName(bookingController.getChoosenCenter().getName());
+            availabilityController.setLabDate(datePicker.getValue().toString());
+            availabilityController.setLabPrice("€ " + bookingController.getChoosenCenter().getFieldPrice().toString());
 
-        navigate.pushPage(((Node) e.getSource()).getScene());
-        navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()+1);
-        availabilityController.setNavigate(navigate);
-        Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
+            navigate.pushPage(((Node) e.getSource()).getScene());
+            navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin() + 1);
+            availabilityController.setNavigate(navigate);
+            Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            labelNoDate.setVisible(false);
+            labelNoDate.setText("");
+            window.setScene(new Scene(root));
+        }
     }
 
     public void back(ActionEvent e) throws IOException {

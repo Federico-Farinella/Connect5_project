@@ -38,7 +38,7 @@ public class SportCenterElements {
             pane = new GridPane();
             pane.setAlignment(Pos.CENTER);
             pane.setPrefSize(310, 102);
-            pane.setStyle("-fx-background-color :  rgb(179,252,252);" + "-fx-background-radius:10");
+            pane.setStyle("-fx-background-color :  rgb(0,162,11);" + "-fx-background-radius:10");
             Label lab = new Label();
             lab.setPrefWidth(180.0);
             lab.setPrefHeight(70.0);
