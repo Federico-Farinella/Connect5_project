@@ -54,6 +54,10 @@ public class BookingDao {
                     " VALUES (NULL, '" + sportCenterName + "', '" + user + "', '" + date + "', '" + hour
              + "', '" + description + "', '" + price + "');";
 
+            /*String sql2 = "INSERT INTO bookings (`ID_booking`, `Sport_center`, `Football_player`, `Date`, `Hour`, `Description`, `price`)" +
+                    " VALUES (NULL, '" + sportCenterName + "', '" + user + "', '" + date + "', '" + hour
+                    + "', '" + description + "', '" + price + 1 + "');";*/
+
             //Devo creare una classe (Model) Booking Service che sarà istanziata dal bookingController e che avrà due attributi di tipo daoBooking e daoAvailability
             // Questa classe avrà un metodo che verrà chiamato dal controller e che chiamerà prima il metodo  della daoBookingper inserire un nuovo appuntamento nel db (o in file) ,
             // e poi se questo darà response vero chiamerà anche il metodo che settera quell orario in quella data come non disponibile in quel centro sportivo;

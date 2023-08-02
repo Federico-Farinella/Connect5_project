@@ -83,7 +83,7 @@ public class BookingController {
         try {
             //System.out.println("getAvailability 1: try block");
             dailyAvailability = dao.dbSearchAvailability(choosenCenter, choosenDate);
-        } catch (MyException e) {
+        } catch (DbConnectException e) {
             //System.out.println("getAvailability 1: catch block");
             String messageToGuiController = "Error with accessing data. Please try later";
             throw new DbConnectException(messageToGuiController);
@@ -103,6 +103,16 @@ public class BookingController {
         String ret = dao.saveBooking(booking);
         System.out.println("Booking Controller: return della DaoBooking: " + ret);
         return ret.equals("Booking registered");
+
+        /*try {
+            BookingDao dao = new BookingDao();
+            String ret = dao.saveBooking(booking);
+            System.out.println("Booking Controller: return della DaoBooking: " + ret);
+            return ret.equals("Booking registered");
+        } catch ()*/
+        // Continua da quiiiiii!!! Sostituisci codice sopra e fai in modo che se non viene correttamente preso
+        // il booking dalla dao allora la dao della disponibilità dei campi non dovrà modificare il valore del campo di quella riga
+        // della disponibilità del centro sportivo. Dai un occhiata anche alla SportCenterDao metodo dbSearchCenterByCity (2o try)
 
     }
 

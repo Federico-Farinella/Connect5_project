@@ -152,6 +152,7 @@ public class SportCenterDAO {
             String sql = "SELECT * FROM sport_center WHERE City = '" + city + "';";
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.first()) {
+                // Qui posso togliere questa eccezione e impostare direttamente come vuoto il resultBean.list_of_centers
                 SportCenterException exception = new SportCenterException("Not match");
                 throw exception;
                 //resultBean.setDaoResponse("Not match");
@@ -168,3 +169,10 @@ public class SportCenterDAO {
         return  resultBean;
     }
 }
+
+// Modificare alcune cose:
+/* 1- Il bean dell API From Controller Logico dovrei popolarlo direttamente dal suo costruttore con parametro Bean
+ in entrata dall'utente!! (Meglio!!!)
+ 2- Gestire bene la lista di risultati di ricerca centri sportivi. La lista potrebbe (dovrebbe) essere un model
+    e in questo modo potrei accedere più facilmente al centro sportivo che l'utente seleziona dalla lista grafica
+*/

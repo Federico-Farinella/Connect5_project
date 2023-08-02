@@ -58,7 +58,7 @@
          </children>
       </HBox>
       <DatePicker fx:id="datePicker" layoutX="62.0" layoutY="245.0" prefHeight="32.0" prefWidth="192.0" promptText="Up to two days from today" style="-fx-border-color: black;" />
-      <Label fx:id="labelNoDate" alignment="CENTER" layoutX="82.0" layoutY="424.0" prefHeight="40.0" prefWidth="168.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+      <Label fx:id="labelNoDate" alignment="CENTER" layoutX="74.0" layoutY="424.0" prefHeight="40.0" prefWidth="168.0" textAlignment="CENTER" textFill="#eaff00" visible="false" wrapText="true">
          <font>
             <Font name="Sarpanch" size="13.0" />
          </font>

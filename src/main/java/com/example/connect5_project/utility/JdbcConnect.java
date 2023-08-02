@@ -15,13 +15,14 @@ public class JdbcConnect {
     //private static Connection rootConnection;
     //private static Connection userConnection;
     private static JdbcConnect jdbcConn = null;
-    private Connection connection;
+    private final Connection connection;
     private int id;
 
     private JdbcConnect() throws ClassNotFoundException, SQLException {  // Aggiunto per perfezionare pattern Singleton, andrebbe cancellato del codice ripetuto piu giu
         this.user = "root";
         this.password = "";
         Class.forName(driverClassName);
+
         this.connection = DriverManager.getConnection(dbUrl, user, password);
     }
 
