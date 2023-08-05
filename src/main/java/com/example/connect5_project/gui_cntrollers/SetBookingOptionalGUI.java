@@ -1,6 +1,7 @@
 package com.example.connect5_project.gui_cntrollers;
 
 import com.example.connect5_project.controllers.BookingController;
+import com.example.connect5_project.exceptions.TakeBookingException;
 import com.example.connect5_project.history.Navigate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,19 +61,23 @@ public class SetBookingOptionalGUI {
             withReferee = true;
         if (cBoxTunics.isSelected())
             withTunics = true;
-        boolean isConfirmed = bookingController.confirmBooking(withReferee, withTunics);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BookingResponse.fxml"));
-        Parent root = loader.load();
-        BookingResponseGUI controlGui = loader.getController();
-        controlGui.setImageResponse(isConfirmed);
-        controlGui.setLabResponse(isConfirmed);
+        try {
+            boolean isConfirmed = bookingController.confirmBooking(withReferee, withTunics);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/BookingResponse.fxml"));
+            Parent root = loader.load();
+            BookingResponseGUI controlGui = loader.getController();
+            controlGui.setImageResponse(isConfirmed);
+            controlGui.setLabResponse(isConfirmed);
 
-        navigate.pushPage(((Node) e.getSource()).getScene());
-        navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()+1);
-        controlGui.setNavigate(navigate);
+            navigate.pushPage(((Node) e.getSource()).getScene());
+            navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin() + 1);
+            controlGui.setNavigate(navigate);
 
-        Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
+            Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            window.setScene(new Scene(root));
+        } catch (TakeBookingException exception) {
+            // Stampa messaggio dell eccezione!!!!
+        }
     }
 
     public void back(ActionEvent e) throws Exception {

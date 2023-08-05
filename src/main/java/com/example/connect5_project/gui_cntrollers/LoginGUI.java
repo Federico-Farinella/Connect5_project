@@ -1,9 +1,8 @@
 package com.example.connect5_project.gui_cntrollers;
 
-import com.example.connect5_project.Login;
+import com.example.connect5_project.LoginController;
 import com.example.connect5_project.bean.LoginBeanIn;
 import com.example.connect5_project.bean.LoginBeanOut;
-import com.example.connect5_project.history.History;
 import com.example.connect5_project.history.Navigate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,11 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginGUI {
-    @FXML
-    Button btnBack;
-    @FXML
-    Button btnHome;
     private Navigate navigate;
+    @FXML
+    private Button btnBack;
+    @FXML
+    private Button btnHome;
     @FXML
     Button btnConfirm;
     @FXML
@@ -59,7 +58,6 @@ public class LoginGUI {
         //History.pagine.clear();
         navigate.getPages().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/Connect5.fxml"));
         Parent root = loader.load();
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
@@ -67,7 +65,6 @@ public class LoginGUI {
 
 
     public void loginVerify(ActionEvent e) throws Exception {
-        //System.out.println(btnLog);
         errorLabel.setVisible(false);
         System.out.println(insertEmailLog);
         String email = insertEmailLog.getText();
@@ -88,45 +85,36 @@ public class LoginGUI {
             return;
         }
 
-
-
         beanIn.setPassword(password);
-        //System.out.println(email);
-        //Login login = new Login();
-        Login login = new Login();
-        LoginBeanOut ret = login.loginVerify(beanIn);
+        LoginController loginController = new LoginController();
+        LoginBeanOut ret = loginController.loginVerify(beanIn);
 
-        switch (ret.getResponse()) {
-            case ("Error") -> {
-                errorLabel.setText("Error, we're working on fixing the issues, come back later");
+        if (!ret.isSuccess()) {
+            switch (ret.getResponse()) {
+                case ("Error") ->
+                    errorLabel.setText("Error, we're working on fixing the issues, come back later");
+                case ("Email not registered") ->
+                    errorLabel.setText("Email not registered. Please insert a registered email");
+                case ("Password incorrect") ->
+                    errorLabel.setText("Password incorrect");
             }
-            case ("Email not registered") -> {
-                errorLabel.setText("Email not registered. Please insert a registered email");
-            }
-            case ("Password incorrect") -> {
-                errorLabel.setText("Password incorrect");
-            }
-            case ("Match") -> {
-                errorLabel.setText("");
-                errorLabel.setVisible(false);
-                insertEmailLog.setText("");
-                insertPassLog.setText("");
-                Stage window;
-                //Navigate navigate = new Navigate();
-                navigate.pushPage(((Node) e.getSource()).getScene());
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Logged.fxml"));
-                Parent root = loader.load();
-                LoggedGUI controlGui = loader.getController();
-                this.navigate.setCountPagesAfterLogin(0);
-                controlGui.setNavigate(navigate);
-                controlGui.getLabelWelcome().setText("Welcome\n" + ret.getUser().getNickName());
-                window = (Stage) ((Node)e.getSource()).getScene().getWindow();
-                window.setScene(new Scene(root));
-            }
+        } else {
+            errorLabel.setText("");
+            errorLabel.setVisible(false);
+            insertEmailLog.setText("");
+            insertPassLog.setText("");
+            Stage window;
+            //Navigate navigate = new Navigate();
+            navigate.pushPage(((Node) e.getSource()).getScene());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Logged.fxml"));
+            Parent root = loader.load();
+            LoggedGUI controlGui = loader.getController();
+            this.navigate.setCountPagesAfterLogin(0);
+            controlGui.setNavigate(navigate);
+            controlGui.getLabelWelcome().setText("Welcome\n" + ret.getUser().getNickName());
+            window = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            window.setScene(new Scene(root));
         }
-        /*if (ret.getResponse().equals("Error")) {
-            errorLabel.setText("Error, we're working on fixing the issues, come back later");
-        }*/
 
         errorLabel.setVisible(true);
         System.out.println(ret);

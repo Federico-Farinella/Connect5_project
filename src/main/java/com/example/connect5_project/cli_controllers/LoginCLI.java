@@ -1,6 +1,6 @@
 package com.example.connect5_project.cli_controllers;
 
-import com.example.connect5_project.Login;
+import com.example.connect5_project.LoginController;
 import com.example.connect5_project.bean.LoginBeanIn;
 import com.example.connect5_project.bean.LoginBeanOut;
 
@@ -38,7 +38,7 @@ public class LoginCLI {
                     break;
             }
             beanIn.setPassword(password);
-            Login loginController = new Login();
+            LoginController loginController = new LoginController();
             LoginBeanOut bean_out = new LoginBeanOut();
             bean_out = loginController.loginVerify(beanIn);
             switch (bean_out.getResponse()) {

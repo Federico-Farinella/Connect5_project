@@ -1,6 +1,7 @@
 package com.example.connect5_project.dao;
 
 import com.example.connect5_project.bean.LoginBeanOut;
+import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.models.LoggingUser;
 import com.example.connect5_project.models.User;
 import com.example.connect5_project.utility.JdbcConnect;
@@ -16,7 +17,6 @@ public class FootballPlayerDao {
     public FootballPlayerDao(){
     }
 
-
     public LoginBeanOut checkUser(LoggingUser user) {
         //String ret;
         String email = user.getEmail();
@@ -24,13 +24,56 @@ public class FootballPlayerDao {
         LoginBeanOut beanOut = new LoginBeanOut();
         String dbUser;
         String pass;
-        JdbcConnect conn;
+        JdbcConnect dbInstance;
+        try {
+            dbInstance = JdbcConnect.getInstance();
+        } catch (ConnectionDBException | SQLException e) {
+            beanOut.setResponse("DB Connection failed");
+            return beanOut;
+        }
+
+        String querySql = "SELECT * FROM user WHERE email = ?";
+        try (PreparedStatement prepareStmt = dbInstance.getConnection().prepareStatement(querySql);
+                Statement stmt = dbInstance.getConnection().createStatement();
+             Statement stmt2 = dbInstance.getConnection().createStatement()) {
+            prepareStmt.setString(1, email);
+            String sql = "SELECT email FROM user WHERE email = '" + email + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            System.out.println("Qui dopo prima query");
+            if (!rs.first()) {
+                beanOut.setResponse("Email not registered");
+                return beanOut;
+            }
+            if (!rs.getString("Password").equals(password)) {
+                beanOut.setResponse("Password incorrect");
+                return beanOut;
+            }
+            beanOut.setResponse("Match");
+            beanOut.setUser(new User(rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"), rs.getString("password"), rs.getString("nickName")));
+
+            beanOut.setSuccess(true);
+        } catch (SQLException e) {
+            beanOut.setResponse("Error while creating the statement");
+        }
+
+        //System.out.println(beanOut.getResponse());
+        return beanOut;
+    }
+
+   /* public LoginBeanOut checkUser(LoggingUser user) {
+        //String ret;
+        String email = user.getEmail();
+        String password = user.getPassword();
+        LoginBeanOut beanOut = new LoginBeanOut();
+        String dbUser;
+        String pass;
+        JdbcConnect dbInstance;
         try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
             Properties prop = new Properties();
             prop.load(propsInput);
             dbUser = prop.getProperty("dbUser");
             pass = prop.getProperty("pass");
-            conn = JdbcConnect.getUserConnection(dbUser, pass);
+            dbInstance = JdbcConnect.getUserConnection(dbUser, pass);
         } catch (IOException e) {
             beanOut.setResponse("Config file not found");
             return beanOut;
@@ -42,8 +85,8 @@ public class FootballPlayerDao {
             return beanOut;
         }
 
-        try (Statement stmt = conn.getConnection().createStatement();
-                Statement stmt2 = conn.getConnection().createStatement()) {
+        try (Statement stmt = dbInstance.getConnection().createStatement();
+                Statement stmt2 = dbInstance.getConnection().createStatement()) {
 
             String sql = "SELECT email FROM user WHERE email = '" + email + "';";
             ResultSet rs = stmt.executeQuery(sql);
@@ -69,5 +112,5 @@ public class FootballPlayerDao {
 
         System.out.println(beanOut.getResponse());
         return beanOut;
-    }
+    }*/
 }

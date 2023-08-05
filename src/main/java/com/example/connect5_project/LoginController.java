@@ -6,7 +6,7 @@ import com.example.connect5_project.bean.LoginBeanOut;
 import com.example.connect5_project.models.LoggingUser;
 import com.example.connect5_project.utility.CurrentUser;
 
-public class Login {
+public class LoginController {
 
     public LoginBeanOut loginVerify(LoginBeanIn beanIn) {
         String email = beanIn.getEmail();

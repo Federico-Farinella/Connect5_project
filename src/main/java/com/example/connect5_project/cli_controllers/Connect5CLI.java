@@ -1,8 +1,5 @@
 package com.example.connect5_project.cli_controllers;
 
-import com.example.connect5_project.Login;
-import javafx.application.Application;
-
 import java.util.Scanner;
 
 public class Connect5CLI {

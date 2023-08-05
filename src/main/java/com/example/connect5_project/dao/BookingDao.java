@@ -1,21 +1,21 @@
 package com.example.connect5_project.dao;
 
+import com.example.connect5_project.exceptions.ConnectionDBException;
+import com.example.connect5_project.exceptions.TakeBookingException;
 import com.example.connect5_project.models.Booking;
 import com.example.connect5_project.utility.JdbcConnect;
+import com.example.connect5_project.utility.TimeUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.Properties;
 
 public class BookingDao {
     String configFilePath = "src/main/resources/config.properties";
 
-    public String saveBooking(Booking booking) {
+    /*public String saveBooking(Booking booking) {
         String sportCenterName = booking.getSportCenter().getName();
         String user = booking.getUser().getEmail();
         Date date = Date.valueOf(booking.getDate());
@@ -54,17 +54,17 @@ public class BookingDao {
                     " VALUES (NULL, '" + sportCenterName + "', '" + user + "', '" + date + "', '" + hour
              + "', '" + description + "', '" + price + "');";
 
-            /*String sql2 = "INSERT INTO bookings (`ID_booking`, `Sport_center`, `Football_player`, `Date`, `Hour`, `Description`, `price`)" +
-                    " VALUES (NULL, '" + sportCenterName + "', '" + user + "', '" + date + "', '" + hour
-                    + "', '" + description + "', '" + price + 1 + "');";*/
+            //String sql2 = "INSERT INTO bookings (`ID_booking`, `Sport_center`, `Football_player`, `Date`, `Hour`, `Description`, `price`)" +
+              //      " VALUES (NULL, '" + sportCenterName + "', '" + user + "', '" + date + "', '" + hour
+              //      + "', '" + description + "', '" + price + 1 + "');";
 
             //Devo creare una classe (Model) Booking Service che sarà istanziata dal bookingController e che avrà due attributi di tipo daoBooking e daoAvailability
             // Questa classe avrà un metodo che verrà chiamato dal controller e che chiamerà prima il metodo  della daoBookingper inserire un nuovo appuntamento nel db (o in file) ,
             // e poi se questo darà response vero chiamerà anche il metodo che settera quell orario in quella data come non disponibile in quel centro sportivo;
             // se questo non riuscirà per qualche motivo allora verrà cancellato l appuntamento preso;
 
-            /*String sql = "INSERT INTO bookings VALUES ('" + sportCenterName + "', '" + user + "', '" + date + "', '" + hour
-                    + "', '" + description + "', '" + price + "');";*/
+            //String sql = "INSERT INTO bookings VALUES ('" + sportCenterName + "', '" + user + "', '" + date + "', '" + hour
+             //       + "', '" + description + "', '" + price + "');";
 
             int row = stmt.executeUpdate(sql);
             if (row == 1)
@@ -73,6 +73,71 @@ public class BookingDao {
                 ret = "Booking not registered";
         } catch (SQLException e) {
             ret = "Error updating table Booking";
+        }
+        return ret;
+    }*/
+
+    public boolean saveBooking1(Booking booking) throws TakeBookingException {
+        String sportCenterName = booking.getSportCenter().getName();
+        String user = booking.getUser().getEmail();
+        Date date = Date.valueOf(booking.getDate());
+        String hour = booking.getHour();
+        String description = booking.getOptional().getDescription();
+        float price = booking.getOptional().getPrice();
+
+        System.out.println("BookingDao: sto provando a salvare...\ncenter name: " + sportCenterName + ", user: " + user + ", " +
+                "date: " + date + ", hour: " + hour + ", description: " + description + ", price: " + price);
+
+        String dbUser;
+        String pass;
+        JdbcConnect dbInstance;
+
+        boolean ret = false;
+
+        try {
+            dbInstance = JdbcConnect.getInstance();
+        } catch (ConnectionDBException e) {
+            //ret = "Config file not found";
+
+            return ret;
+        }
+        String sql1 = "INSERT INTO bookings (`ID_booking`, `Sport_center`, `Football_player`, `Date`, `Hour`, `Description`, `price`)" +
+                " VALUES (NULL, ?, ?, ?, ?, ?, ?);";
+        try (Statement stmt = dbInstance.getConnection().createStatement();
+             PreparedStatement preparedStmt = dbInstance.getConnection().prepareStatement(sql1)) {
+            preparedStmt.setString(1, sportCenterName);
+            preparedStmt.setString(2, user);
+            preparedStmt.setDate(3, date);
+            preparedStmt.setString(4, hour);
+            preparedStmt.setString(5, description);
+            preparedStmt.setFloat(6, price);
+            String sql = "INSERT INTO bookings (`ID_booking`, `Sport_center`, `Football_player`, `Date`, `Hour`, `Description`, `price`)" +
+                    " VALUES (NULL, '" + sportCenterName + "', '" + user + "', '" + date + "', '" + hour
+                    + "', '" + description + "', '" + price + "');";
+
+            //int row = stmt.executeUpdate(sql);
+            int row = preparedStmt.executeUpdate(sql1);
+            preparedStmt.close();
+            if (row == 1) {
+                //ret = "Booking registered";
+                String sql2 = "UPDATE daily_availability " +
+                        "SET ? = 1 " +
+                        "WHERE Sport_center = ? AND Date = ?;";
+                try (PreparedStatement preparedStmt2 = dbInstance.getConnection().prepareStatement(sql2)) {
+                    preparedStmt2.setString(1, TimeUtils.hourConverter(hour));
+                    preparedStmt2.setString(2, sportCenterName);
+                    preparedStmt2.setDate(3, date);
+                    row = preparedStmt2.executeUpdate(sql2);
+                }
+                ret = true;
+            }
+            else {
+                throw new TakeBookingException("Booking request failed");
+                //ret = "Booking not registered";
+            }
+        } catch (SQLException e) {
+            throw new TakeBookingException("Booking request failed");
+            //ret = "Error updating table Booking";
         }
         return ret;
     }

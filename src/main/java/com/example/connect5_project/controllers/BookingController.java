@@ -8,6 +8,7 @@ import com.example.connect5_project.dao.SportCenterDAO;
 import com.example.connect5_project.exceptions.DbConnectException;
 import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.exceptions.SportCenterException;
+import com.example.connect5_project.exceptions.TakeBookingException;
 import com.example.connect5_project.models.Booking;
 import com.example.connect5_project.models.CentroSportivo;
 import com.example.connect5_project.models.FieldDailyAvailability;
@@ -91,7 +92,7 @@ public class BookingController {
         return dailyAvailability;
     }
 
-    public boolean confirmBooking(boolean withReferee, boolean withTunics) {
+    public boolean confirmBooking(boolean withReferee, boolean withTunics) throws TakeBookingException {
         User user = CurrentUser.getInstance().getUser();
         Booking booking = new Booking(choosenCenter, user, choosenDate, choosenHour);
         if (withReferee)
@@ -100,9 +101,19 @@ public class BookingController {
             booking.setWithReferee();
 
         BookingDao dao = new BookingDao();
-        String ret = dao.saveBooking(booking);
+        /*String ret = dao.saveBooking(booking);
+        if (ret.equals("Booking registered"))
+            dao.updateAvailability(booking);
         System.out.println("Booking Controller: return della DaoBooking: " + ret);
-        return ret.equals("Booking registered");
+        return ret.equals("Booking registered");*/
+        boolean ret1;
+        try {
+            ret1 = dao.saveBooking1(booking);
+        } catch (TakeBookingException e) {
+            throw new TakeBookingException("Error accessing data. Please try later.");
+        }
+
+        return ret1;
 
         /*try {
             BookingDao dao = new BookingDao();
