@@ -27,35 +27,41 @@ public class FootballPlayerDao {
         JdbcConnect dbInstance;
         try {
             dbInstance = JdbcConnect.getInstance();
-        } catch (ConnectionDBException | SQLException e) {
+        } catch (ConnectionDBException e) {
             beanOut.setResponse("DB Connection failed");
+            System.out.println("DB Connection failed");
             return beanOut;
         }
 
-        String querySql = "SELECT * FROM user WHERE email = ?";
+        String querySql = "SELECT * FROM user WHERE email = ?;";
         try (PreparedStatement prepareStmt = dbInstance.getConnection().prepareStatement(querySql);
                 Statement stmt = dbInstance.getConnection().createStatement();
              Statement stmt2 = dbInstance.getConnection().createStatement()) {
             prepareStmt.setString(1, email);
             String sql = "SELECT email FROM user WHERE email = '" + email + "';";
-            ResultSet rs = stmt.executeQuery(sql);
+            System.out.println("Qui prima della prima query");
+            ResultSet rs = prepareStmt.executeQuery();
             System.out.println("Qui dopo prima query");
             if (!rs.first()) {
                 beanOut.setResponse("Email not registered");
+                System.out.println("Email not registered");
                 return beanOut;
             }
-            if (!rs.getString("Password").equals(password)) {
+            if (!(rs.getString("password").equals(password))) {
                 beanOut.setResponse("Password incorrect");
+                System.out.println("Password incorrect");
                 return beanOut;
             }
             beanOut.setResponse("Match");
             beanOut.setUser(new User(rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"), rs.getString("password"), rs.getString("nickName")));
 
             beanOut.setSuccess(true);
+            rs.close();
         } catch (SQLException e) {
+            //Dovrei lanciare una mia eccezione
             beanOut.setResponse("Error while creating the statement");
+            System.out.println("Error while creating the statement");
         }
-
         //System.out.println(beanOut.getResponse());
         return beanOut;
     }

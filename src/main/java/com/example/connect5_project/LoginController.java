@@ -19,7 +19,9 @@ public class LoginController {
 
         if (beanOut.getResponse().equals("Config file not found") || beanOut.getResponse().equals("Config file not loaded")
                 || beanOut.getResponse().equals("Error with database connection")
-                || beanOut.getResponse().equals("Driver to connect database not found")) {
+                || beanOut.getResponse().equals("Error while creating the statement")
+                || beanOut.getResponse().equals("Driver to connect database not found")
+                || beanOut.getResponse().equals("DB Connection failed")) {
             beanOut.setResponse("Error");
         } else if (beanOut.getResponse().equals("Match")) {
             CurrentUser currentUser = CurrentUser.getInstance();

@@ -28,8 +28,11 @@ public class JdbcConnect {
         // Devo usare questa per centralizzare i dati di configurazione qui
         try {
             Class.forName(driverClassName);
+            System.out.println("Eseguito Class.forName");
             getDBCredentials();
+            System.out.println("Eseguito getDBCredentials");
             this.connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Eseguito DriverManager.getConnection");
         } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new ConnectionDBException("DB Connection Error");
         }
@@ -56,15 +59,21 @@ public class JdbcConnect {
     }
 
     public static JdbcConnect getInstance() throws ConnectionDBException {// Devo usare questa
-        try {
-            boolean isClosed = jdbcConn.getConnection().isClosed();
-            if (jdbcConn == null || isClosed) {
+        System.out.println("Sono nel Jdbc.getInstance()");
+        /*try {
+            //boolean isClosed = jdbcConn.getConnection().isClosed();
+            if (jdbcConn == null) {
                 jdbcConn = new JdbcConnect();
-            }
+            } else if (jdbcConn.getConnection().isClosed())
+                jdbcConn = new JdbcConnect();
             return jdbcConn;
         } catch (SQLException e) {
             throw new ConnectionDBException("DB Connection Error");
+        }*/
+        if (jdbcConn == null) {
+            jdbcConn = new JdbcConnect();
         }
+        return jdbcConn;
     }
 
     public Connection getConnection() {
@@ -73,12 +82,15 @@ public class JdbcConnect {
 
     private void getDBCredentials() throws IOException {
         try{
-            FileInputStream propsInput = new FileInputStream("src/main/logic/resources/config.properties");
+            FileInputStream propsInput = new FileInputStream("src/main/resources/config.properties");
             Properties prop = new Properties();
             prop.load(propsInput);
-            this.url=prop.getProperty("urlDB");
+            this.url=prop.getProperty("dbUrl");
+            System.out.println(url);
             this.user=prop.getProperty("dbUser");
+            System.out.println(user);
             this.password=prop.getProperty("pass");
+            System.out.println(password);
             propsInput.close();}
         catch(IOException ex) {
             throw new IOException();}

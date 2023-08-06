@@ -90,13 +90,21 @@ public class LoginGUI {
         LoginBeanOut ret = loginController.loginVerify(beanIn);
 
         if (!ret.isSuccess()) {
+            System.out.println("Sono nell if prima dello switch");
+            System.out.println(ret.getResponse());
             switch (ret.getResponse()) {
-                case ("Error") ->
+                case ("Error") -> {
+                    System.out.println("Sono nel case Error");
                     errorLabel.setText("Error, we're working on fixing the issues, come back later");
-                case ("Email not registered") ->
+                }
+                case ("Email not registered") -> {
+                    System.out.println("Sono nel case Email not registered");
                     errorLabel.setText("Email not registered. Please insert a registered email");
-                case ("Password incorrect") ->
+                }
+                case ("Password incorrect") -> {
+                    System.out.println("Sono nel case Password incorrect");
                     errorLabel.setText("Password incorrect");
+                }
             }
         } else {
             errorLabel.setText("");
