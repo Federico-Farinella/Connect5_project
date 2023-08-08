@@ -116,22 +116,33 @@ public class BookingDao {
                     + "', '" + description + "', '" + price + "');";
 
             //int row = stmt.executeUpdate(sql);
-            int row = preparedStmt.executeUpdate(sql1);
+            int row = preparedStmt.executeUpdate();
             preparedStmt.close();
             if (row == 1) {
+                String columnHour = TimeUtils.hourConverter(hour);
                 //ret = "Booking registered";
                 String sql2 = "UPDATE daily_availability " +
-                        "SET ? = 1 " +
-                        "WHERE Sport_center = ? AND Date = ?;";
+                        "SET " + columnHour + " = 1 " +
+                        "WHERE `Sport_center` = ? AND `Date` = ?;";
                 try (PreparedStatement preparedStmt2 = dbInstance.getConnection().prepareStatement(sql2)) {
-                    preparedStmt2.setString(1, TimeUtils.hourConverter(hour));
-                    preparedStmt2.setString(2, sportCenterName);
-                    preparedStmt2.setDate(3, date);
-                    row = preparedStmt2.executeUpdate(sql2);
+                    //System.out.println(TimeUtils.hourConverter(hour));
+                    //preparedStmt2.setString(1, TimeUtils.hourConverter(hour));
+                    System.out.println(sportCenterName);
+                    preparedStmt2.setString(1, sportCenterName);
+                    System.out.println(date);
+                    preparedStmt2.setDate(2, date);
+                    row = preparedStmt2.executeUpdate();
+                    if (row == 1)
+                        ret = true;
+                    else if (row == 0)
+                        System.out.println("Non riesco a aggiornare dailyAvailability");
+                } catch (SQLException e) {
+                    System.out.println("Dao dailyAvailability update error");
                 }
-                ret = true;
+                //ret = true;
             }
             else {
+                System.out.println("Dao dailyAvailability update failed");
                 throw new TakeBookingException("Booking request failed");
                 //ret = "Booking not registered";
             }

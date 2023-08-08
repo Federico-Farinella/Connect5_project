@@ -110,9 +110,10 @@ public class BookingController {
         try {
             ret1 = dao.saveBooking1(booking);
         } catch (TakeBookingException e) {
+            System.out.println("Error accessing data. Please try later.");
             throw new TakeBookingException("Error accessing data. Please try later.");
         }
-
+        System.out.println("Booking result: " + ret1);
         return ret1;
 
         /*try {

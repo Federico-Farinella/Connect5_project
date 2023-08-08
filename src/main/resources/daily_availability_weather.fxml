@@ -24,19 +24,19 @@
          <children>
             <Label fx:id="lab_center_name" alignment="CENTER" prefHeight="79.0" prefWidth="158.0" text="Sport Center Name" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
-                  <Font name="Stalin One" size="13.0" />
+                  <Font name="Showcard Gothic" size="18.0" />
                </font>
             </Label>
             <VBox prefHeight="200.0" spacing="15.0">
                <children>
                   <Label fx:id="lab_date" alignment="CENTER" prefHeight="30.0" prefWidth="138.0" text="Date" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Sarpanch" size="20.0" />
+                        <Font name="Showcard Gothic" size="20.0" />
                      </font>
                   </Label>
                   <Label fx:id="lab_price" alignment="CENTER" prefHeight="30.0" prefWidth="138.0" text="Price" textFill="#eeff00">
                      <font>
-                        <Font name="Sarpanch" size="20.0" />
+                        <Font name="Showcard Gothic" size="20.0" />
                      </font>
                   </Label>
                </children>
@@ -72,12 +72,12 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font name="Sarpanch" size="18.0" />
+                  <Font name="Showcard Gothic" size="18.0" />
                </font>
             </Label>
             <Label fx:id="avail15" alignment="CENTER" prefHeight="22.0" prefWidth="120.0" style="-fx-text-fill: BLACK;" GridPane.columnIndex="2">
                <font>
-                  <Font name="Sarpanch" size="15.0" />
+                  <Font name="Showcard Gothic" size="14.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="90.0" layoutY="28.0" prefHeight="27.0" prefWidth="53.0" style="-fx-text-fill: BLACK;" text="16-17" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -85,7 +85,7 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font name="Sarpanch" size="18.0" />
+                  <Font name="Showcard Gothic" size="18.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="90.0" layoutY="87.0" prefHeight="27.0" prefWidth="53.0" style="-fx-text-fill: BLACK;" text="17-18" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
@@ -93,7 +93,7 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font name="Sarpanch" size="18.0" />
+                  <Font name="Showcard Gothic" size="18.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="90.0" layoutY="145.0" prefHeight="27.0" prefWidth="53.0" style="-fx-text-fill: BLACK;" text="18-19" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
@@ -101,7 +101,7 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font name="Sarpanch" size="18.0" />
+                  <Font name="Showcard Gothic" size="18.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="90.0" layoutY="204.0" prefHeight="27.0" prefWidth="53.0" style="-fx-text-fill: BLACK;" text="19-20" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
@@ -109,7 +109,7 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font name="Sarpanch" size="18.0" />
+                  <Font name="Showcard Gothic" size="18.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="90.0" layoutY="262.0" prefHeight="27.0" prefWidth="53.0" style="-fx-text-fill: BLACK;" text="20-21" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
@@ -117,7 +117,7 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font name="Sarpanch" size="18.0" />
+                  <Font name="Showcard Gothic" size="18.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="90.0" layoutY="320.0" prefHeight="22.0" prefWidth="53.0" style="-fx-text-fill: BLACK;" text="21-22" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
@@ -125,7 +125,7 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font name="Sarpanch" size="18.0" />
+                  <Font name="Showcard Gothic" size="18.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="90.0" layoutY="379.0" prefHeight="22.0" prefWidth="53.0" style="-fx-text-fill: BLACK;" text="22-23" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
@@ -133,47 +133,47 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font name="Sarpanch" size="18.0" />
+                  <Font name="Showcard Gothic" size="18.0" />
                </font>
             </Label>
             <Label fx:id="avail16" alignment="CENTER" layoutX="170.0" layoutY="21.0" prefHeight="22.0" prefWidth="110.0" style="-fx-text-fill: BLACK;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
-                  <Font name="Sarpanch" size="15.0" />
+                  <Font name="Showcard Gothic" size="14.0" />
                </font>
             </Label>
             <Label fx:id="avail17" alignment="CENTER" layoutX="170.0" layoutY="71.0" prefHeight="22.0" prefWidth="112.0" style="-fx-text-fill: BLACK;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
-                  <Font name="Sarpanch" size="15.0" />
+                  <Font name="Showcard Gothic" size="14.0" />
                </font>
             </Label>
             <Label fx:id="avail18" alignment="CENTER" layoutX="170.0" layoutY="120.0" prefHeight="22.0" prefWidth="112.0" style="-fx-text-fill: BLACK;" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
-                  <Font name="Sarpanch" size="15.0" />
+                  <Font name="Showcard Gothic" size="14.0" />
                </font>
             </Label>
             <Label fx:id="avail19" alignment="CENTER" layoutX="170.0" layoutY="169.0" prefHeight="22.0" prefWidth="114.0" style="-fx-text-fill: BLACK;" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
-                  <Font name="Sarpanch" size="15.0" />
+                  <Font name="Showcard Gothic" size="14.0" />
                </font>
             </Label>
             <Label fx:id="avail20" alignment="CENTER" layoutX="170.0" layoutY="219.0" prefHeight="22.0" prefWidth="111.0" style="-fx-text-fill: BLACK;" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <font>
-                  <Font name="Sarpanch" size="15.0" />
+                  <Font name="Showcard Gothic" size="14.0" />
                </font>
             </Label>
             <Label fx:id="avail21" alignment="CENTER" layoutX="170.0" layoutY="268.0" prefHeight="22.0" prefWidth="113.0" style="-fx-text-fill: BLACK;" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <font>
-                  <Font name="Sarpanch" size="15.0" />
+                  <Font name="Showcard Gothic" size="14.0" />
                </font>
             </Label>
             <Label fx:id="avail22" alignment="CENTER" layoutX="170.0" layoutY="317.0" prefHeight="22.0" prefWidth="118.0" style="-fx-text-fill: BLACK;" GridPane.columnIndex="2" GridPane.rowIndex="7">
                <font>
-                  <Font name="Sarpanch" size="15.0" />
+                  <Font name="Showcard Gothic" size="14.0" />
                </font>
             </Label>
             <Button fx:id="btnReserve15" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choosenBookingHour" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Sarpanch" size="10.0" />
+                  <Font name="Showcard Gothic" size="10.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -181,7 +181,7 @@
             </Button>
             <Button fx:id="btnReserve16" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="19.0" mnemonicParsing="false" onAction="#choosenBookingHour" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Sarpanch" size="10.0" />
+                  <Font name="Showcard Gothic" size="10.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -189,7 +189,7 @@
             </Button>
             <Button fx:id="btnReserve17" alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="68.0" mnemonicParsing="false" onAction="#choosenBookingHour" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Sarpanch" size="10.0" />
+                  <Font name="Showcard Gothic" size="10.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -197,7 +197,7 @@
             </Button>
             <Button fx:id="btnReserve18" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="118.0" mnemonicParsing="false" onAction="#choosenBookingHour" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Sarpanch" size="10.0" />
+                  <Font name="Showcard Gothic" size="10.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -205,7 +205,7 @@
             </Button>
             <Button fx:id="btnReserve19" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="168.0" mnemonicParsing="false" onAction="#choosenBookingHour" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Sarpanch" size="10.0" />
+                  <Font name="Showcard Gothic" size="10.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -213,7 +213,7 @@
             </Button>
             <Button fx:id="btnReserve20" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="216.0" mnemonicParsing="false" onAction="#choosenBookingHour" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Sarpanch" size="10.0" />
+                  <Font name="Showcard Gothic" size="10.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -221,7 +221,7 @@
             </Button>
             <Button fx:id="btnReserve21" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="266.0" mnemonicParsing="false" onAction="#choosenBookingHour" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Sarpanch" size="10.0" />
+                  <Font name="Showcard Gothic" size="10.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -229,7 +229,7 @@
             </Button>
             <Button fx:id="btnReserve22" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="316.0" mnemonicParsing="false" onAction="#choosenBookingHour" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: BLACK; -fx-background-radius: 15;" text="Reserve" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Sarpanch" size="10.0" />
+                  <Font name="Showcard Gothic" size="10.0" />
                </font>
                <opaqueInsets>
                   <Insets />
