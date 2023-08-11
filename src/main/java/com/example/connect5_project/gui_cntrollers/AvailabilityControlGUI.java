@@ -223,6 +223,7 @@ public class AvailabilityControlGUI {
         controlOptionalGui.setLabCenterName(bookingController.getChoosenCenter().getName());
         controlOptionalGui.setLabDate(bookingController.getChoosenDate());
         controlOptionalGui.setLabHour(bookingController.getChoosenHour() + ".00");
+        controlOptionalGui.setLabPrice(bookingController.getChoosenCenter().getFieldPrice().toString() + "  €");
         navigate.pushPage(((Node) event.getSource()).getScene());
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()+1);
         controlOptionalGui.setNavigate(navigate);

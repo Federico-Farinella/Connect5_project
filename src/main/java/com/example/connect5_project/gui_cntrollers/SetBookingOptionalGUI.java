@@ -24,6 +24,8 @@ public class SetBookingOptionalGUI {
     @FXML
     Label labHour;
     @FXML
+    Label labPrice;
+    @FXML
     CheckBox cBoxReferee;
     @FXML
     CheckBox cBoxTunics;
@@ -48,6 +50,10 @@ public class SetBookingOptionalGUI {
 
     public void setLabHour(String labHour) {
         this.labHour.setText(labHour);
+    }
+
+    public void setLabPrice(String labPrice) {
+        this.labPrice.setText(labPrice);
     }
 
     public void setNavigate(Navigate navigate) {

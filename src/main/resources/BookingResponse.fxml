@@ -27,22 +27,14 @@
       </HBox>
       <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: transparent;">
          <children>
-            <Label fx:id="labResponse" alignment="CENTER" layoutX="16.0" layoutY="250.0" prefHeight="152.0" prefWidth="283.0" style="-fx-text-fill: BLACK;" text="Congratulations! Your booking has been successfull. You will be redirected to the home page in 5 seconds" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="labResponse" alignment="CENTER" layoutX="16.0" layoutY="284.0" prefHeight="152.0" prefWidth="283.0" style="-fx-text-fill: BLACK;" text="Congratulations! Your booking has been successfull. You will be redirected to the home page in 5 seconds" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="AR DESTINE" size="20.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0">
                <children>
-                  <Button fx:id="btnHome1" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;">
-                     <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="48.0">
-                           <image>
-                              <Image url="@images/home_24.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <Button fx:id="btnHome1" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;" />
                </children>
             </HBox>
             <Label fx:id="errorLab" alignment="CENTER" layoutX="29.0" layoutY="322.0" prefHeight="40.0" prefWidth="129.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
