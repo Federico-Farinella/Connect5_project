@@ -53,8 +53,8 @@ public class FootballPlayerDao {
                 return beanOut;
             }
             beanOut.setResponse("Match");
-            beanOut.setUser(new User(rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"), rs.getString("password"), rs.getString("nickName")));
-
+            //beanOut.setUser(new User(rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"), rs.getString("password"), rs.getString("nickName")));
+            beanOut.setUser(new User(rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"), rs.getString("nickName")));
             beanOut.setSuccess(true);
             rs.close();
         } catch (SQLException e) {

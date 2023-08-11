@@ -1,20 +1,18 @@
 package com.example.connect5_project.models.bookings_decorator;
 
-import com.example.connect5_project.models.CentroSportivo;
-import com.example.connect5_project.models.User;
-
-import java.time.LocalDate;
-
-public class ConcreteBasic implements Optional {
-    private float price;
+public class ConcreteBasic implements Type {
+    private final float price;
+    private final String description;
 
     public ConcreteBasic(float price) {
         this.price = price;
+        this.description = "Basic booking";
     }
 
     @Override
     public String getDescription () {
-        return "Basic booking";
+        //return "Basic booking";
+        return description;
     }
 
     @Override

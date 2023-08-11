@@ -30,7 +30,7 @@ public class Main {
         if (description.contains("with tunics"))
             System.out.println("with tunics");*/
 
-        User user = new User("Alessandro", "Greco", "alegreco@gmail.com", "ciao", "alegreco");
+        User user = new User("Alessandro", "Greco", "alegreco@gmail.com", "alegreco");
         CentroSportivo center = new CentroSportivo("Sport Village", "Rome", "via Oceano Pacifico", "manager@gmail.com", "image.png", 40f);
         Booking booking = new Booking(center, user, LocalDate.now(), "17");
         System.out.println("Step 1 description :" + booking.getOptional().getDescription() + ". Price : " + booking.getOptional().getPrice());
@@ -38,6 +38,16 @@ public class Main {
         System.out.println("Step 2 description :" + booking.getOptional().getDescription() + ". Price : " + booking.getOptional().getPrice());
         booking.setWithTunics();
         System.out.println("Step 3 description :" + booking.getOptional().getDescription() + ". Price : " + booking.getOptional().getPrice());
+
+        ConcreteBasic basic = new ConcreteBasic(center.getFieldPrice());
+        ConcreteWithReferee withReferee = new ConcreteWithReferee(basic);
+        System.out.println(basic.getDescription() + " " + basic.getPrice());
+        System.out.println(withReferee.getDescription() + " " + withReferee.getPrice());
+        ConcreteWithTunics withRefereeAndTunics = new ConcreteWithTunics(withReferee);
+        System.out.println(withRefereeAndTunics.getDescription() + " " + withRefereeAndTunics.getPrice());
+
+        Type type = withRefereeAndTunics;
+        System.out.println("Finally: " + type.getDescription() + " " + type.getPrice());
 
     }
 }

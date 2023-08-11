@@ -9,32 +9,36 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="570.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.gui_cntrollers.BookingResponseGUI">
+<AnchorPane prefHeight="570.0" prefWidth="320.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.gui_cntrollers.BookingResponseGUI">
    <children>
+      <ImageView fitHeight="468.0" fitWidth="320.0" layoutY="102.0">
+         <image>
+            <Image url="@images/campo_progetto.jpg" />
+         </image>
+      </ImageView>
       <HBox alignment="CENTER" prefHeight="102.0" prefWidth="320.0" style="-fx-background-color: BLACK;">
          <children>
-            <Label prefHeight="40.0" prefWidth="262.0" text="CONNECT 5" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="262.0" text="CONNECT 5" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Stalin One" size="25.0" />
+                  <Font name="Showcard Gothic" size="38.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: rgb(179,252,252);">
+      <Pane layoutY="102.0" prefHeight="468.0" prefWidth="320.0" style="-fx-background-color: transparent;">
          <children>
-            <Label fx:id="labResponse" alignment="CENTER" layoutX="19.0" layoutY="293.0" prefHeight="90.0" prefWidth="283.0" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="labResponse" alignment="CENTER" layoutX="16.0" layoutY="250.0" prefHeight="152.0" prefWidth="283.0" style="-fx-text-fill: BLACK;" text="Congratulations! Your booking has been successfull. You will be redirected to the home page in 5 seconds" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Stalin One" size="14.0" />
+                  <Font name="AR DESTINE" size="20.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0" style="-fx-background-color: rgb(179,252,252);">
+            <HBox alignment="CENTER" layoutY="388.0" prefHeight="80.0" prefWidth="320.0" spacing="100.0">
                <children>
                   <Button fx:id="btnHome1" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="51.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="48.0">
                            <image>
-                              <Image url="@images/homeImage.png" />
+                              <Image url="@images/home_24.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -46,7 +50,7 @@
                   <Font name="Sarpanch" size="13.0" />
                </font>
             </Label>
-            <ImageView fx:id="imageResponse" fitHeight="289.0" fitWidth="320.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageResponse" fitHeight="268.0" fitWidth="320.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>

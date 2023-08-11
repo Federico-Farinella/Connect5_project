@@ -1,6 +1,7 @@
 package com.example.connect5_project.gui_cntrollers;
 
 import com.example.connect5_project.history.Navigate;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class BookingResponseGUI {
     @FXML
@@ -42,9 +45,29 @@ public class BookingResponseGUI {
 
     public void setLabResponse(boolean isConfirmed) {
         if (isConfirmed)
-            labResponse.setText("Congratulations! Your booking has been successful");
+            labResponse.setText("Congratulations! Your booking has been successfull. You will be redirected to the home page in 5 seconds");
         else
-            labResponse.setText("We apologize for the inconvenience. We are working to resolve the issue. Try later");
+            labResponse.setText("We apologize for the inconvenience. We are working to resolve the issue. Try later. You will be redirected to the home page in 5 seconds");
+
+        Timer timer = new Timer();
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    int currentPagesAfterLogin = navigate.getCountPagesAfterLogin();
+                    for (int i = 0; i < currentPagesAfterLogin-1 ; i++) {
+                        navigate.getPages().pop();
+                    }
+                    navigate.setCountPagesAfterLogin(0);
+                    Stage window = (Stage) labResponse.getScene().getWindow();
+                    window.setScene(navigate.getPages().lastElement());
+                    navigate.getPages().pop();
+                });
+            }
+        };
+
+        timer.schedule(task, 5000);
     }
 
     public void setNavigate(Navigate navigate) {

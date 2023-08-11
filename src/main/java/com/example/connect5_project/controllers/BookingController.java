@@ -13,8 +13,6 @@ import com.example.connect5_project.models.Booking;
 import com.example.connect5_project.models.CentroSportivo;
 import com.example.connect5_project.models.FieldDailyAvailability;
 import com.example.connect5_project.models.User;
-import com.example.connect5_project.models.bookings_decorator.ConcreteBasic;
-import com.example.connect5_project.models.bookings_decorator.Optional;
 import com.example.connect5_project.utility.CurrentUser;
 
 import java.time.LocalDate;
@@ -97,8 +95,9 @@ public class BookingController {
         Booking booking = new Booking(choosenCenter, user, choosenDate, choosenHour);
         if (withReferee)
             booking.setWithReferee();
+
         if (withTunics)
-            booking.setWithReferee();
+            booking.setWithTunics();
 
         BookingDao dao = new BookingDao();
         /*String ret = dao.saveBooking(booking);

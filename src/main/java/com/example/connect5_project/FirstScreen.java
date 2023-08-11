@@ -7,9 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,6 +21,9 @@ public class FirstScreen extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
         Parent root = loader.load();
         stage.setTitle("Connect 5");
+        URL iconPath = getClass().getResource("/images/pallaMuro.jpg");
+        if (iconPath != null)
+            stage.getIcons().add(new Image(iconPath.toString()));
         stage.setScene(new Scene(root));
         stage.show();
         stage.setResizable(false);

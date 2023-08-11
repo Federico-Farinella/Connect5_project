@@ -1,9 +1,9 @@
 package com.example.connect5_project.models.bookings_decorator;
 
-public abstract class AbstractDecorator implements Optional {
-    private final Optional booking;
+public abstract class AbstractDecorator implements Type {
+    private final Type booking;
 
-    public AbstractDecorator(Optional booking) {
+    public AbstractDecorator(Type booking) {
         this.booking = booking;
     }
 

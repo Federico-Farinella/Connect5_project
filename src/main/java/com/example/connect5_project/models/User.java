@@ -7,41 +7,41 @@ import javafx.beans.property.StringProperty;
 import java.util.List;
 
 public class User {
-    private StringProperty firstName; // final ??
-    private StringProperty lastName;  //
-    private final String email;
-    private final String password;
+    private String firstName;
+    private String lastName;
+    private String email;
     private String nickName;
 
     private List<BasicBooking> bookings;
 
-    public User(String email, String password) {
+    public User(String email) {
         this.email = email;
-        this.password = password;
     }
+    // devo togliere password da qui e mantenere solo info del tipo email e nickname nella sessione utente (CurrentUser)
 
-    public User(String firstName, String lastName, String email, String password, String nickName) {
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
+    public User(String firstName, String lastName, String email, String nickName) {
+        //this.firstName = new SimpleStringProperty(firstName);
+        //this.lastName = new SimpleStringProperty(lastName);
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.password = password;
         this.nickName = nickName;
     }
 
     public String getFirstName() {
-        return firstName.get();
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName.set(firstName);
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return lastName.get();
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName.set(lastName);
+        this.lastName = lastName;
     }
 
     public String getNickName() {
@@ -54,5 +54,9 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

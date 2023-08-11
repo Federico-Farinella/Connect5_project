@@ -2,7 +2,7 @@ package com.example.connect5_project.models.bookings_decorator;
 
 public class ConcreteWithReferee extends AbstractDecorator {
 
-    public ConcreteWithReferee(Optional booking) {
+    public ConcreteWithReferee(Type booking) {
         super(booking);
     }
 
