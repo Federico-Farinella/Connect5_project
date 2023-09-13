@@ -68,22 +68,20 @@ public class BookingController {
 
 
         System.out.println("Booking Controller analyze beanWeatherIn returned: " + beanWeatherIn.getWeatherByHour());
-        DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut();
-        bean_out.setWeatherByHour(beanWeatherIn.getWeatherByHour());
+        DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut(beanWeatherIn);
+        /*DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut();
+        bean_out.setWeatherByHour(beanWeatherIn);*/
         System.out.println("BookingController: " + bean_out.getWeatherByHour().get(Integer.toString(15)));
         return bean_out;
     }
 
     public FieldDailyAvailability getDailyAvailability(DailyAvailabilityBeanIn beanIn) throws MyException {
-        //System.out.println("getAvailability 0");
         DailiAvailabilityDao dao = new DailiAvailabilityDao();
         this.choosenDate = beanIn.getDateToSearch();
         FieldDailyAvailability dailyAvailability;
         try {
-            //System.out.println("getAvailability 1: try block");
             dailyAvailability = dao.dbSearchAvailability(choosenCenter, choosenDate);
         } catch (DbConnectException e) {
-            //System.out.println("getAvailability 1: catch block");
             String messageToGuiController = "Error with accessing data. Please try later";
             throw new DbConnectException(messageToGuiController);
         }

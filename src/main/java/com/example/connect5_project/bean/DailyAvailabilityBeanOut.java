@@ -12,12 +12,20 @@ public class DailyAvailabilityBeanOut {
     Map<String, ArrayList<String>> weatherByHour;
     FieldDailyAvailability dailyAvailability;
 
+    public DailyAvailabilityBeanOut(WeatherApiBeanIn weatherResponse) {
+        this.weatherByHour = weatherResponse.getWeatherByHour();
+    }
+
     public Map<String, ArrayList<String>> getWeatherByHour() {
         return weatherByHour;
     }
 
-    public void setWeatherByHour(Map<String, ArrayList<String>> weatherByHour) {  // Vediamo se qui HashMap va bene a Sonar
+    /*public void setWeatherByHour(Map<String, ArrayList<String>> weatherByHour) {  // Vediamo se qui HashMap va bene a Sonar
         this.weatherByHour = weatherByHour;
+    }*/
+
+    public void setWeatherByHour(WeatherApiBeanIn weatherResponseBean) {  // Vediamo se qui HashMap va bene a Sonar
+        this.weatherByHour = weatherResponseBean.getWeatherByHour();
     }
 
     public FieldDailyAvailability getDailyAvailability() {

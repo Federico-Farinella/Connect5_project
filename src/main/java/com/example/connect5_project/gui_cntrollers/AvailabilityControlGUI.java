@@ -232,26 +232,6 @@ public class AvailabilityControlGUI {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
 
-
-        /*switch (typedButton.getId()) {
-            case ("btnReserve15") ->
-                    booking_controller.takeBooking("15");
-            case ("btnReserve16") ->
-                    booking_controller.takeBooking("16");
-            case ("btnReserve17") ->
-                    booking_controller.takeBooking("17");
-            case ("btnReserve18") ->
-                    booking_controller.takeBooking("18");
-            case ("btnReserve19") ->
-                    booking_controller.takeBooking("19");
-            case ("btnReserve20") ->
-                    booking_controller.takeBooking("20");
-            case ("btnReserve21") ->
-                    booking_controller.takeBooking("21");
-            case ("btnReserve22") ->
-                    booking_controller.takeBooking("22");
-        }*/
-
     }
 
 

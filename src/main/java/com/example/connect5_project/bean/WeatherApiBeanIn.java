@@ -33,7 +33,7 @@ public class WeatherApiBeanIn {
         return weatherByHour;
     }
 
-    public void setWeatherByHour(HashMap<String, ArrayList<String>> weatherByHour) {
+    public void setWeatherByHour(Map<String, ArrayList<String>> weatherByHour) {
         this.weatherByHour = weatherByHour;
     }
 
