@@ -178,6 +178,8 @@ public class AvailabilityControlGUI {
     }
 
     public void setAvailability(DailyAvailabilityBeanOut beanOut) {
+        //Questo metodo controlla ora per ora se il campo è disponibile. Se non lo è ("1"), non verrà abilitata la possibilità
+        // di prenotare il campo in quell'ora
         Map<String, String> dailyAvailability = beanOut.getDailyAvailability().getDailyAvailability();
         int i = 15;
         int j = 0;
@@ -194,7 +196,7 @@ public class AvailabilityControlGUI {
         }
     }
 
-    public synchronized void choosenBookingHour(ActionEvent event) throws IOException {
+    public void choosenBookingHour(ActionEvent event) throws IOException {
         Button typedButton = (Button) event.getSource();
         //Devo sistemare da qui!!!!!!!!!!!!!!!!!!!!!!!
         switch (typedButton.getId()) {
