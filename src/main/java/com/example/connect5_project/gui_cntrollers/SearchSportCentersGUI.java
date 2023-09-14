@@ -78,16 +78,16 @@ public class SearchSportCentersGUI {
         SearchSportCenters ctrl = new SearchSportCenters();
         System.out.println("SearchSportCentersGui qui sono:-1");
         SportCenterDAO cDao = new SportCenterDAO();
-        SearchResultBeanOut list;
+        SearchResultBeanOut searchResultsBeanOut;
         booking_controller = new BookingController();
         SearchResultsBeanIn bean_in = new SearchResultsBeanIn();
         if (name.equals("") && city.equals("")) {
             errorLab.setText("All fields empty");
             errorLab.setVisible(true);
-            //list = new SearchResultBeanOut();
-            //list.setDaoResponse("Both fields empty");
+            //searchResultsBeanOut = new SearchResultBeanOut();
+            //searchResultsBeanOut.setDaoResponse("Both fields empty");
             return;
-            //return list;
+            //return searchResultsBeanOut;
         } else if (!name.equals("") && city.equals("")) {
             bean_in.setSearchMode("Name");
             bean_in.setName(name);
@@ -96,7 +96,7 @@ public class SearchSportCentersGUI {
             bean_in.setSearchMode("City");
             bean_in.setCity(city);
             cittaCentroS.setText("");
-            //list = cDao.dbSearchCentersByCity(city);
+            //searchResultsBeanOut = cDao.dbSearchCentersByCity(city);
         } else {
             bean_in.setSearchMode("Name and city");
             bean_in.setName(name);
@@ -104,12 +104,12 @@ public class SearchSportCentersGUI {
             nomeCentroS.setText("");
             cittaCentroS.setText("");
         }
-        //list = booking_controller.
-        //list = cDao.dbSearchCentersByCity(city);
-        //SearchResultBean list = ctrl.findByCity(city);
-        //System.out.println(list.getListOfCenters().get(0).getName());
+        //searchResultsBeanOut = booking_controller.
+        //searchResultsBeanOut = cDao.dbSearchCentersByCity(city);
+        //SearchResultBean searchResultsBeanOut = ctrl.findByCity(city);
+        //System.out.println(searchResultsBeanOut.getListOfCenters().get(0).getName());
         //System.out.println("SearchSportCentersGui qui sono:0");
-        //SportCenterListElements.setList(list.getListOfCenters());
+        //SportCenterListElements.setList(searchResultsBeanOut.getListOfCenters());
 
         //History.pagine.add(((Node) e.getSource()).getScene());
         errorLab.setVisible(false);
@@ -124,10 +124,13 @@ public class SearchSportCentersGUI {
         controlGui.setNavigate(navigate);
 
         try {
-            list = booking_controller.searchCenters(bean_in);
-            controlGui.setList(list.getListOfCenters());
-            SportCenterElements centerElement = new SportCenterElements(list.getListOfCenters(), controlGui);
+            searchResultsBeanOut = booking_controller.searchCenters(bean_in);
+            controlGui.setList(searchResultsBeanOut.getListOfCenters().getSportCentersSearchResults());
+            SportCenterElements centerElement = new SportCenterElements(searchResultsBeanOut.getListOfCenters().getSportCentersSearchResults(), controlGui);
             ArrayList<GridPane> array = centerElement.getPanels();
+
+            // Qui aggiungo uno per uno allo ScrollPane gli elementi trovati messi nella searchResultsBeanOut.
+            // Voglio vedere se riesco ad indicizzare la lista per permettere click utente su un elemento e ottenerlo direttamente
             for (GridPane item : array) {
                 controlGui.getBox().getChildren().add(item);
             }
@@ -149,7 +152,7 @@ public class SearchSportCentersGUI {
 
         }
 
-        //booking_controller.setCentersResultsList(list.getListOfCenters());
+        //booking_controller.setCentersResultsList(searchResultsBeanOut.getListOfCenters());
         System.out.println("Booking_controller: " + booking_controller);
         //controlGui.setBooking_controller(booking_controller);
         //Parent root = FXMLLoader.load(getClass().getResource("/SportCentersResults.fxml"));
@@ -159,8 +162,8 @@ public class SearchSportCentersGUI {
         System.out.println("SearchSportCentersGui qui sono:4");
         //History.pagine.add(((Node) e.getSource()).getScene());
         //Parent root = FXMLLoader.load(getClass().getResource("/"));
-        // Prove: nomeCentroS.setText(list.get(0).getName());
-        //viaCentroS.setText(list.get(1).getName());
+        // Prove: nomeCentroS.setText(searchResultsBeanOut.get(0).getName());
+        //viaCentroS.setText(searchResultsBeanOut.get(1).getName());
 
     }
 

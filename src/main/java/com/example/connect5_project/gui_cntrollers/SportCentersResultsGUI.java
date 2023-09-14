@@ -4,6 +4,7 @@ package com.example.connect5_project.gui_cntrollers;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.history.Navigate;
 import com.example.connect5_project.models.CentroSportivo;
+import com.example.connect5_project.utility.BusinessConstants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +20,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Properties;
 
 public class SportCentersResultsGUI {
     private Navigate navigate;
@@ -116,7 +120,7 @@ public class SportCentersResultsGUI {
         choose_data_controller.setBookingController(bookingController);
         DatePicker datePicker = choose_data_controller.getDatePicker();
         LocalDate min_date = LocalDate.now();
-        LocalDate max_date = LocalDate.now().plusDays(2);
+        LocalDate max_date = LocalDate.now().plusDays(BusinessConstants.DAY_TO_CHOOSE);
         datePicker.setDayCellFactory(d ->
                 new DateCell() {
                     @Override public void updateItem(LocalDate item, boolean empty) {
@@ -131,6 +135,7 @@ public class SportCentersResultsGUI {
 
         //String name = node.getParent().
     }
+
 
     /*public void add(){
         SportCenterElement el = new SportCenterElement();

@@ -1,6 +1,7 @@
 package com.example.connect5_project.bean;
 
 import com.example.connect5_project.models.CentroSportivo;
+import com.example.connect5_project.models.SportCentersSearchResults;
 import com.example.connect5_project.utility.SportCenterElements;
 
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ import java.util.List;
 public class SearchResultBeanOut {
     private Float fieldPrice;
     private List<CentroSportivo> listOfCenters;
+    private SportCentersSearchResults searchResults;
     private String daoResponse;
 
     public String getDaoResponse() {
@@ -26,11 +28,15 @@ public class SearchResultBeanOut {
             this.daoResponse = daoResponse;
     }
 
-    public List<CentroSportivo> getListOfCenters() {
+    /*public List<CentroSportivo> getListOfCenters() {
         return listOfCenters;
+    }*/
+
+    public SportCentersSearchResults getListOfCenters() {
+        return searchResults;
     }
 
-    public void setListOfCenters(ResultSet rs) throws SQLException {
+    /*public void setListOfCenters(ResultSet rs) throws SQLException {
         //posso mettere un boolean di ritorno cosi gestisco l eccezione sql qui dentro e torno false in caso
         ArrayList<CentroSportivo> centers = new ArrayList<>();
         CentroSportivo cent;
@@ -52,6 +58,10 @@ public class SearchResultBeanOut {
             } while (rs.next());
         }
         listOfCenters = centers;
+    }*/
+
+    public void setListOfCenters(SportCentersSearchResults searchResultsCenters) throws SQLException {
+        this.searchResults = searchResultsCenters;
     }
 
     public List<CentroSportivo> modelling(ResultSet rs) throws SQLException {

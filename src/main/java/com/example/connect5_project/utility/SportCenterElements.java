@@ -50,15 +50,11 @@ public class SportCenterElements {
             lab.setFont(Font.font("Stalin One", 10));
             lab.setId("Name");
             lab.setWrapText(true);
-            //lab.setStyle("-fx-background-color: white");
-            //pane.setGridLinesVisible(true);
             pane.add(lab, 1, 0);
             ImageView im = new ImageView();
             im.setFitHeight(54);
             im.setFitWidth(78);
-            //im.setImage(new Image(String.valueOf(getClass().getResource("/images/" + "sfondo.jpg"))));
             im.setImage(new Image(String.valueOf(getClass().getResource("/images/" + item.getImage()))));
-            //im.setStyle("-fx-border-color: white");
             pane.add(im, 0, 0, 1, 2);
             HBox box = new HBox();
             box.setPrefSize(180, 100);

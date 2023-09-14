@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class DailyAvailabilityBeanOut {
     // Potrei aggiungere un response con gestione del risultato nella GUI
-    Map<String, ArrayList<String>> weatherByHour;
-    FieldDailyAvailability dailyAvailability;
+    private Map<String, ArrayList<String>> weatherByHour;
+    private FieldDailyAvailability dailyAvailability;
 
     public DailyAvailabilityBeanOut(WeatherApiBeanIn weatherResponse) {
         this.weatherByHour = weatherResponse.getWeatherByHour();

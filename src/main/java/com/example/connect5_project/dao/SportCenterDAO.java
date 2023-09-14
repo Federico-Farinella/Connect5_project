@@ -3,6 +3,7 @@ package com.example.connect5_project.dao;
 import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.exceptions.SportCenterException;
 import com.example.connect5_project.models.CentroSportivo;
+import com.example.connect5_project.models.SportCentersSearchResults;
 import com.example.connect5_project.utility.JdbcConnect;
 
 import java.io.FileInputStream;
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class SportCenterDAO {
@@ -53,8 +55,28 @@ public class SportCenterDAO {
                 throw exception;
                 //resultBean.setDaoResponse("Not match");
             } else {
+                List<CentroSportivo> searchResults = new ArrayList<>();
+                CentroSportivo center;
+                String centerName;
+                String centerCity;
+                String address;
+                String owner;
+                String image;
+                float fieldPrice;
+                do {
+                    centerName = rs.getString("Name");
+                    centerCity = rs.getString("City");
+                    address = rs.getString("Address");
+                    owner = rs.getString("OwnerEmail");
+                    image = rs.getString("Image");
+                    fieldPrice = rs.getFloat("BasePrice");
+                    center = new CentroSportivo(centerName, centerCity, address, owner, image, fieldPrice);
+                    searchResults.add(center);
+                } while(rs.next());
+                SportCentersSearchResults centersResults = new SportCentersSearchResults(searchResults);
+
+                resultBean.setListOfCenters(centersResults);
                 //resultBean.setDaoResponse("Match");
-                resultBean.setListOfCenters(rs); // Questo dovrei farlo qui nel Dao e impostare questa lista nel bean con un semplice setter
             }
         } catch (SQLException e) {
             SportCenterException exception = new SportCenterException("Error creating statement");
@@ -105,7 +127,27 @@ public class SportCenterDAO {
                 throw exception;
                 //resultBean.setDaoResponse("Not match");
             } else {
-                resultBean.setListOfCenters(rs);
+                List<CentroSportivo> searchResults = new ArrayList<>();
+                CentroSportivo center;
+                String centerName;
+                String centerCity;
+                String address;
+                String owner;
+                String image;
+                float fieldPrice;
+                do {
+                    centerName = rs.getString("Name");
+                    centerCity = rs.getString("City");
+                    address = rs.getString("Address");
+                    owner = rs.getString("OwnerEmail");
+                    image = rs.getString("Image");
+                    fieldPrice = rs.getFloat("BasePrice");
+                    center = new CentroSportivo(centerName, centerCity, address, owner, image, fieldPrice);
+                    searchResults.add(center);
+                } while(rs.next());
+                SportCentersSearchResults centersResults = new SportCentersSearchResults(searchResults);
+
+                resultBean.setListOfCenters(centersResults);
                 //resultBean.setDaoResponse("Match");
             }
         } catch (SQLException e) {
@@ -152,12 +194,34 @@ public class SportCenterDAO {
             String sql = "SELECT * FROM sport_center WHERE City = '" + city + "';";
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.first()) {
+                resultBean.setDaoResponse("Not Match");
                 // Qui posso togliere questa eccezione e impostare direttamente come vuoto il resultBean.list_of_centers
                 SportCenterException exception = new SportCenterException("Not match");
                 throw exception;
                 //resultBean.setDaoResponse("Not match");
             } else {
-                resultBean.setListOfCenters(rs);
+                resultBean.setDaoResponse("Match");
+                List<CentroSportivo> searchResults = new ArrayList<>();
+                CentroSportivo center;
+                String centerName;
+                String centerCity;
+                String address;
+                String owner;
+                String image;
+                float fieldPrice;
+                do {
+                    centerName = rs.getString("Name");
+                    centerCity = rs.getString("City");
+                    address = rs.getString("Address");
+                    owner = rs.getString("OwnerEmail");
+                    image = rs.getString("Image");
+                    fieldPrice = rs.getFloat("BasePrice");
+                    center = new CentroSportivo(centerName, centerCity, address, owner, image, fieldPrice);
+                    searchResults.add(center);
+                } while(rs.next());
+                SportCentersSearchResults centersResults = new SportCentersSearchResults(searchResults);
+
+                resultBean.setListOfCenters(centersResults);
                 //resultBean.setDaoResponse("Match");
             }
         } catch (SQLException e) {

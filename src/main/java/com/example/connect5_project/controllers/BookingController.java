@@ -9,17 +9,15 @@ import com.example.connect5_project.exceptions.DbConnectException;
 import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.exceptions.SportCenterException;
 import com.example.connect5_project.exceptions.TakeBookingException;
-import com.example.connect5_project.models.Booking;
-import com.example.connect5_project.models.CentroSportivo;
-import com.example.connect5_project.models.FieldDailyAvailability;
-import com.example.connect5_project.models.User;
+import com.example.connect5_project.models.*;
 import com.example.connect5_project.utility.CurrentUser;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class BookingController {
-    private List<CentroSportivo> centersResultsList;
+    SportCentersSearchResults centersResultsList;
+    //private List<CentroSportivo> centersResultsList;
     private CentroSportivo choosenCenter;
     private LocalDate choosenDate;
     private String choosenHour;
@@ -38,6 +36,7 @@ public class BookingController {
                     bean_to = cDao.dbSearchCentersByName(bean_in.getName());
                 }
                 case ("City") -> {
+
                     bean_to = cDao.dbSearchCentersByCity(bean_in.getCity());
                 }
                 case ("Name and city") -> {
@@ -55,22 +54,23 @@ public class BookingController {
     }
 
     public DailyAvailabilityBeanOut getDailyWeather(DailyAvailabilityBeanIn beanIn) {
-        choosenDate = beanIn.getDateToSearch();
-        WeatherApiBeanOut beanWeatherOut = new WeatherApiBeanOut();
-        beanWeatherOut.setGapDay(beanIn.getDateToSearch());
-        beanWeatherOut.setCity(choosenCenter.getCity());
+        this.setChoosenDate(beanIn.getDateToSearch());
+        //choosenDate = beanIn.getDateToSearch();
+        WeatherApiBeanOut weatherRequestBean = new WeatherApiBeanOut();
+        weatherRequestBean.setGapDay(beanIn.getDateToSearch());
+        weatherRequestBean.setCity(getChoosenCenter().getCity());
         WeatherBoundary weatherBoundary = new WeatherBoundary();
-        WeatherApiBeanIn beanWeatherIn; //  = new WeatherApiBeanIn();
-        beanWeatherIn = weatherBoundary.weitherCity(beanWeatherOut);
+        WeatherApiBeanIn weatherResponseBean; //  = new WeatherApiBeanIn();
+        weatherResponseBean = weatherBoundary.weitherCity(weatherRequestBean);
 
         //DailiAvailabilityDao dao = new DailiAvailabilityDao();
         //FieldDailyAvailability dailyAvailability = dao.dbSearchAvailability(choosenCenter, beanIn.getDateToSearch());
 
 
-        System.out.println("Booking Controller analyze beanWeatherIn returned: " + beanWeatherIn.getWeatherByHour());
-        DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut(beanWeatherIn);
+        System.out.println("Booking Controller analyze weatherResponseBean returned: " + weatherResponseBean.getWeatherByHour());
+        DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut(weatherResponseBean);
         /*DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut();
-        bean_out.setWeatherByHour(beanWeatherIn);*/
+        bean_out.setWeatherByHour(weatherResponseBean);*/
         System.out.println("BookingController: " + bean_out.getWeatherByHour().get(Integer.toString(15)));
         return bean_out;
     }
@@ -125,8 +125,12 @@ public class BookingController {
 
     }
 
-    public void setCentersResultsList(List<CentroSportivo> centersResultsList) {
+    public void setCentersResultsList(SportCentersSearchResults centersResultsList) {
         this.centersResultsList = centersResultsList;
+    }
+
+    public void setHostingCenter(CentroSportivo sportCenter) {
+        this.choosenCenter = sportCenter;
     }
 
 
@@ -136,9 +140,9 @@ public class BookingController {
 
 
     public void setChoosenCenter(String name) {
-        for (CentroSportivo center : centersResultsList) {
+        for (CentroSportivo center : centersResultsList.getSportCentersSearchResults()) {
             if (center.getName().equals(name)) {
-                choosenCenter = center;
+                this.setHostingCenter(center);
                 System.out.println("Choosen center : " + choosenCenter.getName());
             }
         }
@@ -146,6 +150,10 @@ public class BookingController {
 
     public LocalDate getChoosenDate() {
         return choosenDate;
+    }
+
+    public void setChoosenDate(LocalDate date) {
+        this.choosenDate = date;
     }
 
     public String getChoosenHour() {

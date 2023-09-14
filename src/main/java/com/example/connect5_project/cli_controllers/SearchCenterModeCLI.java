@@ -88,10 +88,7 @@ public class SearchCenterModeCLI {
 
             SportCentersResultsCLI resultsCli = new SportCentersResultsCLI();
             resultsCli.setScanner(console);
-            resultsCli.setCentersResults(bean_out.getListOfCenters());
-            System.out.println("SerchCenterModeCLI: bean_out results:" + bean_out.getListOfCenters().get(0));  //NOSONAR
-            System.out.println("SerchCenterModeCLI: resultCli results:" + resultsCli.getCentersResults().get("1").getName());  //NOSONAR
-            //controller.setCentersResultsList(bean_out.getListOfCenters());
+            resultsCli.setCentersResults(bean_out.getListOfCenters().getSportCentersSearchResults());
             resultsCli.setController(controller);
             resultsCli.main();
         }

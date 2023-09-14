@@ -36,6 +36,17 @@ public class SearchSportCentersCLI {
                     //console.close();
                     //login.main();
                 }
+
+                case ("2") -> {
+                    searchModeCli = new SearchCenterModeCLI();
+                    searchModeCli.setScanner(console);
+                    System.out.println("You have chosen to search by city");  //NOSONAR
+                    searchModeCli.search(choose);
+
+                    //console.close();
+                    //login.main();
+                }
+
                 case ("back") -> {
                     return;
                 }
@@ -45,7 +56,6 @@ public class SearchSportCentersCLI {
                 }
                 default -> {
                     System.out.println("Error reading your input.\n1- Search by center's name\n2- Search by city\n\nOr type back or exit.");
-                    continue;
                 }
 
             }
