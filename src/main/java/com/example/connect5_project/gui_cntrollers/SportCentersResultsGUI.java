@@ -19,12 +19,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Properties;
 
 public class SportCentersResultsGUI {
     private Navigate navigate;
@@ -36,10 +32,8 @@ public class SportCentersResultsGUI {
     @FXML
     GridPane grid;
 
-    //ArrayList<GridPane> list;
 
     private BookingController bookingController;
-    //static int i = 0;
 
 
     public List<CentroSportivo> getList() {
@@ -76,21 +70,12 @@ public class SportCentersResultsGUI {
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
         System.out.println(window);
-        //navigate.pages.pop();
         window.setScene(navigate.getPages().lastElement());
         navigate.pages.pop();
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
-        //History.pagine.pop();
     }
 
     public void home(MouseEvent e) throws Exception {
-        /*Stage window;
-        //History.pagine.clear();
-        navigate.pages.clear();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
-        Parent root = loader.load();
-        window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));*/
         Stage window;
         int currentPagesAfterLogin = navigate.getCountPagesAfterLogin();
         for (int i = 0; i < currentPagesAfterLogin-1 ; i++) {
@@ -133,17 +118,6 @@ public class SportCentersResultsGUI {
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
 
-        //String name = node.getParent().
     }
-
-
-    /*public void add(){
-        SportCenterElement el = new SportCenterElement();
-        list = new ArrayList<GridPane>();
-        list.add(el.returnGridPane());
-        System.out.println(list.get(i));
-        box.getChildren().add(list.get(i));
-
-    }*/
 
 }

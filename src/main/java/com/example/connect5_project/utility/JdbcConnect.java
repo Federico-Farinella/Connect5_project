@@ -44,13 +44,6 @@ public class JdbcConnect {
         this.connection = DriverManager.getConnection(dbUrl, dbUser, password);
     }
 
-    /*public static JdbcConnect getUserConnection() throws ClassNotFoundException, SQLException { //Aggiunto per perfezionare pattern Singleton, andrebbe cancellato del codice ripetuto piu giu
-        if (jdbcConn == null) {
-            jdbcConn = new JdbcConnect();
-        }
-        return jdbcConn;
-    }*/
-
     public static JdbcConnect getUserConnection(String dbUser, String password) throws ClassNotFoundException, SQLException { //Aggiunto per perfezionare pattern Singleton, andrebbe cancellato del codice ripetuto piu giu
         if (jdbcConn == null || jdbcConn.getConnection().isClosed()) {
             jdbcConn = new JdbcConnect(dbUser, password);
@@ -60,16 +53,6 @@ public class JdbcConnect {
 
     public static JdbcConnect getInstance() throws ConnectionDBException {// Devo usare questa
         System.out.println("Sono nel Jdbc.getInstance()");
-        /*try {
-            //boolean isClosed = jdbcConn.getConnection().isClosed();
-            if (jdbcConn == null) {
-                jdbcConn = new JdbcConnect();
-            } else if (jdbcConn.getConnection().isClosed())
-                jdbcConn = new JdbcConnect();
-            return jdbcConn;
-        } catch (SQLException e) {
-            throw new ConnectionDBException("DB Connection Error");
-        }*/
         if (jdbcConn == null) {
             jdbcConn = new JdbcConnect();
         }

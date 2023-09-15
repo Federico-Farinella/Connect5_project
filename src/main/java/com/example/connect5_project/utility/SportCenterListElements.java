@@ -8,9 +8,6 @@ import java.util.ArrayList;
 public class SportCenterListElements {
     private static ArrayList<CentroSportivo> results;
 
-    //public SportCenterListElements(ArrayList<CentroSportivo> list) {
-    //    this.risultati = list;
-    //}
     public static boolean setList(ArrayList<CentroSportivo> list) {
         boolean done = false;
         if (!list.isEmpty()) {

@@ -23,8 +23,6 @@ public class DbConfigurationManager {
                 throw new DbConnectException("Config file not found");
             } catch (IOException e) {
                 throw new DbConnectException("Error reading from config file");
-                //dailyAvailability.setResponse("Config file not found");
-                //return dailyAvailability;
             }
         }
     }

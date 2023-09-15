@@ -73,9 +73,6 @@ public class AvailabilityControlCLI {
                     choosenHour = list.get(chooseToInt - 1).substring(3, 5);
                     System.out.println("Choosen our: " + choosenHour);
                     this.getBookingController().setChoosenHour(choosenHour);
-                /*BookingResponseCLI bookingResponseControlCLI = new BookingResponseCLI();
-                bookingResponseControlCLI.setBookingController(this.getBookingController());
-                bookingResponseControlCLI.main();*/
                     SetBookingOptionalCLI setBookingOptionaControllerCLI = new SetBookingOptionalCLI();
                     setBookingOptionaControllerCLI.setBookingController(this.getBookingController());
                     setBookingOptionaControllerCLI.setConsole(this.getConsole());
@@ -86,15 +83,6 @@ public class AvailabilityControlCLI {
                     System.out.println("Choose one of the options shown.\n\n");
                 }
         }
-    }
-
-    public void setAvailabilityAndWeather(DailyAvailabilityBeanOut beanOut) {
-        //Questo metodo controlla ora per ora se il campo è disponibile. Se non lo è ("1"), non verrà abilitata la possibilità
-        // di prenotare il campo in quell'ora
-        //Map<String, String> dailyAvailability = beanOut.getDailyAvailability().getDailyAvailability();
-        Map<String, String> dailyAvailability = beanOut.getDayAvailability();
-        Map<String, ArrayList<String>> weatherResponse = beanOut.getWeatherByHour();
-
     }
 
     public Scanner getConsole() {

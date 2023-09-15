@@ -87,12 +87,6 @@ public class SetBookingOptionalGUI {
     }
 
     public void back(ActionEvent e) throws Exception {
-        /*Stage window;
-        window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-
-        System.out.println(window);
-        window.setScene(navigate.getPages().lastElement());
-        navigate.pages.pop();*/
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         System.out.println(window);
@@ -102,11 +96,6 @@ public class SetBookingOptionalGUI {
     }
 
     public void home(ActionEvent e) throws Exception {
-        /*navigate.pages.clear();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
-        Parent root = loader.load();
-        Stage window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));*/
         Stage window;
         int currentPagesAfterLogin = navigate.getCountPagesAfterLogin();
         for (int i = 0; i < currentPagesAfterLogin-1 ; i++) {
@@ -118,5 +107,4 @@ public class SetBookingOptionalGUI {
         navigate.getPages().pop();
     }
 
-    //public
 }

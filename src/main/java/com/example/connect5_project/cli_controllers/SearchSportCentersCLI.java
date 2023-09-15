@@ -10,9 +10,7 @@ import java.util.Scanner;
 public class SearchSportCentersCLI {
     private Scanner console;
 
-    public void main() throws Exception { // Anche qui devo gestire la cosa delle eccezioni da sportcenterdao (riga 34)
-        //Continua da qui
-        SearchResultsBeanIn beanIn;
+    public void main() throws Exception {
         while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             System.out.println("1- Search by center's name\n2- Search by city\n\n\tOr type back or exit.");  //NOSONAR
             String choose = "";
@@ -33,9 +31,6 @@ public class SearchSportCentersCLI {
                     searchModeCli.setScanner(console);
                     System.out.println("You have chosen to search by name");  //NOSONAR
                     searchModeCli.search(choose);
-
-                    //console.close();
-                    //login.main();
                 }
 
                 case ("2") -> {
@@ -43,9 +38,6 @@ public class SearchSportCentersCLI {
                     searchModeCli.setScanner(console);
                     System.out.println("You have chosen to search by city");  //NOSONAR
                     searchModeCli.search(choose);
-
-                    //console.close();
-                    //login.main();
                 }
 
                 case ("back") -> {

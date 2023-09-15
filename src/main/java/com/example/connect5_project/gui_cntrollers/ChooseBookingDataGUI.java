@@ -3,10 +3,8 @@ package com.example.connect5_project.gui_cntrollers;
 import com.example.connect5_project.bean.DailyAvailabilityBeanIn;
 import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
 import com.example.connect5_project.controllers.BookingController;
-import com.example.connect5_project.exceptions.DbConnectException;
 import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.history.Navigate;
-import com.example.connect5_project.models.FieldDailyAvailability;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,14 +53,10 @@ public class ChooseBookingDataGUI {
             DailyAvailabilityBeanIn beanIn = new DailyAvailabilityBeanIn();
             beanIn.setDateToSearch(datePicker.getValue());
 
-            //DailyAvailabilityBeanOut beanOut = bookingController.getDailyWeather(beanIn);
             DailyAvailabilityBeanOut beanOut;
-            FieldDailyAvailability availability = null;
             try {
-                //availability = bookingController.getDailyAvailability(beanIn);
                 beanOut = bookingController.getDailyAvailability(beanIn);
             } catch (MyException exception) {
-                //availability = null; // messo per prova...
                 labelNoDate.setText(exception.getMessage());
                 labelNoDate.setVisible(true);
                 return;

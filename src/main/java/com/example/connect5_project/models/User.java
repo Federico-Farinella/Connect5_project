@@ -1,9 +1,5 @@
 package com.example.connect5_project.models;
 
-import com.example.connect5_project.models.booking_Decorator.BasicBooking;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import java.util.List;
 
 public class User {
@@ -12,7 +8,7 @@ public class User {
     private String email;
     private String nickName;
 
-    private List<BasicBooking> bookings;
+    private List<Booking> bookings;
 
     public User(String email) {
         this.email = email;
@@ -20,8 +16,6 @@ public class User {
     // devo togliere password da qui e mantenere solo info del tipo email e nickname nella sessione utente (CurrentUser)
 
     public User(String firstName, String lastName, String email, String nickName) {
-        //this.firstName = new SimpleStringProperty(firstName);
-        //this.lastName = new SimpleStringProperty(lastName);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

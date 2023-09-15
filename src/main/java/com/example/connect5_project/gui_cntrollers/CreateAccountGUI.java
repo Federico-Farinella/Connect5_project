@@ -44,7 +44,6 @@ public class CreateAccountGUI {  // Devo sostituire il ritorno di confirmCreate 
     public void home(MouseEvent e) throws Exception {
         Stage window;
         navigate.getPages().clear();
-        History.pagine.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
         Parent root = loader.load();
         window = (Stage)((Node) e.getSource()).getScene().getWindow();

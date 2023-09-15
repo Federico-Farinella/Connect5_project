@@ -1,5 +1,6 @@
 package com.example.connect5_project.utility;
 
+// Singleton per gestire il redirecting alla home page per quanto riguarda la CLI.
 public class SharedStateSingletonCLI {
     private static SharedStateSingletonCLI instance;
     private boolean redirecting;

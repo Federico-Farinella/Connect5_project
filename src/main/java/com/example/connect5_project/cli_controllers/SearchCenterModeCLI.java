@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class SearchCenterModeCLI {
     private Scanner console;
     private BookingController controller;
-    //private String choose;
 
     public void search(String choose) throws Exception {  // devo togliere throws exception e gestirla (riga 77)
         SearchResultsBeanIn beanIn = new SearchResultsBeanIn();
@@ -72,7 +71,6 @@ public class SearchCenterModeCLI {
 
             controller = new BookingController();
             beanIn = new SearchResultsBeanIn();
-            //System.out.println("SearchCenterModeCLI, searchType: " + beanIn.getSearchMode());
             beanIn.setCli(searchType, field);
             System.out.println("2-SearchCenterModeCLI, searchType: " + beanIn.getSearchMode() + " Field: " + field);
             bean_out = controller.searchCenters(beanIn);
@@ -82,10 +80,6 @@ public class SearchCenterModeCLI {
                 continue;
             }
 
-            /*if (bean_out.getDaoResponse().equals("Not match")) {
-                System.out.println("Not found centers with your inputs.");  //NOSONAR
-                continue;
-            }*/
             // Qui sotto sostituire con eccezione!!!!
             else if (bean_out.getDaoResponse().equals("Error data")) {
                 System.out.println("Error connecting data\nWe are working to resolve problem\nTry later.");  //NOSONAR

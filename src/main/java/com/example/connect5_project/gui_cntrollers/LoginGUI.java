@@ -26,8 +26,6 @@ public class LoginGUI {
     Button btnConfirm;
     @FXML
     TextField insertEmailLog;
-    /*@FXML
-    TextField insertPassLog;*/
     @FXML
     PasswordField insertPassLog;
     @FXML
@@ -45,17 +43,12 @@ public class LoginGUI {
     public void back(ActionEvent e) throws Exception {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        //System.out.println(window);
-        //window.setScene(History.pagine.lastElement());
         window.setScene(navigate.getPages().lastElement());
-        //LoginGUI controller = (LoginGUI) ((Node) e.getSource()).getScene().getWindow().getUserData();
         navigate.getPages().pop();
-        //History.pagine.pop();
     }
 
     public void home(ActionEvent e) throws Exception {
         Stage window;
-        //History.pagine.clear();
         navigate.getPages().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
         Parent root = loader.load();
@@ -112,7 +105,6 @@ public class LoginGUI {
             insertEmailLog.setText("");
             insertPassLog.setText("");
             Stage window;
-            //Navigate navigate = new Navigate();
             navigate.pushPage(((Node) e.getSource()).getScene());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Logged.fxml"));
             Parent root = loader.load();

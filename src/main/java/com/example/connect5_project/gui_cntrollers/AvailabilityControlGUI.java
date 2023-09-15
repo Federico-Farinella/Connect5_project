@@ -118,8 +118,6 @@ public class AvailabilityControlGUI {
     }
 
     public void setImages (DailyAvailabilityBeanOut beanOut) {
-        // Sonarcloud mi ha fatto sostituire hashMap con Map
-
         Map<String, ArrayList<String>> weatherResponse = beanOut.getWeatherByHour();
         int i = 15;
         URL resource;
@@ -275,7 +273,6 @@ public class AvailabilityControlGUI {
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
         System.out.println(window);
-        //navigate.pages.pop();
         window.setScene(navigate.getPages().lastElement());
         navigate.pages.pop();
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);

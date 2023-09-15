@@ -21,20 +21,15 @@ import java.util.List;
 public class SportCenterElements {
     //Continuerò da qui dopo aver fatto pratica nel progetto "TabellaRisultati"
     ArrayList<GridPane> panels;
-    //GridPane pane;
 
     public ArrayList<GridPane> getPanels() {
         return panels;
     }
 
     public SportCenterElements(List<CentroSportivo> list, SportCentersResultsGUI contr) {
-        //SportCentersResultsGUI contr = new SportCentersResultsGUI();
         panels = new ArrayList<>();
         GridPane pane;
-        //int i=0;
         for (CentroSportivo item : list) {
-            //panels.add(new GridPane());
-            //pane = panels.get(i);
             pane = new GridPane();
             pane.setAlignment(Pos.CENTER);
             pane.setPrefSize(310, 102);
@@ -78,23 +73,8 @@ public class SportCenterElements {
             });
             box.getChildren().add(go);
 
-        /*Button info = new Button("Info");
-        info.setFont(Font.font("Sarpanch", 13));
-        info.setStyle("-fx-background-color: black");
-        info.setTextFill(Paint.valueOf("white"));*/
-
-        /*Button map = new Button("Map");
-        map.setFont(Font.font("Sarpanch", 13));
-        map.setStyle("-fx-background-color: black");
-        map.setTextFill(Paint.valueOf("white"));
-        box.getChildren().addAll(info, map);*/
-            //box.setStyle("-fx-background-color: white");
-
             pane.add(box, 1, 1);
 
-            //Label lb2 = new Label();
-            //lb2.setText("BellaZi");
-            //pane.add(lb2, 0,1);
             int col = pane.getColumnCount();
             System.out.println(col);
             panels.add(pane);
@@ -116,14 +96,11 @@ public class SportCenterElements {
         lab.setTextFill(Paint.valueOf("black"));
         lab.setFont(Font.font("Stalin One", 10 ));
         lab.setWrapText(true);
-        //lab.setStyle("-fx-background-color: white");
-        //pane.setGridLinesVisible(true);
         pane.add(lab, 1, 0);
         ImageView im = new ImageView();
         im.setFitHeight(54);
         im.setFitWidth(78);
         im.setImage(new Image(String.valueOf(getClass().getResource("/images/"+"sfondo.jpg"))));
-        //im.setStyle("-fx-border-color: white");
         pane.add(im, 0,0,1,2);
         HBox box = new HBox();
         box.setPrefSize(180, 100);
@@ -137,28 +114,9 @@ public class SportCenterElements {
         go.setTextFill(Paint.valueOf("white"));
         box.getChildren().add(go);
 
-        /*Button info = new Button("Info");
-        info.setFont(Font.font("Sarpanch", 13));
-        info.setStyle("-fx-background-color: black");
-        info.setTextFill(Paint.valueOf("white"));*/
-
-        /*Button map = new Button("Map");
-        map.setFont(Font.font("Sarpanch", 13));
-        map.setStyle("-fx-background-color: black");
-        map.setTextFill(Paint.valueOf("white"));
-        box.getChildren().addAll(info, map);*/
-        //box.setStyle("-fx-background-color: white");
-
         pane.add(box,1,1);
 
-        //Label lb2 = new Label();
-        //lb2.setText("BellaZi");
-        //pane.add(lb2, 0,1);
         int col = pane.getColumnCount();
         System.out.println(col);
     }
-
-    /*public GridPane returnGridPane() {
-        return this.pane;
-    }*/
 }
