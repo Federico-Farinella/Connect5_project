@@ -193,15 +193,17 @@ public class SportCenterDAO {
         try (Statement stmt = jdbc.getConnection().createStatement()) {
             String sql = "SELECT * FROM sport_center WHERE City = '" + city + "';";
             ResultSet rs = stmt.executeQuery(sql);
-            if (!rs.first()) {
+            List<CentroSportivo> searchResults = new ArrayList<>();
+            /*if (!rs.first()) {
                 resultBean.setDaoResponse("Not Match");
                 // Qui posso togliere questa eccezione e impostare direttamente come vuoto il resultBean.list_of_centers
                 SportCenterException exception = new SportCenterException("Not match");
                 throw exception;
                 //resultBean.setDaoResponse("Not match");
-            } else {
+            }*/
+            if (rs.first()) {
                 resultBean.setDaoResponse("Match");
-                List<CentroSportivo> searchResults = new ArrayList<>();
+                //List<CentroSportivo> searchResults = new ArrayList<>();
                 CentroSportivo center;
                 String centerName;
                 String centerCity;
@@ -219,11 +221,10 @@ public class SportCenterDAO {
                     center = new CentroSportivo(centerName, centerCity, address, owner, image, fieldPrice);
                     searchResults.add(center);
                 } while(rs.next());
-                SportCentersSearchResults centersResults = new SportCentersSearchResults(searchResults);
-
-                resultBean.setListOfCenters(centersResults);
-                //resultBean.setDaoResponse("Match");
             }
+            SportCentersSearchResults centersResults = new SportCentersSearchResults(searchResults);
+
+            resultBean.setListOfCenters(centersResults);
         } catch (SQLException e) {
             SportCenterException exception = new SportCenterException("Error creating statement");
             throw exception;

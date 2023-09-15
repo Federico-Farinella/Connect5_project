@@ -180,7 +180,7 @@ public class AvailabilityControlGUI {
     public void setAvailability(DailyAvailabilityBeanOut beanOut) {
         //Questo metodo controlla ora per ora se il campo è disponibile. Se non lo è ("1"), non verrà abilitata la possibilità
         // di prenotare il campo in quell'ora
-        Map<String, String> dailyAvailability = beanOut.getDailyAvailability().getDailyAvailability();
+        Map<String, String> dailyAvailability = beanOut.getDayAvailability();
         int i = 15;
         int j = 0;
         for (Label lab : hourAvailability) {
@@ -271,12 +271,6 @@ public class AvailabilityControlGUI {
     }
 
     public void back(ActionEvent e) throws Exception {
-        /*Stage window;
-        window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-
-        System.out.println(window);
-        window.setScene(navigate.getPages().lastElement());
-        navigate.pages.pop();*/
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
@@ -288,11 +282,6 @@ public class AvailabilityControlGUI {
     }
 
     public void home(ActionEvent e) throws Exception {
-        /*navigate.pages.clear();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
-        Parent root = loader.load();
-        Stage window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));*/
         Stage window;
         int currentPagesAfterLogin = navigate.getCountPagesAfterLogin();
         for (int i = 0; i < currentPagesAfterLogin-1 ; i++) {

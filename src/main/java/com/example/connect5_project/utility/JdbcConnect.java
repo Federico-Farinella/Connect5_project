@@ -81,18 +81,17 @@ public class JdbcConnect {
     }
 
     private void getDBCredentials() throws IOException {
-        try{
-            FileInputStream propsInput = new FileInputStream("src/main/resources/config.properties");
+        try (FileInputStream propsInput = new FileInputStream("src/main/resources/config.properties")) {
             Properties prop = new Properties();
             prop.load(propsInput);
-            this.url=prop.getProperty("dbUrl");
+            this.url = prop.getProperty("dbUrl");
             System.out.println(url);
-            this.user=prop.getProperty("dbUser");
+            this.user = prop.getProperty("dbUser");
             System.out.println(user);
-            this.password=prop.getProperty("pass");
+            this.password = prop.getProperty("pass");
             System.out.println(password);
-            propsInput.close();}
-        catch(IOException ex) {
-            throw new IOException();}
+        } catch (IOException ex) {
+            throw new IOException();
+        }
     }
 }

@@ -3,7 +3,6 @@ package com.example.connect5_project.bean;
 import com.example.connect5_project.models.FieldDailyAvailability;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -20,16 +19,17 @@ public class DailyAvailabilityBeanOut {
         return weatherByHour;
     }
 
-    /*public void setWeatherByHour(Map<String, ArrayList<String>> weatherByHour) {  // Vediamo se qui HashMap va bene a Sonar
-        this.weatherByHour = weatherByHour;
-    }*/
 
     public void setWeatherByHour(WeatherApiBeanIn weatherResponseBean) {  // Vediamo se qui HashMap va bene a Sonar
         this.weatherByHour = weatherResponseBean.getWeatherByHour();
     }
 
     public FieldDailyAvailability getDailyAvailability() {
-        return dailyAvailability;
+        return this.dailyAvailability;
+    }
+
+    public Map<String, String> getDayAvailability() {
+        return this.dailyAvailability.getDailyAvailability();
     }
 
     public void setDailyAvailability(FieldDailyAvailability dailyAvailability) {

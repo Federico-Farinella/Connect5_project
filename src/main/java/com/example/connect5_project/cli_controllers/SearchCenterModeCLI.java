@@ -75,10 +75,17 @@ public class SearchCenterModeCLI {
             beanIn.setCli(searchType, field);
             System.out.println("2-SearchCenterModeCLI, searchType: " + beanIn.getSearchMode() + " Field: " + field);
             bean_out = controller.searchCenters(beanIn);
-            if (bean_out.getDaoResponse().equals("Not match")) {
+
+            if (bean_out.getListOfCenters().getSportCentersSearchResults().isEmpty()) {
                 System.out.println("Not found centers with your inputs.");  //NOSONAR
                 continue;
             }
+
+            /*if (bean_out.getDaoResponse().equals("Not match")) {
+                System.out.println("Not found centers with your inputs.");  //NOSONAR
+                continue;
+            }*/
+            // Qui sotto sostituire con eccezione!!!!
             else if (bean_out.getDaoResponse().equals("Error data")) {
                 System.out.println("Error connecting data\nWe are working to resolve problem\nTry later.");  //NOSONAR
                 continue;

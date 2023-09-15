@@ -43,8 +43,10 @@ public class BookingController {
                     bean_to = cDao.dbSearchCenters(bean_in.getName(), bean_in.getCity());
                 }
             }
-            centersResultsList = bean_to.getListOfCenters();
+            this.setCentersResultsList(bean_to.getListOfCenters());
+
             return bean_to;
+
         } catch (SportCenterException e) {
             if (e.getMessage().equals("Not match"))
                 throw e;

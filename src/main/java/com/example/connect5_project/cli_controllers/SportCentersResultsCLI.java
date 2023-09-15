@@ -23,21 +23,47 @@ public class SportCentersResultsCLI {
             int size = centersResults.size();
 
             System.out.println("Search results:\n");
+            if(size == 0) {
+                System.out.println("Results not found for ypur search.");
+            }
+
             for (i = 1; i < size + 1; i++) {
                 str = Integer.toString(i);
                 System.out.println(str + "- Name: " + centersResults.get(str).getName() + ".\n   City: " + centersResults.get(str).getCity());
 
             }
-            choose = console.nextLine();
-            i = Integer.parseInt(choose) - 1;
-            if (i > size - 1) {
+            System.out.println("\nOr type back or exit.");
+            choose = this.getConsole().nextLine();
+            switch (choose) {
+                case "back"-> {
+                    return;
+                }
+                case "exit"-> {
+                    System.exit(0);
+                }
+            }
+
+            int selectedNumber;
+            // parseInt potrebbe sollevare eccezione...
+            try {
+                selectedNumber = Integer.parseInt(choose) - 1;
+            } catch (NumberFormatException e) {
+                System.out.println("Insert a valid numeric data.\n\n");
+                continue;
+            }
+            if (selectedNumber > size - 1) {
                 System.out.println("Error: enter one of the numbers listed above\n");
                 continue;
         }
 
-            CentroSportivo choosenCenter = centersResults.get(choose);
-            controller.setChoosenCenter(choosenCenter.getName());
-            System.out.println("Center choosen: " + controller.getChoosenCenter().getName());  //NOSONAR
+            CentroSportivo choosenCenter = this.getCentersResults().get(choose);
+            this.getController().setChoosenCenter(choosenCenter.getName());
+            ChooseBookingDataCLI controlCli = new ChooseBookingDataCLI();
+            controlCli.setScanner(console);
+            controlCli.setController(controller);
+            controlCli.main();
+
+            //System.out.println("Center choosen: " + controller.getChoosenCenter().getName());  //NOSONAR
 
 
 
@@ -46,8 +72,17 @@ public class SportCentersResultsCLI {
         }
     }
 
+
+    public Scanner getConsole() {
+        return this.console;
+    }
+
     public void setScanner(Scanner scanner) {
         this.console = scanner;
+    }
+
+    public BookingController getController() {
+        return this.controller;
     }
 
     public void setController(BookingController controller) {
