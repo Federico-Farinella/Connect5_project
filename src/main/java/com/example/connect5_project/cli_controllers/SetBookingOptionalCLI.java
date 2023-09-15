@@ -84,9 +84,6 @@ public class SetBookingOptionalCLI {
             try {
                 bookingController.confirmBooking(withReferee, withTunics);
                 isConfirmed = true;
-                bookingResponseControlCLI.setResponse(isConfirmed);
-                bookingResponseControlCLI.main();
-
             } catch (TakeBookingException e) {
                 isConfirmed = false;
             }

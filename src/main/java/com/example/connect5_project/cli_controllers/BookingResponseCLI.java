@@ -13,7 +13,7 @@ public class BookingResponseCLI {
     private BookingController bookingController;
 
     public void main() {
-        while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
+        //while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             if (this.isResponse()) {
                 System.out.println("Congratulations! Your booking has been successfull. You will be redirected to the home page in 5 seconds.\n");
             } else {
@@ -21,10 +21,11 @@ public class BookingResponseCLI {
             }
 
             try {
-                Thread.sleep(5000);
                 SharedStateSingletonCLI.getInstance().setRedirecting(true);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
-                return;
+                Thread.currentThread().interrupt();
+                //return;
             }
 
             //SharedStateSingletonCLI.getInstance().setRedirecting(true);
@@ -36,11 +37,10 @@ public class BookingResponseCLI {
                         SharedStateSingletonCLI.getInstance().setRedirecting(true);
                     });
                 }
-            };
+            };*/
+            //timer.schedule(task, 5000);
 
-            timer.schedule(task, 5000);*/
-
-        }
+        //}
     }
 
     public boolean isResponse() {

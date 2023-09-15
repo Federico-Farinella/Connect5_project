@@ -18,13 +18,15 @@ public class LoginCLI {
             LoginBeanIn beanIn = new LoginBeanIn();
             while (true) {
                 email = console.nextLine();
-                if (email.equals("")) {
-                    System.out.println("Field email cannot be empty.\nInsert your email\n\nOr type back or exit.");  //NOSONAR
-                    continue;
-                } else if (email.equals("back")) {
-                    return;
-                } else if (email.equals("exit")) {
-                    System.exit(0);
+                switch (email) {
+                    case "":
+                        System.out.println("Field email cannot be empty.\nInsert your email\n\nOr type back or exit.");  //NOSONAR
+
+                        continue;
+                    case "back":
+                        return;
+                    case "exit":
+                        System.exit(0);
                 }
                 if (!beanIn.setEmail(email)) {
                     System.out.println("You have not entered a correct email..\n\nInsert your email\n\nOr type back or exit.");  //NOSONAR
@@ -53,7 +55,7 @@ public class LoginCLI {
             LoginBeanOut bean_out = new LoginBeanOut();
             bean_out = loginController.loginVerify(beanIn);
             switch (bean_out.getResponse()) {
-                case ("Email not registeres") -> {
+                case ("Email not registered") -> {
                     System.out.println("Your emeil is not registered"); //NOSONAR
                 }
                 case ("Password incorrect") -> {
