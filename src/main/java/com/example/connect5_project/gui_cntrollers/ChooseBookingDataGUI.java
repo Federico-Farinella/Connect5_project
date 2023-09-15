@@ -55,18 +55,19 @@ public class ChooseBookingDataGUI {
             DailyAvailabilityBeanIn beanIn = new DailyAvailabilityBeanIn();
             beanIn.setDateToSearch(datePicker.getValue());
 
-            DailyAvailabilityBeanOut beanOut = bookingController.getDailyWeather(beanIn);
-
+            //DailyAvailabilityBeanOut beanOut = bookingController.getDailyWeather(beanIn);
+            DailyAvailabilityBeanOut beanOut;
             FieldDailyAvailability availability = null;
             try {
-                availability = bookingController.getDailyAvailability(beanIn);
+                //availability = bookingController.getDailyAvailability(beanIn);
+                beanOut = bookingController.getDailyAvailability(beanIn);
             } catch (MyException exception) {
                 //availability = null; // messo per prova...
                 labelNoDate.setText(exception.getMessage());
                 labelNoDate.setVisible(true);
                 return;
             }
-            beanOut.setDailyAvailability(availability); // non mi convince forse meglio passare alla gui successiva direttamente
+            //beanOut.setDailyAvailability(availability); // non mi convince forse meglio passare alla gui successiva direttamente
             // il model FieldDailyAvailability!!!
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/daily_availability_weather.fxml"));

@@ -8,7 +8,9 @@ import java.util.Scanner;
 
 public class LoginCLI {
     Scanner console;
+
     public void main() throws Exception { // riga 57 leggi altre cli devo gestire eccezioni al posto di responsedao
+        mainLoop:
         while (true) {
             String email = "";
             String password = "";
@@ -19,23 +21,32 @@ public class LoginCLI {
                 if (email.equals("")) {
                     System.out.println("Field email cannot be empty.\nInsert your email\n\nOr type back or exit.");  //NOSONAR
                     continue;
-                }
-                else if (email.equals("back")){
+                } else if (email.equals("back")) {
                     return;
+                } else if (email.equals("exit")) {
+                    System.exit(0);
                 }
                 if (!beanIn.setEmail(email)) {
                     System.out.println("You have not entered a correct email..\n\nInsert your email\n\nOr type back or exit.");  //NOSONAR
-                }
-                else
-                    break;
-            }
-            while (true) {
-                System.out.println("Insert password");  //NOSONAR
-                password = console.nextLine();
-                if (password.equals("")) {
-                    System.out.println("Field password cannot be empty.\n\nInsert your email\n\nOr type back or exit.");  //NOSONAR
                 } else
                     break;
+            }
+            label:
+            while (true) {
+                System.out.println("Insert password\n\nOr type back or exit.");  //NOSONAR
+                password = console.nextLine();
+                switch (password) {
+                    case "":
+                        System.out.println("Field password cannot be empty.\n\nInsert your password\n\nOr type back or exit.");  //NOSONAR
+
+                        break;
+                    case "back":
+                        continue mainLoop;
+                    case "exit":
+                        System.exit(0);
+                    default:
+                        break label;
+                }
             }
             beanIn.setPassword(password);
             LoginController loginController = new LoginController();

@@ -2,8 +2,10 @@ package com.example.connect5_project.cli_controllers;
 
 import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
 import com.example.connect5_project.controllers.BookingController;
+import com.example.connect5_project.utility.SharedStateSingletonCLI;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -12,13 +14,77 @@ public class AvailabilityControlCLI {
     private BookingController bookingController;
 
     public void main(DailyAvailabilityBeanOut beanOut) {
+
         Map<String, String> dailyAvailability = beanOut.getDayAvailability();
         Map<String, ArrayList<String>> weatherResponse = beanOut.getWeatherByHour();
         String message = "Availability of center: " + this.getBookingController().getChoosenCenter().getName() +
                 "\nCity: " + this.getBookingController().getChoosenCenter().getCity() +
-                "\nDate: " + this.getBookingController().getChoosenDate() + "\n";
-        while (true) {
+                "\nDate: " + this.getBookingController().getChoosenDate() + "\nBase price: " +
+                this.getBookingController().getChoosenCenter().getFieldPrice() +"\n";
+        System.out.println(message);
+        int size = dailyAvailability.size();
 
+        while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
+            int i;
+            List<String> list = new ArrayList<>();
+            String hourAvailability;
+            System.out.println("Availability and forecast weather description: \n");
+
+                int j = 0;
+                for (i = 15; i < 15 + size; i++) {
+                    hourAvailability = String.valueOf(i);
+                    if (dailyAvailability.get(hourAvailability).equals("0")) {
+                        list.add(j + 1 + ") " + i + "-" + String.valueOf(i + 1) + ": Available.\n" +
+                                weatherResponse.get(hourAvailability).get(0));
+
+                        System.out.println(list.get(j));
+                        j++;
+                    }
+                }
+
+                if (list.size() == 0) {
+                    System.out.println("No availability for this date\n" +
+                            "Type back or exit.");
+                } else {
+
+                    System.out.println("\nOr type back or exit.");
+                }
+                String choose = this.getConsole().nextLine();
+
+                switch (choose) {
+                    case "back" -> {
+                        return;
+                    }
+                    case "exit" -> {
+                        System.exit(0);
+                    }
+                }
+                int chooseToInt;
+                try {
+                    chooseToInt = Integer.parseInt(choose);
+                } catch (NumberFormatException e) {
+                    System.out.println("Insert a valid numeric input.\n\n");
+                    continue;
+                }
+
+                String choosenHour;
+
+                if (chooseToInt <= list.size() && chooseToInt >= 1) {
+                    choosenHour = list.get(chooseToInt - 1).substring(3, 5);
+                    System.out.println("Choosen our: " + choosenHour);
+                    this.getBookingController().setChoosenHour(choosenHour);
+                /*BookingResponseCLI bookingResponseControlCLI = new BookingResponseCLI();
+                bookingResponseControlCLI.setBookingController(this.getBookingController());
+                bookingResponseControlCLI.main();*/
+                    SetBookingOptionalCLI setBookingOptionaControllerCLI = new SetBookingOptionalCLI();
+                    setBookingOptionaControllerCLI.setBookingController(this.getBookingController());
+                    setBookingOptionaControllerCLI.setConsole(this.getConsole());
+                    setBookingOptionaControllerCLI.chooseOptional();
+
+
+                } else {
+                    System.out.println("Choose one of the options shown.\n\n");
+                }
         }
     }
 

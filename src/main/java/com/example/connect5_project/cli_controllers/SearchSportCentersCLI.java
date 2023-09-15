@@ -3,6 +3,7 @@ package com.example.connect5_project.cli_controllers;
 import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.bean.SearchResultsBeanIn;
 import com.example.connect5_project.controllers.BookingController;
+import com.example.connect5_project.utility.SharedStateSingletonCLI;
 
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class SearchSportCentersCLI {
     public void main() throws Exception { // Anche qui devo gestire la cosa delle eccezioni da sportcenterdao (riga 34)
         //Continua da qui
         SearchResultsBeanIn beanIn;
-        while (true) {
+        while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             System.out.println("1- Search by center's name\n2- Search by city\n\n\tOr type back or exit.");  //NOSONAR
             String choose = "";
 

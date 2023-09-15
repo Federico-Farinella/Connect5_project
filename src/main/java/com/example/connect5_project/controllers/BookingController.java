@@ -77,7 +77,27 @@ public class BookingController {
         return bean_out;
     }
 
-    public FieldDailyAvailability getDailyAvailability(DailyAvailabilityBeanIn beanIn) throws MyException {
+    public DailyAvailabilityBeanOut getDailyAvailability(DailyAvailabilityBeanIn beanIn) throws MyException {
+        this.setChoosenDate(beanIn.getDateToSearch());
+        //choosenDate = beanIn.getDateToSearch();
+        WeatherApiBeanOut weatherRequestBean = new WeatherApiBeanOut();
+        weatherRequestBean.setGapDay(beanIn.getDateToSearch());
+        weatherRequestBean.setCity(getChoosenCenter().getCity());
+        WeatherBoundary weatherBoundary = new WeatherBoundary();
+        WeatherApiBeanIn weatherResponseBean; //  = new WeatherApiBeanIn();
+        weatherResponseBean = weatherBoundary.weitherCity(weatherRequestBean);
+
+        //DailiAvailabilityDao dao = new DailiAvailabilityDao();
+        //FieldDailyAvailability dailyAvailability = dao.dbSearchAvailability(choosenCenter, beanIn.getDateToSearch());
+
+
+        System.out.println("Booking Controller analyze weatherResponseBean returned: " + weatherResponseBean.getWeatherByHour());
+        DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut(weatherResponseBean);
+        /*DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut();
+        bean_out.setWeatherByHour(weatherResponseBean);*/
+        System.out.println("BookingController: " + bean_out.getWeatherByHour().get(Integer.toString(15)));
+
+        ////////////////
         DailiAvailabilityDao dao = new DailiAvailabilityDao();
         this.choosenDate = beanIn.getDateToSearch();
         FieldDailyAvailability dailyAvailability;
@@ -87,7 +107,10 @@ public class BookingController {
             String messageToGuiController = "Error with accessing data. Please try later";
             throw new DbConnectException(messageToGuiController);
         }
-        return dailyAvailability;
+
+        bean_out.setDailyAvailability(dailyAvailability);
+        return bean_out;
+        //return dailyAvailability;
     }
 
     public boolean confirmBooking(boolean withReferee, boolean withTunics) throws TakeBookingException {

@@ -3,6 +3,7 @@ package com.example.connect5_project.cli_controllers;
 import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.models.CentroSportivo;
+import com.example.connect5_project.utility.SharedStateSingletonCLI;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,7 @@ public class SportCentersResultsCLI {
     private Map<String, CentroSportivo> centersResults;
 
     public void main() {
-        while (true) {
+        while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             int i;
             String str = "";
             String choose = "";

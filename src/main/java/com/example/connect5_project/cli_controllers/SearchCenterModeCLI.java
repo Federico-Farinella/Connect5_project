@@ -3,18 +3,19 @@ package com.example.connect5_project.cli_controllers;
 import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.bean.SearchResultsBeanIn;
 import com.example.connect5_project.controllers.BookingController;
+import com.example.connect5_project.utility.SharedStateSingletonCLI;
 
 import java.util.Scanner;
 
 public class SearchCenterModeCLI {
     private Scanner console;
     private BookingController controller;
-    private String choose;
+    //private String choose;
 
     public void search(String choose) throws Exception {  // devo togliere throws exception e gestirla (riga 77)
         SearchResultsBeanIn beanIn = new SearchResultsBeanIn();
-        SearchResultBeanOut bean_out = new SearchResultBeanOut();
-        while (true) {
+        SearchResultBeanOut bean_out;
+        while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             String field = "";
             String searchType = "";
             switch (choose) {
@@ -133,7 +134,4 @@ public class SearchCenterModeCLI {
         this.controller = controller;
     }
 
-    public void setChoose(String choose) {
-        this.choose = choose;
-    }
 }
