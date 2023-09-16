@@ -1,4 +1,4 @@
-package com.example.connect5_project;
+package com.example.connect5_project.controllers;
 
 import com.example.connect5_project.dao.FootballPlayerDao;
 import com.example.connect5_project.bean.LoginBeanIn;

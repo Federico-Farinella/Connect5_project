@@ -3,8 +3,6 @@ package com.example.connect5_project.gui_cntrollers;
 import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.bean.SearchResultsBeanIn;
 import com.example.connect5_project.controllers.BookingController;
-import com.example.connect5_project.controllers.SearchSportCenters;
-import com.example.connect5_project.dao.SportCenterDAO;
 import com.example.connect5_project.exceptions.SportCenterException;
 import com.example.connect5_project.history.Navigate;
 import com.example.connect5_project.utility.SportCenterElements;
@@ -66,9 +64,6 @@ public class SearchSportCentersGUI {
     public void search(ActionEvent e) throws Exception {
         String name = nomeCentroS.getText();
         String city = cittaCentroS.getText();
-        SearchSportCenters ctrl = new SearchSportCenters();
-        System.out.println("SearchSportCentersGui qui sono:-1");
-        SportCenterDAO cDao = new SportCenterDAO();
         SearchResultBeanOut searchResultsBeanOut;
         booking_controller = new BookingController();
         SearchResultsBeanIn bean_in = new SearchResultsBeanIn();

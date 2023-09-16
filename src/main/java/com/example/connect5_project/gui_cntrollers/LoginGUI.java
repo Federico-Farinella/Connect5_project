@@ -1,6 +1,6 @@
 package com.example.connect5_project.gui_cntrollers;
 
-import com.example.connect5_project.LoginController;
+import com.example.connect5_project.controllers.LoginController;
 import com.example.connect5_project.bean.LoginBeanIn;
 import com.example.connect5_project.bean.LoginBeanOut;
 import com.example.connect5_project.history.Navigate;

@@ -1,6 +1,7 @@
 package com.example.connect5_project.dao;
 
 import com.example.connect5_project.bean.SearchResultBeanOut;
+import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.SportCenterException;
 import com.example.connect5_project.models.CentroSportivo;
 import com.example.connect5_project.models.SportCentersSearchResults;
@@ -19,35 +20,15 @@ public class SportCenterDAO {
     String configFilePath = "src/main/resources/config.properties";
 
     public SearchResultBeanOut dbSearchCenters(String name, String city) throws SportCenterException {  //Cambiato return da ResultSet a SearchResultBean
-        String dbUser;
-        String pass;
-        JdbcConnect jdbc;
-        ArrayList<CentroSportivo> array;
-        SearchResultBeanOut resultBean = new SearchResultBeanOut();
-        try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
-            Properties prop = new Properties();
-            prop.load(propsInput);
-            dbUser = prop.getProperty("dbUser");
-            pass = prop.getProperty("pass");
-            jdbc = JdbcConnect.getUserConnection(dbUser, pass);
-        } catch (IOException e) {
-            SportCenterException exception = new SportCenterException("Config file not found", e);
-            throw exception;
-            //resultBean.setDaoResponse("Config file not found");
-            //return resultBean;
-        } catch (ClassNotFoundException e) {
-            SportCenterException exception = new SportCenterException("Driver to connect database not found", e);
-            throw exception;
-            //resultBean.setDaoResponse("Driver to connect database not found");
-            //return resultBean;
-        } catch (SQLException e) {
-            SportCenterException exception = new SportCenterException("Error with database connection", e);
-            throw exception;
-            //resultBean.setDaoResponse("Error with database connection");
-            //return resultBean;
+        SearchResultBeanOut responseBean = new SearchResultBeanOut();
+        JdbcConnect dbInstance;
+        try {
+            dbInstance = JdbcConnect.getInstance();
+        } catch (ConnectionDBException e) {
+            return responseBean;
         }
 
-        try (Statement stmt = jdbc.getConnection().createStatement();) {
+        try (Statement stmt = dbInstance.getConnection().createStatement();) {
             String sql = "SELECT * FROM sport_center WHERE Name = '" + name + "' AND City = '" + city + "';";
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.first()) {
@@ -75,7 +56,7 @@ public class SportCenterDAO {
                 } while(rs.next());
                 SportCentersSearchResults centersResults = new SportCentersSearchResults(searchResults);
 
-                resultBean.setListOfCenters(centersResults);
+               responseBean.setListOfCenters(centersResults);
                 //resultBean.setDaoResponse("Match");
             }
         } catch (SQLException e) {
@@ -85,7 +66,7 @@ public class SportCenterDAO {
             //return resultBean;
         }
         //array = resultBean.setListOfCenters(rs);
-        return resultBean;
+        return responseBean;
     }
 
     public SearchResultBeanOut dbSearchCentersByName(String name) throws SportCenterException { //Cambiato return anche qui
@@ -160,37 +141,17 @@ public class SportCenterDAO {
     }
 
     public SearchResultBeanOut dbSearchCentersByCity(String city) throws SportCenterException {
-        String dbUser;
-        String pass;
-        JdbcConnect jdbc;
 
-        ArrayList<CentroSportivo> array;
-        SearchResultBeanOut resultBean = new SearchResultBeanOut();
-
-        try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
-            Properties prop = new Properties();
-            prop.load(propsInput);
-            dbUser = prop.getProperty("dbUser");
-            pass = prop.getProperty("pass");
-            jdbc = JdbcConnect.getUserConnection(dbUser, pass);
-        } catch (IOException e) {
-            SportCenterException exception = new SportCenterException("Config file not found", e);
-            throw exception;
-            //resultBean.setDaoResponse("Config file not found");
-            //return resultBean;
-        } catch (ClassNotFoundException e) {
-            SportCenterException exception = new SportCenterException("Driver to connect database not found", e);
-            throw exception;
-            //resultBean.setDaoResponse("Driver to connect database not found");
-            //return resultBean;
-        } catch (SQLException e) {
-            SportCenterException exception = new SportCenterException("Error with database connection", e);
-            throw exception;
-            //resultBean.setDaoResponse("Error with database connection");
-            //return resultBean;
+        SearchResultBeanOut responseBean = new SearchResultBeanOut();
+        JdbcConnect dbInstance;
+        try {
+            dbInstance = JdbcConnect.getInstance();
+        } catch (ConnectionDBException e) {
+            return responseBean;
         }
 
-        try (Statement stmt = jdbc.getConnection().createStatement()) {
+
+        try (Statement stmt = dbInstance.getConnection().createStatement()) {
             String sql = "SELECT * FROM sport_center WHERE City = '" + city + "';";
             ResultSet rs = stmt.executeQuery(sql);
             List<CentroSportivo> searchResults = new ArrayList<>();
@@ -202,7 +163,7 @@ public class SportCenterDAO {
                 //resultBean.setDaoResponse("Not match");
             }*/
             if (rs.first()) {
-                resultBean.setDaoResponse("Match");
+                responseBean.setDaoResponse("Match");
                 //List<CentroSportivo> searchResults = new ArrayList<>();
                 CentroSportivo center;
                 String centerName;
@@ -224,14 +185,14 @@ public class SportCenterDAO {
             }
             SportCentersSearchResults centersResults = new SportCentersSearchResults(searchResults);
 
-            resultBean.setListOfCenters(centersResults);
+            responseBean.setListOfCenters(centersResults);
         } catch (SQLException e) {
             SportCenterException exception = new SportCenterException("Error creating statement");
             throw exception;
             //resultBean.setDaoResponse("Error creating statement);
             //return resultBean;
         }
-        return  resultBean;
+        return  responseBean;
     }
 }
 

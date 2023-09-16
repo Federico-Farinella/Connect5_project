@@ -1,6 +1,6 @@
 package com.example.connect5_project.cli_controllers;
 
-import com.example.connect5_project.LoginController;
+import com.example.connect5_project.controllers.LoginController;
 import com.example.connect5_project.bean.LoginBeanIn;
 import com.example.connect5_project.bean.LoginBeanOut;
 

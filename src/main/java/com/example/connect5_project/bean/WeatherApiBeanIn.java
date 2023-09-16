@@ -10,7 +10,6 @@ import java.util.Map;
 public class WeatherApiBeanIn {
     boolean response;
     String respDescription;
-    //JsonNode weather;
     Map<String, ArrayList<String>> weatherByHour;
 
     public boolean getResponse() {
@@ -48,14 +47,12 @@ public class WeatherApiBeanIn {
             response = true;
             int i;
             for (i = 15; i < 23; i++) {
-                System.out.println(weather.get("hour").get(i).get("condition").get("text").toString());
                 array.add(weather.get("hour").get(i).get("condition").get("text").toString());
                 array.add(weather.get("hour").get(i).get("is_day").toString());
-                weatherByHour.put(Integer.toString(i), new ArrayList<String>(array)); // se faccio put(i, array) in hashmap, viene inserito il riferimento all' oggetto
+                weatherByHour.put(Integer.toString(i), new ArrayList<>(array)); // se faccio put(i, array) in hashmap, viene inserito il riferimento all' oggetto
                 array.clear();
             }
         }
-        System.out.println("Fine: " + weatherByHour.get(Integer.toString(15)));
     }
 }
 

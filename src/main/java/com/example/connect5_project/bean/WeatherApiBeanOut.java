@@ -6,19 +6,17 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 
 public class WeatherApiBeanOut {
-    private int gap_day;
+    private int gapDay;
     private String city;
-    //private LocalDate date_to_search;
 
 
-    public int getGap_day() {
-        return gap_day;
+    public int getGapDay() {
+        return gapDay;
     }
 
     public void setGapDay(LocalDate date) {
         LocalDate now = LocalDate.now();
-        gap_day = (int) DAYS.between(now, date);
-        //this.gap_day = gap_day;
+        gapDay = (int) DAYS.between(now, date);
     }
 
     public String getCity() {

@@ -12,32 +12,29 @@ import java.util.Properties;
 
 public class WeatherBoundary {
     public WeatherApiBeanIn weitherCity(WeatherApiBeanOut bean_out) {
-        WeatherApiBeanIn bean_in = new WeatherApiBeanIn();
+        WeatherApiBeanIn responseBean = new WeatherApiBeanIn();
         String configFilePath = "src/main/resources/config_weather.properties";
         Properties prop;
-        System.out.println("Inizio metodo weitherCity API2");
         try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
             prop = new Properties();
             prop.load(propsInput);
         } catch (FileNotFoundException e) {
-            bean_in.setResponse(false);
-            bean_in.setRespDescription("API configuration's file not found");
-            return bean_in;
+            responseBean.setResponse(false);
+            responseBean.setRespDescription("API configuration's file not found");
+            return responseBean;
         } catch (IOException e) {
-            bean_in.setResponse(false);
-            bean_in.setRespDescription("Error loading API configuration's file");
-            return bean_in;
+            responseBean.setResponse(false);
+            responseBean.setRespDescription("Error loading API configuration's file");
+            return responseBean;
         }
 
         String key = prop.getProperty("key");
 
         WeatherService service = new WeatherService();
-        //System.out.println("Dati da mandare al Weather service: Gap day, City: " + bean_out.getGap_day() + ", " + bean_out.getCity());
-        JsonNode weather = service.weatherService(bean_out.getCity(), key, bean_out.getGap_day()+1);
+        JsonNode weather = service.weatherService(bean_out.getCity(), key, bean_out.getGapDay()+1);
 
-        bean_in.setWeather(weather);
-        //System.out.println("Fine metodo weitherCity API2");
-        bean_in.setResponse(true);
-        return bean_in;
+        responseBean.setWeather(weather);
+        responseBean.setResponse(true);
+        return responseBean;
     }
 }

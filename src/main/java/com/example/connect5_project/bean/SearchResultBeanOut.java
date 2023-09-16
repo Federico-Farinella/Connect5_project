@@ -2,7 +2,6 @@ package com.example.connect5_project.bean;
 
 import com.example.connect5_project.models.CentroSportivo;
 import com.example.connect5_project.models.SportCentersSearchResults;
-import com.example.connect5_project.utility.SportCenterElements;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultBeanOut {
-    private Float fieldPrice;
-    private List<CentroSportivo> listOfCenters;
     private SportCentersSearchResults searchResults;
     private String daoResponse;
 
@@ -28,37 +25,10 @@ public class SearchResultBeanOut {
             this.daoResponse = daoResponse;
     }
 
-    /*public List<CentroSportivo> getListOfCenters() {
-        return listOfCenters;
-    }*/
 
     public SportCentersSearchResults getListOfCenters() {
         return searchResults;
     }
-
-    /*public void setListOfCenters(ResultSet rs) throws SQLException {
-        //posso mettere un boolean di ritorno cosi gestisco l eccezione sql qui dentro e torno false in caso
-        ArrayList<CentroSportivo> centers = new ArrayList<>();
-        CentroSportivo cent;
-        if (rs.first()) {
-            String name;
-            String city;
-            String address;
-            String owner;
-            String image;
-            do {
-                name = rs.getString("Name");
-                city = rs.getString("City");
-                address = rs.getString("Address");
-                owner = rs.getString("OwnerEmail");
-                image = rs.getString("Image");
-                fieldPrice = rs.getFloat("BasePrice");
-                cent = new CentroSportivo(name, city, address, owner, image, fieldPrice);
-                centers.add(cent);
-            } while (rs.next());
-        }
-        listOfCenters = centers;
-    }*/
 
     public void setListOfCenters(SportCentersSearchResults searchResultsCenters) throws SQLException {
         this.searchResults = searchResultsCenters;
@@ -80,14 +50,11 @@ public class SearchResultBeanOut {
                 address = rs.getString("Street");
                 owner = rs.getString("OwnerEmail");
                 image = rs.getString("Image");
-                fieldPrice = rs.getFloat("BasePrice");
+                Float fieldPrice = rs.getFloat("BasePrice");
                 cnt = new CentroSportivo(name, city, address, owner, image, fieldPrice);
                 centers.add(cnt);
             } while (rs.next());
         }
         return centers;
     }
-
-
-
 }
