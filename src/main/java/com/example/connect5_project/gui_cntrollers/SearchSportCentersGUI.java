@@ -89,9 +89,7 @@ public class SearchSportCentersGUI {
         errorLab.setVisible(false);
         navigate.pushPage(((Node) e.getSource()).getScene());
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin() + 1); // Aggiunto avendo introdotto countPagesAfterLogin
-        System.out.println("SearchSportCentersGui qui sono:1");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/SportCentersResults.fxml"));
-        System.out.println("SearchSportCentersGui qui sono:2");
         Parent root = loader.load();
         SportCentersResultsGUI controlGui = loader.getController();
         controlGui.setBookingController(this.booking_controller);

@@ -1,6 +1,8 @@
 package com.example.connect5_project.gui_cntrollers;
 
 import com.example.connect5_project.controllers.BookingController;
+import com.example.connect5_project.exceptions.ConnectionDBException;
+import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.exceptions.TakeBookingException;
 import com.example.connect5_project.history.Navigate;
 import javafx.event.ActionEvent;
@@ -67,13 +69,25 @@ public class SetBookingOptionalGUI {
             withReferee = true;
         if (cBoxTunics.isSelected())
             withTunics = true;
+        boolean isConfirmed = false;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BookingResponse.fxml"));
+        Parent root = loader.load();
+        BookingResponseGUI controlGui = loader.getController();
         try {
-            boolean isConfirmed = bookingController.confirmBooking(withReferee, withTunics);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/BookingResponse.fxml"));
-            Parent root = loader.load();
-            BookingResponseGUI controlGui = loader.getController();
+            isConfirmed = bookingController.confirmBooking(withReferee, withTunics);
             controlGui.setImageResponse(isConfirmed);
             controlGui.setLabResponse(isConfirmed);
+        } catch (TakeBookingException exception0) {
+            // Stampa messaggio dell eccezione!!!!
+            controlGui.setImageResponse(false);
+            controlGui.setLabResponse(false);
+        } catch (ConnectionDBException exception1) {
+            controlGui.setImageResponse(false);
+            controlGui.setLabResponse(false);
+        } catch (MyException exception2) {
+            controlGui.setImageResponse(false);
+            controlGui.setLabResponse(false);
+        } finally {
 
             navigate.pushPage(((Node) e.getSource()).getScene());
             navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin() + 1);
@@ -81,8 +95,6 @@ public class SetBookingOptionalGUI {
 
             Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
             window.setScene(new Scene(root));
-        } catch (TakeBookingException exception) {
-            // Stampa messaggio dell eccezione!!!!
         }
     }
 

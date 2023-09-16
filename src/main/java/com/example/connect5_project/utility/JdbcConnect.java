@@ -28,11 +28,8 @@ public class JdbcConnect {
         // Devo usare questa per centralizzare i dati di configurazione qui
         try {
             Class.forName(driverClassName);
-            System.out.println("Eseguito Class.forName");
-            getDBCredentials();
-            System.out.println("Eseguito getDBCredentials");
+            this.getDBCredentials();
             this.connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Eseguito DriverManager.getConnection");
         } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new ConnectionDBException("DB Connection Error");
         }
@@ -52,7 +49,6 @@ public class JdbcConnect {
     }
 
     public static JdbcConnect getInstance() throws ConnectionDBException {// Devo usare questa
-        System.out.println("Sono nel Jdbc.getInstance()");
         if (jdbcConn == null) {
             jdbcConn = new JdbcConnect();
         }
@@ -68,11 +64,8 @@ public class JdbcConnect {
             Properties prop = new Properties();
             prop.load(propsInput);
             this.url = prop.getProperty("dbUrl");
-            System.out.println(url);
             this.user = prop.getProperty("dbUser");
-            System.out.println(user);
             this.password = prop.getProperty("pass");
-            System.out.println(password);
         } catch (IOException ex) {
             throw new IOException();
         }

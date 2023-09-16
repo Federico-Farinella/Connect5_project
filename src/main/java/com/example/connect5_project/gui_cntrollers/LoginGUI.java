@@ -2,8 +2,10 @@ package com.example.connect5_project.gui_cntrollers;
 
 import com.example.connect5_project.controllers.LoginController;
 import com.example.connect5_project.bean.LoginBeanIn;
-import com.example.connect5_project.bean.LoginBeanOut;
+import com.example.connect5_project.exceptions.ConnectionDBException;
+import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
 import com.example.connect5_project.history.Navigate;
+import com.example.connect5_project.utility.CurrentUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,26 +82,27 @@ public class LoginGUI {
 
         beanIn.setPassword(password);
         LoginController loginController = new LoginController();
-        LoginBeanOut ret = loginController.loginVerify(beanIn);
 
-        if (!ret.isSuccess()) {
-            System.out.println("Sono nell if prima dello switch");
-            System.out.println(ret.getResponse());
-            switch (ret.getResponse()) {
-                case ("Error") -> {
-                    System.out.println("Sono nel case Error");
-                    errorLabel.setText("Error, we're working on fixing the issues, come back later");
-                }
-                case ("Email not registered") -> {
-                    System.out.println("Sono nel case Email not registered");
-                    errorLabel.setText("Email not registered. Please insert a registered email");
-                }
-                case ("Password incorrect") -> {
-                    System.out.println("Sono nel case Password incorrect");
-                    errorLabel.setText("Password incorrect");
-                }
-            }
+        boolean isLogged;
+
+        try {
+            isLogged = loginController.loginVerify(beanIn);
+        } catch (ConnectionDBException e0) {
+            errorLabel.setText("Error, we're working on fixing the issues, come back later");
+            errorLabel.setVisible(true);
+            return;
+        } catch (EmailNotRegisteredException e1) {
+            errorLabel.setText("Email not registered. Please insert a registered email");
+            errorLabel.setVisible(true);
+            return;
+        }
+
+        if (!isLogged) {
+            errorLabel.setText("Password incorrect");
+            errorLabel.setVisible(true);
         } else {
+            CurrentUser user = CurrentUser.getInstance();
+
             errorLabel.setText("");
             errorLabel.setVisible(false);
             insertEmailLog.setText("");
@@ -111,12 +114,14 @@ public class LoginGUI {
             LoggedGUI controlGui = loader.getController();
             this.navigate.setCountPagesAfterLogin(0);
             controlGui.setNavigate(navigate);
-            controlGui.getLabelWelcome().setText("Welcome\n" + ret.getUser().getNickName());
+            controlGui.getLabelWelcome().setText("Welcome\n" + user.getNickName());
             window = (Stage) ((Node) e.getSource()).getScene().getWindow();
             window.setScene(new Scene(root));
         }
 
-        errorLabel.setVisible(true);
-        System.out.println(ret);
+        //errorLabel.setVisible(true);
+
+        //LoginBeanOut ret = loginController.loginVerify(beanIn);
+
     }
 }

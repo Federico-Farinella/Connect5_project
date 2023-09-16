@@ -30,7 +30,7 @@ public class SearchResultBeanOut {
         return searchResults;
     }
 
-    public void setListOfCenters(SportCentersSearchResults searchResultsCenters) throws SQLException {
+    public void setListOfCenters(SportCentersSearchResults searchResultsCenters) {
         this.searchResults = searchResultsCenters;
     }
 

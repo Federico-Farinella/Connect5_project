@@ -3,17 +3,13 @@ package com.example.connect5_project.controllers;
 import com.example.connect5_project.bean.*;
 import com.example.connect5_project.boundary.WeatherBoundary;
 import com.example.connect5_project.dao.BookingDao;
-import com.example.connect5_project.dao.DailiAvailabilityDao;
+import com.example.connect5_project.dao.DailyAvailabilityDao;
 import com.example.connect5_project.dao.SportCenterDAO;
-import com.example.connect5_project.exceptions.DbConnectException;
-import com.example.connect5_project.exceptions.MyException;
-import com.example.connect5_project.exceptions.SportCenterException;
-import com.example.connect5_project.exceptions.TakeBookingException;
+import com.example.connect5_project.exceptions.*;
 import com.example.connect5_project.models.*;
 import com.example.connect5_project.utility.CurrentUser;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class BookingController {
     SportCentersSearchResults centersResultsList;
@@ -27,7 +23,6 @@ public class BookingController {
 
     public SearchResultBeanOut searchCenters(SearchResultsBeanIn bean_in) throws MyException {
         String search_mode = bean_in.getSearchMode();
-        System.out.println("Booking Controller, searvhCenters. Print search_mode: " + search_mode);
         SearchResultBeanOut bean_to = new SearchResultBeanOut();
         SportCenterDAO cDao = new SportCenterDAO();
         try {
@@ -90,22 +85,19 @@ public class BookingController {
         //DailiAvailabilityDao dao = new DailiAvailabilityDao();
         //FieldDailyAvailability dailyAvailability = dao.dbSearchAvailability(choosenCenter, beanIn.getDateToSearch());
 
-
-        System.out.println("Booking Controller analyze weatherResponseBean returned: " + weatherResponseBean.getWeatherByHour());
         DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut(weatherResponseBean);
-        /*DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut();
-        bean_out.setWeatherByHour(weatherResponseBean);*/
-        System.out.println("BookingController: " + bean_out.getWeatherByHour().get(Integer.toString(15)));
 
         ////////////////
-        DailiAvailabilityDao dao = new DailiAvailabilityDao();
-        this.choosenDate = beanIn.getDateToSearch();
+        DailyAvailabilityDao dao = new DailyAvailabilityDao();
+        this.setChoosenDate(beanIn.getDateToSearch());
         FieldDailyAvailability dailyAvailability;
         try {
-            dailyAvailability = dao.dbSearchAvailability(choosenCenter, choosenDate);
-        } catch (DbConnectException e) {
+            dailyAvailability = dao.dbSearchAvailability(this.getChoosenCenter(), this.getChoosenDate());
+        } catch (ConnectionDBException e0) {
             String messageToGuiController = "Error with accessing data. Please try later";
-            throw new DbConnectException(messageToGuiController);
+            throw new ConnectionDBException(messageToGuiController);
+        } catch (DailyAvailabilityException e1) {
+            throw new DailyAvailabilityException(e1.getMessage());
         }
 
         bean_out.setDailyAvailability(dailyAvailability);
@@ -113,7 +105,7 @@ public class BookingController {
         //return dailyAvailability;
     }
 
-    public boolean confirmBooking(boolean withReferee, boolean withTunics) throws TakeBookingException {
+    public boolean confirmBooking(boolean withReferee, boolean withTunics) throws MyException {
         User user = CurrentUser.getInstance().getUser();
         Booking booking = new Booking(choosenCenter, user, choosenDate, choosenHour);
         if (withReferee)
@@ -131,9 +123,11 @@ public class BookingController {
         boolean ret1;
         try {
             ret1 = dao.saveBooking1(booking);
-        } catch (TakeBookingException e) {
+        } catch (TakeBookingException e0) {
             System.out.println("Error accessing data. Please try later.");
             throw new TakeBookingException("Error accessing data. Please try later.");
+        } catch (ConnectionDBException e1) {
+            throw new ConnectionDBException("Error connecting database. Please try later.");
         }
         System.out.println("Booking result: " + ret1);
         return ret1;
@@ -168,7 +162,6 @@ public class BookingController {
         for (CentroSportivo center : centersResultsList.getSportCentersSearchResults()) {
             if (center.getName().equals(name)) {
                 this.setHostingCenter(center);
-                System.out.println("Choosen center : " + choosenCenter.getName());
             }
         }
     }

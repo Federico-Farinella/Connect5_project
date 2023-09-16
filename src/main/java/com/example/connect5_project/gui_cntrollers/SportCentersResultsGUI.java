@@ -50,7 +50,6 @@ public class SportCentersResultsGUI {
 
     public void setBookingController(BookingController booking_controller) {
         this.bookingController = booking_controller;
-        System.out.println("Setting Booking Controller: " + this.bookingController);
     }
 
     public VBox getBox() {
@@ -68,8 +67,6 @@ public class SportCentersResultsGUI {
     public void back(MouseEvent e) throws Exception {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-
-        System.out.println(window);
         window.setScene(navigate.getPages().lastElement());
         navigate.pages.pop();
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);

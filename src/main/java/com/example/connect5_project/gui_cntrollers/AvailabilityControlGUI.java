@@ -124,18 +124,13 @@ public class AvailabilityControlGUI {
         String condition;
         String is_day;
         for (ImageView im : images) {
-            System.out.println(weatherResponse.get(Integer.toString(i)));
             condition = weatherResponse.get(Integer.toString(i)).get(0);
             is_day = weatherResponse.get(Integer.toString(i)).get(1);
-            System.out.println("Tempo ora " + i + ": " + condition);
             switch (condition) {
                 case ("\"Sunny\"") -> {
-                    System.out.println("Ok");
                     resource = getClass().getResource("/images_weather/Sun.png");
-                    System.out.println("Yes");
                 }
                 case ("\"Clear\"") -> {
-                    System.out.println("I'm in Clear case");
                     resource = getClass().getResource("/images_weather/Moon.png");
                 }
                 case ("\"Partly cloudy\"") -> {

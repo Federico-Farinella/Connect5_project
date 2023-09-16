@@ -24,4 +24,5 @@ module com.example.connect5_project {
     exports com.example.connect5_project.models.bookings_decorator;
     exports com.example.connect5_project.exceptions;
     opens com.example.connect5_project.controllers to javafx.fxml;
+    exports com.example.connect5_project.exceptions.login_exceptions;
 }

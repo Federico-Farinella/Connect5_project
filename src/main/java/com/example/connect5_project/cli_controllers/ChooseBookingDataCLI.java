@@ -3,6 +3,8 @@ package com.example.connect5_project.cli_controllers;
 import com.example.connect5_project.bean.DailyAvailabilityBeanIn;
 import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
 import com.example.connect5_project.controllers.BookingController;
+import com.example.connect5_project.exceptions.ConnectionDBException;
+import com.example.connect5_project.exceptions.DailyAvailabilityException;
 import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.utility.BusinessConstants;
 import com.example.connect5_project.utility.SharedStateSingletonCLI;
@@ -59,14 +61,19 @@ public class ChooseBookingDataCLI {
                 DailyAvailabilityBeanOut beanResponse;
                 try {
                     beanResponse = this.getController().getDailyAvailability(beanRequest);
-                } catch (MyException e) {
-                    System.out.println(e.getMessage());
+                } catch (ConnectionDBException e0) {
+                    System.out.println("We are working to resolve some problems.\nTry later.");
+                    continue;
+                } catch (DailyAvailabilityException e1) {
+                    System.out.println("---NO DAILY AVAILABILITY---\n\n");
+                    continue;
+                } catch (MyException e2) {
+                    System.out.println("System under maintenance.\nTry later.");
                     continue;
                 }
                 AvailabilityControlCLI availabilityControlCLI = new AvailabilityControlCLI();
                 availabilityControlCLI.setBookingController(this.getController());
                 availabilityControlCLI.setConsole(this.getScanner());
-                System.out.println("ChooseDataCLI " + beanResponse.getDayAvailability());
                 availabilityControlCLI.main(beanResponse);
 
             } else {

@@ -14,6 +14,9 @@ public class AvailabilityControlCLI {
     private BookingController bookingController;
 
     public void main(DailyAvailabilityBeanOut beanOut) {
+        /*if (beanOut.getDailyAvailability() == null) {
+            System.out.println("Insert a valid numeric input.\n\n");
+        }*/
 
         Map<String, String> dailyAvailability = beanOut.getDayAvailability();
         Map<String, ArrayList<String>> weatherResponse = beanOut.getWeatherByHour();
@@ -35,7 +38,7 @@ public class AvailabilityControlCLI {
                     hourAvailability = String.valueOf(i);
                     if (dailyAvailability.get(hourAvailability).equals("0")) {
                         list.add(j + 1 + ") " + i + "-" + String.valueOf(i + 1) + ": Available.\n" +
-                                weatherResponse.get(hourAvailability).get(0));
+                                "Weather description: " + weatherResponse.get(hourAvailability).get(0) + "\n    _________");
 
                         System.out.println(list.get(j));
                         j++;

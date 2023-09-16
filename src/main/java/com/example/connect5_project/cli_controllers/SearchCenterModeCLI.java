@@ -3,6 +3,7 @@ package com.example.connect5_project.cli_controllers;
 import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.bean.SearchResultsBeanIn;
 import com.example.connect5_project.controllers.BookingController;
+import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.utility.SharedStateSingletonCLI;
 
 import java.util.Scanner;
@@ -61,7 +62,6 @@ public class SearchCenterModeCLI {
                                 field = city;
 
                                 searchType = "City";
-                                System.out.println("SearchCenterModeCLI, searchType: " + searchType + " Field: " + field);  //MOSONAR
                                 break label1;
                         }
                     }
@@ -72,8 +72,12 @@ public class SearchCenterModeCLI {
             controller = new BookingController();
             beanIn = new SearchResultsBeanIn();
             beanIn.setCli(searchType, field);
-            System.out.println("2-SearchCenterModeCLI, searchType: " + beanIn.getSearchMode() + " Field: " + field);
-            bean_out = controller.searchCenters(beanIn);
+            try {
+                bean_out = controller.searchCenters(beanIn);
+            } catch (MyException e) {
+                System.out.println("Error connecting data\nWe are working to resolve problem\nTry later.");
+                continue;
+            }
 
             if (bean_out.getListOfCenters().getSportCentersSearchResults().isEmpty()) {
                 System.out.println("Not found centers with your inputs.");  //NOSONAR
@@ -81,10 +85,10 @@ public class SearchCenterModeCLI {
             }
 
             // Qui sotto sostituire con eccezione!!!!
-            else if (bean_out.getDaoResponse().equals("Error data")) {
+            /*else if (bean_out.getDaoResponse().equals("Error data")) {
                 System.out.println("Error connecting data\nWe are working to resolve problem\nTry later.");  //NOSONAR
                 continue;
-            }
+            }*/
 
 
 

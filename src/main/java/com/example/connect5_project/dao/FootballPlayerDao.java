@@ -1,62 +1,50 @@
 package com.example.connect5_project.dao;
 
+import com.example.connect5_project.bean.LoginBeanIn;
 import com.example.connect5_project.bean.LoginBeanOut;
 import com.example.connect5_project.exceptions.ConnectionDBException;
-import com.example.connect5_project.models.LoggingUser;
+import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
+import com.example.connect5_project.exceptions.login_exceptions.LoginException;
 import com.example.connect5_project.models.User;
 import com.example.connect5_project.utility.JdbcConnect;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.*;
-import java.util.Properties;
 
 public class FootballPlayerDao {
-    String configFilePath = "src/main/resources/config.properties";
 
-    public FootballPlayerDao(){
-    }
-
-    public LoginBeanOut checkUser(LoggingUser user) {
-        String email = user.getEmail();
-        String password = user.getPassword();
+    public User checkUser(LoginBeanIn beanIn) throws LoginException, ConnectionDBException {
+        String email = beanIn.getEmail();
+        String password = beanIn.getPassword();
         LoginBeanOut beanOut = new LoginBeanOut();
         JdbcConnect dbInstance;
+        User user1 = null;
         try {
             dbInstance = JdbcConnect.getInstance();
         } catch (ConnectionDBException e) {
-            beanOut.setResponse("DB Connection failed");
-            return beanOut;
+            throw new ConnectionDBException("DB Connection failed");
         }
 
         String querySql = "SELECT * FROM user WHERE email = ?;";
-        try (PreparedStatement prepareStmt = dbInstance.getConnection().prepareStatement(querySql);
-                Statement stmt = dbInstance.getConnection().createStatement();
-             Statement stmt2 = dbInstance.getConnection().createStatement()) {
+        try (PreparedStatement prepareStmt = dbInstance.getConnection().prepareStatement(querySql)) {
             prepareStmt.setString(1, email);
-            String sql = "SELECT email FROM user WHERE email = '" + email + "';";
-            System.out.println("Qui prima della prima query");
             ResultSet rs = prepareStmt.executeQuery();
-            System.out.println("Qui dopo prima query");
             if (!rs.first()) {
-                beanOut.setResponse("Email not registered");
-                System.out.println("Email not registered");
-                return beanOut;
+                rs.close();
+                throw new EmailNotRegisteredException("Email not registered");
             }
-            if (!(rs.getString("password").equals(password))) {
-                beanOut.setResponse("Password incorrect");
-                System.out.println("Password incorrect");
-                return beanOut;
+
+            else if (rs.first() && !rs.getString("password").equals(password)) {
+                rs.close();
+                return user1;
             }
-            beanOut.setResponse("Match");
-            beanOut.setUser(new User(rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"), rs.getString("nickName")));
-            beanOut.setSuccess(true);
+
+            else {
+                user1 = new User(rs.getString("firstName"), rs.getString("lastName"), rs.getString("email"), rs.getString("nickName"));
+            }
             rs.close();
         } catch (SQLException e) {
-            //Dovrei lanciare una mia eccezione
-            beanOut.setResponse("Error while creating the statement");
-            System.out.println("Error while creating the statement");
+            throw new ConnectionDBException("Db execute failed");
         }
-        return beanOut;
+        return user1;
     }
 }

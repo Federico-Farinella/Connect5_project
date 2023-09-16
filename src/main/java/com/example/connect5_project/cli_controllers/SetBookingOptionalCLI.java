@@ -1,6 +1,8 @@
 package com.example.connect5_project.cli_controllers;
 
 import com.example.connect5_project.controllers.BookingController;
+import com.example.connect5_project.exceptions.ConnectionDBException;
+import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.exceptions.TakeBookingException;
 import com.example.connect5_project.utility.SharedStateSingletonCLI;
 
@@ -19,7 +21,8 @@ public class SetBookingOptionalCLI {
         String choose;
         mainLoop: while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             System.out.println("""
-                    In accordance with our policy to raise young Italian referees, you can choose if you want the presence of an official referee. it will cost you 40 euros more than the base price imposed by the sport center.
+                    In accordance with our policy to raise young Italian referees, you can choose if you want the presence of an official referee.
+                    It will cost you 40 euros more than the base price imposed by the sport center.
 
                     Type "y" if you require the presence of an official referee;
                     Type "n" if you don't require it.
@@ -52,7 +55,7 @@ public class SetBookingOptionalCLI {
             System.out.println("""
                     Do you need gaming jerseys?.
 
-                    Type "y" if you require the presence of an official referee;
+                    Type "y" if you require jerseys;
                     Type "n" if you don't require it.
                     """);
 
@@ -84,7 +87,11 @@ public class SetBookingOptionalCLI {
             try {
                 bookingController.confirmBooking(withReferee, withTunics);
                 isConfirmed = true;
-            } catch (TakeBookingException e) {
+            } catch (TakeBookingException e0) {
+                isConfirmed = false;
+            } catch (ConnectionDBException e1) {
+                isConfirmed = false;
+            } catch (MyException e2) {
                 isConfirmed = false;
             }
             bookingResponseControlCLI.setResponse(isConfirmed);
