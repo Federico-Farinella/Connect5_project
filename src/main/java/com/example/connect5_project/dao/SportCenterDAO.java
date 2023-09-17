@@ -1,6 +1,6 @@
 package com.example.connect5_project.dao;
 
-import com.example.connect5_project.bean.SearchResultBeanOut;
+import com.example.connect5_project.bean.SearchResultBeanResponse;
 import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.SportCenterException;
 import com.example.connect5_project.models.CentroSportivo;
@@ -19,8 +19,8 @@ import java.util.Properties;
 public class SportCenterDAO {
     String configFilePath = "src/main/resources/config.properties";
 
-    public SearchResultBeanOut dbSearchCenters(String name, String city) throws SportCenterException {  //Cambiato return da ResultSet a SearchResultBean
-        SearchResultBeanOut responseBean = new SearchResultBeanOut();
+    public SearchResultBeanResponse dbSearchCenters(String name, String city) throws SportCenterException {  //Cambiato return da ResultSet a SearchResultBean
+        SearchResultBeanResponse responseBean = new SearchResultBeanResponse();
         JdbcConnect dbInstance;
         try {
             dbInstance = JdbcConnect.getInstance();
@@ -69,13 +69,13 @@ public class SportCenterDAO {
         return responseBean;
     }
 
-    public SearchResultBeanOut dbSearchCentersByName(String name) throws SportCenterException { //Cambiato return anche qui
+    public SearchResultBeanResponse dbSearchCentersByName(String name) throws SportCenterException { //Cambiato return anche qui
         String dbUser;
         String pass;
         JdbcConnect jdbc;
 
         ArrayList<CentroSportivo> array;
-        SearchResultBeanOut resultBean = new SearchResultBeanOut();
+        SearchResultBeanResponse resultBean = new SearchResultBeanResponse();
 
         try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
             Properties prop = new Properties();
@@ -140,9 +140,9 @@ public class SportCenterDAO {
         return resultBean;
     }
 
-    public SearchResultBeanOut dbSearchCentersByCity(String city) throws SportCenterException {
+    public SearchResultBeanResponse dbSearchCentersByCity(String city) throws SportCenterException {
 
-        SearchResultBeanOut responseBean = new SearchResultBeanOut();
+        SearchResultBeanResponse responseBean = new SearchResultBeanResponse();
         JdbcConnect dbInstance;
         try {
             dbInstance = JdbcConnect.getInstance();

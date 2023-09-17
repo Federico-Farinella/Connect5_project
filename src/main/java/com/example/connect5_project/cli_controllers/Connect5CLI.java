@@ -22,7 +22,7 @@ public class Connect5CLI {
                     login.setScanner(console);
                     System.out.println("Hai scelto di eseguire il login");  //NOSONAR
                     //console.close();
-                    login.main();
+                    login.execute();
                     //login.main();
                 }
                 case ("exit") -> {

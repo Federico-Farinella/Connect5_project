@@ -1,10 +1,10 @@
 package com.example.connect5_project.models;
 
-import com.example.connect5_project.dao.BookingDao;
+import com.example.connect5_project.dao.BookingDaoDb;
 import com.example.connect5_project.dao.DailyAvailabilityDao;
 
 public class BookingService {
-    private BookingDao bookDao;
+    private BookingDaoDb bookDao;
     private DailyAvailabilityDao dailyDao;
     // Continua da qui... devo far si che prenotazione campo e aggiornamento disponibilita centro sportivo avvengano atomicamente
     // o scrivo una store procedure su db e poi la chiamo da qui (ChatGPT) o da qui chiamo i due metodi delle due dao uno dopo l altro

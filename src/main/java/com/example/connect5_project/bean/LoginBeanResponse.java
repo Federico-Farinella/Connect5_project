@@ -2,12 +2,12 @@ package com.example.connect5_project.bean;
 
 import com.example.connect5_project.models.User;
 
-public class LoginBeanOut {
+public class LoginBeanResponse {
     private boolean success;
     private String response;
     private User user;
 
-    public LoginBeanOut() {
+    public LoginBeanResponse() {
         this.success = false;
     }
 

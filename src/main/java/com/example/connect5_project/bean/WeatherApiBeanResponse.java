@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WeatherApiBeanIn {
+public class WeatherApiBeanResponse {
     boolean response;
-    String respDescription;
-    Map<String, ArrayList<String>> weatherByHour;
+    private String respDescription;
+    private Map<String, ArrayList<String>> weatherByHour;
 
     public boolean getResponse() {
         return response;
@@ -36,20 +36,20 @@ public class WeatherApiBeanIn {
         this.weatherByHour = weatherByHour;
     }
 
-    public WeatherApiBeanIn() {
+    public WeatherApiBeanResponse() {
         this.weatherByHour = new HashMap<>();
-        response = false;
+        this.response = false;
     }
 
     public void setWeather(JsonNode weather) {
         List<String> array = new ArrayList<>();
         if (weather!=null) {
-            response = true;
+            this.setResponse(true);
             int i;
             for (i = 15; i < 23; i++) {
                 array.add(weather.get("hour").get(i).get("condition").get("text").toString());
                 array.add(weather.get("hour").get(i).get("is_day").toString());
-                weatherByHour.put(Integer.toString(i), new ArrayList<>(array)); // se faccio put(i, array) in hashmap, viene inserito il riferimento all' oggetto
+                this.getWeatherByHour().put(Integer.toString(i), new ArrayList<>(array)); // se faccio put(i, array) in hashmap, viene inserito il riferimento all' oggetto
                 array.clear();
             }
         }

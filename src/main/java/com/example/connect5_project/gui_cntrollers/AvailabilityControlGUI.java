@@ -1,6 +1,6 @@
 package com.example.connect5_project.gui_cntrollers;
 
-import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
+import com.example.connect5_project.bean.DailyAvailabilityBeanResponse;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.history.Navigate;
 import javafx.event.ActionEvent;
@@ -117,60 +117,66 @@ public class AvailabilityControlGUI {
         this.bookingController = booking_controller;
     }
 
-    public void setImages (DailyAvailabilityBeanOut beanOut) {
+    public void setImages (DailyAvailabilityBeanResponse beanOut) {
         Map<String, ArrayList<String>> weatherResponse = beanOut.getWeatherByHour();
         int i = 15;
         URL resource;
         String condition;
         String is_day;
-        for (ImageView im : images) {
-            condition = weatherResponse.get(Integer.toString(i)).get(0);
-            is_day = weatherResponse.get(Integer.toString(i)).get(1);
-            switch (condition) {
-                case ("\"Sunny\"") -> {
-                    resource = getClass().getResource("/images_weather/Sun.png");
-                }
-                case ("\"Clear\"") -> {
-                    resource = getClass().getResource("/images_weather/Moon.png");
-                }
-                case ("\"Partly cloudy\"") -> {
-                    if (Objects.equals(is_day, "1")) {
-                        resource = getClass().getResource("/images_weather/Sun&Clouds.png");
-                    } else {
-                        resource = getClass().getResource("/images_weather/Moon_Clouds.png");
+        if (weatherResponse != null) {
+            for (ImageView im : images) {
+                condition = weatherResponse.get(Integer.toString(i)).get(0);
+                is_day = weatherResponse.get(Integer.toString(i)).get(1);
+                switch (condition) {
+                    case ("\"Sunny\"") -> {
+                        resource = getClass().getResource("/images_weather/Sun.png");
                     }
-                }
-                case ("\"Overcast\"") -> resource = getClass().getResource("/images_weather/Overcast.png");
-                case ("\"Cloudy\"") -> resource = getClass().getResource("/images_weather/Clouds_Right.png");
-
-                case ("\"Patchy rain possible\""), ("\"Moderate rain at times\""), ("\"Moderate or heavy rain shower\""), ("\"Light rain shower\"")  -> {
-                    if (Objects.equals(is_day, "1")) {
-                        resource = getClass().getResource("/images_weather/PatchyRain_Day.png");
-                    } else {
-                        resource = getClass().getResource("/images_weather/Moon&Rain.png");
+                    case ("\"Clear\"") -> {
+                        resource = getClass().getResource("/images_weather/Moon.png");
                     }
+                    case ("\"Partly cloudy\"") -> {
+                        if (Objects.equals(is_day, "1")) {
+                            resource = getClass().getResource("/images_weather/Sun&Clouds.png");
+                        } else {
+                            resource = getClass().getResource("/images_weather/Moon_Clouds.png");
+                        }
+                    }
+                    case ("\"Overcast\"") -> resource = getClass().getResource("/images_weather/Overcast.png");
+                    case ("\"Cloudy\"") -> resource = getClass().getResource("/images_weather/Clouds_Right.png");
+
+                    case ("\"Patchy rain possible\""), ("\"Moderate rain at times\""), ("\"Moderate or heavy rain shower\""), ("\"Light rain shower\"") -> {
+                        if (Objects.equals(is_day, "1")) {
+                            resource = getClass().getResource("/images_weather/PatchyRain_Day.png");
+                        } else {
+                            resource = getClass().getResource("/images_weather/Moon&Rain.png");
+                        }
+                    }
+                    case ("\"Patchy light drizzle\""), ("\"Light drizzle\"") ->  //|| ("\"Light drizzle\"")): {
+                            resource = getClass().getResource("/images_weather/Rain.png");
+
+                    case ("\"Patchy light rain with thunder\""), ("\"Thundery outbreaks possible\"") ->  //|| ("\"Light drizzle\"")): {
+                            resource = getClass().getResource("/images_weather/Clouds_Thunder_64.png");
+
+                    case ("\"Moderate or heavy rain with thunder\"") -> resource = getClass().getResource("/images_weather/Thunderstorms_64.png");
+
+                    default -> resource = null;
+                    // Mi manca , pioggia leggera da sostituire con quella che ho messo Rain_4 che sarà pioggia pesante?, temporale, neve
                 }
-                case ("\"Patchy light drizzle\""), ("\"Light drizzle\"")  ->  //|| ("\"Light drizzle\"")): {
-                        resource = getClass().getResource("/images_weather/Rain.png");
-
-                case ("\"Patchy light rain with thunder\""), ("\"Thundery outbreaks possible\"") ->  //|| ("\"Light drizzle\"")): {
-                        resource = getClass().getResource("/images_weather/Clouds_Thunder_64.png");
-
-                case ("\"Moderate or heavy rain with thunder\"") ->
-                        resource = getClass().getResource("/images_weather/Thunderstorms_64.png");
-
-                default -> resource = null;
-                // Mi manca , pioggia leggera da sostituire con quella che ho messo Rain_4 che sarà pioggia pesante?, temporale, neve
+                if (resource != null) {
+                    Image image = new Image(resource.toString());
+                    im.setImage(image);
+                }
+                i++;
             }
-            if (resource != null) {
-                Image image = new Image(resource.toString());
+        } else {
+            for (ImageView im : images) {
+                Image image = new Image("/images_weather/noWeather.png");
                 im.setImage(image);
             }
-            i++;
         }
     }
 
-    public void setAvailability(DailyAvailabilityBeanOut beanOut) {
+    public void setAvailability(DailyAvailabilityBeanResponse beanOut) {
         //Questo metodo controlla ora per ora se il campo è disponibile. Se non lo è ("1"), non verrà abilitata la possibilità
         // di prenotare il campo in quell'ora
         Map<String, String> dailyAvailability = beanOut.getDayAvailability();

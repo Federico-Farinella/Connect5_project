@@ -1,8 +1,8 @@
 package com.example.connect5_project.cli_controllers;
 
+import com.example.connect5_project.bean.LoginBeanRequest;
+import com.example.connect5_project.bean.LoginBeanResponse;
 import com.example.connect5_project.controllers.LoginController;
-import com.example.connect5_project.bean.LoginBeanIn;
-import com.example.connect5_project.bean.LoginBeanOut;
 import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
 
@@ -11,14 +11,14 @@ import java.util.Scanner;
 public class LoginCLI {
     Scanner console;
 
-    public void main() throws Exception { // riga 57 leggi altre cli devo gestire eccezioni al posto di responsedao
+    public void execute() throws Exception { // riga 57 leggi altre cli devo gestire eccezioni al posto di responsedao
         boolean loop;
         mainLoop:
         while (true) {
             String email;
             String password = "";
             System.out.println("Insert your email\n\nOr type back or exit.");
-            LoginBeanIn beanIn = new LoginBeanIn();
+            LoginBeanRequest beanIn = new LoginBeanRequest();
             loop = true;
             while (loop) {
                 email = console.nextLine();
@@ -60,7 +60,7 @@ public class LoginCLI {
             }
             beanIn.setPassword(password);
             LoginController loginController = new LoginController();
-            LoginBeanOut bean_out = new LoginBeanOut();
+            LoginBeanResponse bean_out = new LoginBeanResponse();
             //bean_out = loginController.loginVerify(beanIn);
             boolean isLogged;
             try {
@@ -78,7 +78,7 @@ public class LoginCLI {
             } else {
                 LoggedCLI controlLoggedCLI = new LoggedCLI();
                 controlLoggedCLI.setScanner(this.getConsole());
-                controlLoggedCLI.main();
+                controlLoggedCLI.execute();
             }
         }
     }

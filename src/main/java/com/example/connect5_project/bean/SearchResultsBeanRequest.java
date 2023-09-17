@@ -1,6 +1,6 @@
 package com.example.connect5_project.bean;
 
-public class SearchResultsBeanIn {
+public class SearchResultsBeanRequest {
     String searchMode;
     String name;
     String city;

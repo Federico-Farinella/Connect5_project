@@ -1,6 +1,8 @@
 package com.example.connect5_project.models;
 
-public class CentroSportivo {
+import java.io.Serializable;
+
+public class CentroSportivo implements Serializable {
     private String name;
     private String city;
     private String street;

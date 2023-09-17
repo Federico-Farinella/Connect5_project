@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class DailyAvailabilityBeanOut {
+public class DailyAvailabilityBeanResponse {
     // Potrei aggiungere un response con gestione del risultato nella GUI
     private Map<String, ArrayList<String>> weatherByHour;
     private FieldDailyAvailability dailyAvailability;
 
-    public DailyAvailabilityBeanOut(WeatherApiBeanIn weatherResponse) {
+    public DailyAvailabilityBeanResponse(WeatherApiBeanResponse weatherResponse) {
         this.weatherByHour = weatherResponse.getWeatherByHour();
     }
 
@@ -20,7 +20,7 @@ public class DailyAvailabilityBeanOut {
     }
 
 
-    public void setWeatherByHour(WeatherApiBeanIn weatherResponseBean) {  // Vediamo se qui HashMap va bene a Sonar
+    public void setWeatherByHour(WeatherApiBeanResponse weatherResponseBean) {  // Vediamo se qui HashMap va bene a Sonar
         this.weatherByHour = weatherResponseBean.getWeatherByHour();
     }
 

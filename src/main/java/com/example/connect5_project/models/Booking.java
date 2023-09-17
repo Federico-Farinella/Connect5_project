@@ -5,9 +5,10 @@ import com.example.connect5_project.models.bookings_decorator.ConcreteWithRefere
 import com.example.connect5_project.models.bookings_decorator.ConcreteWithTunics;
 import com.example.connect5_project.models.bookings_decorator.Type;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Booking {
+public class Booking implements Serializable {
     private CentroSportivo sportCenter;
     private User user;
     private final LocalDate date;

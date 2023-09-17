@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class LoggedCLI {
     Scanner console;
 
-    public void main() throws Exception {  // Anche qui (riga 25) gestire l eccezione che parte dalla sportcenterdao al posto del responsebean
+    public void execute() throws Exception {  // Anche qui (riga 25) gestire l eccezione che parte dalla sportcenterdao al posto del responsebean
         while (true) {
             CurrentUser user = CurrentUser.getInstance();
             System.out.println("----- Welcome " + user.getNickName() + " -----\n");

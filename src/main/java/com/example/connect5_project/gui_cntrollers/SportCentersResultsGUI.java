@@ -93,25 +93,21 @@ public class SportCentersResultsGUI {
         System.out.println(name.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChooseBookingData.fxml"));
         Parent root = loader.load();
-        ChooseBookingDataGUI choose_data_controller = loader.getController();
+        ChooseBookingDataGUI chooseDataControllerGUI = loader.getController();
         bookingController.setChoosenCenter(name.getText());
 
         /////////
         System.out.println("Qui di ritorno da setChoosenCenter: " + bookingController.getChoosenCenter().getName());
         System.out.println("City of choosen center: " + bookingController.getChoosenCenter().getCity());
-        choose_data_controller.setBookingController(bookingController);
-        DatePicker datePicker = choose_data_controller.getDatePicker();
+        chooseDataControllerGUI.setBookingController(bookingController);
+        DatePicker datePicker = chooseDataControllerGUI.getDatePicker();
         LocalDate min_date = LocalDate.now();
         LocalDate max_date = LocalDate.now().plusDays(BusinessConstants.DAY_TO_CHOOSE);
-        datePicker.setDayCellFactory(d ->
-                new DateCell() {
-                    @Override public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-                        setDisable(item.isAfter(max_date) || item.isBefore(min_date));
-                    }});
+        chooseDataControllerGUI.setDatesToChoose(min_date, max_date);
+
         navigate.pushPage(((Node) e.getSource()).getScene());
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()+1);
-        choose_data_controller.setNavigate(navigate);
+        chooseDataControllerGUI.setNavigate(navigate);
         Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
 

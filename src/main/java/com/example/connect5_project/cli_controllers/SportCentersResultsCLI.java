@@ -1,6 +1,5 @@
 package com.example.connect5_project.cli_controllers;
 
-import com.example.connect5_project.bean.SearchResultBeanOut;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.models.CentroSportivo;
 import com.example.connect5_project.utility.SharedStateSingletonCLI;
@@ -62,7 +61,7 @@ public class SportCentersResultsCLI {
             ChooseBookingDataCLI controlCli = new ChooseBookingDataCLI();
             controlCli.setScanner(console);
             controlCli.setController(controller);
-            controlCli.main();
+            controlCli.execute();
 
             //System.out.println("Center choosen: " + controller.getChoosenCenter().getName());  //NOSONAR
 

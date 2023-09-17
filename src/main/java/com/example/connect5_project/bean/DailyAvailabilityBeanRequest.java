@@ -2,7 +2,7 @@ package com.example.connect5_project.bean;
 
 import java.time.LocalDate;
 
-public class DailyAvailabilityBeanIn {
+public class DailyAvailabilityBeanRequest {
     private LocalDate dateToSearch;
 
     public LocalDate getDateToSearch() {

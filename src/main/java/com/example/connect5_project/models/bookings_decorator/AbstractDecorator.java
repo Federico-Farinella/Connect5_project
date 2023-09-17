@@ -1,6 +1,8 @@
 package com.example.connect5_project.models.bookings_decorator;
 
-public abstract class AbstractDecorator implements Type {
+import java.io.Serializable;
+
+public abstract class AbstractDecorator implements Type, Serializable {
     private final Type booking;
 
     public AbstractDecorator(Type booking) {

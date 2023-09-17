@@ -1,7 +1,7 @@
 package com.example.connect5_project.dao;
 
-import com.example.connect5_project.bean.LoginBeanIn;
-import com.example.connect5_project.bean.LoginBeanOut;
+import com.example.connect5_project.bean.LoginBeanRequest;
+import com.example.connect5_project.bean.LoginBeanResponse;
 import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
 import com.example.connect5_project.exceptions.login_exceptions.LoginException;
@@ -12,10 +12,10 @@ import java.sql.*;
 
 public class FootballPlayerDao {
 
-    public User checkUser(LoginBeanIn beanIn) throws LoginException, ConnectionDBException {
+    public User checkUser(LoginBeanRequest beanIn) throws LoginException, ConnectionDBException {
         String email = beanIn.getEmail();
         String password = beanIn.getPassword();
-        LoginBeanOut beanOut = new LoginBeanOut();
+        LoginBeanResponse beanOut = new LoginBeanResponse();
         JdbcConnect dbInstance;
         User user1 = null;
         try {

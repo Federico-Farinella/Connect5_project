@@ -23,6 +23,7 @@ public class WeatherService {
             String jsonData = resp.body().string();
             ObjectMapper mapper = new ObjectMapper();
             ObjectNode node = mapper.readValue(jsonData, ObjectNode.class);
+            JsonNode jsonNode = node.get("forecast").get("forecastday").get(days_number-1);
             return node.get("forecast").get("forecastday").get(days_number-1);
 
         } catch (IOException e) {

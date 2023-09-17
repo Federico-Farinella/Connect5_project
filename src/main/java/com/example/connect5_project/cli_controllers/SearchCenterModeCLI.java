@@ -1,7 +1,7 @@
 package com.example.connect5_project.cli_controllers;
 
-import com.example.connect5_project.bean.SearchResultBeanOut;
-import com.example.connect5_project.bean.SearchResultsBeanIn;
+import com.example.connect5_project.bean.SearchResultBeanResponse;
+import com.example.connect5_project.bean.SearchResultsBeanRequest;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.utility.SharedStateSingletonCLI;
@@ -13,8 +13,8 @@ public class SearchCenterModeCLI {
     private BookingController controller;
 
     public void search(String choose) throws Exception {  // devo togliere throws exception e gestirla (riga 77)
-        SearchResultsBeanIn beanIn = new SearchResultsBeanIn();
-        SearchResultBeanOut bean_out;
+        SearchResultsBeanRequest beanIn = new SearchResultsBeanRequest();
+        SearchResultBeanResponse responseBean;
         while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             String field = "";
             String searchType = "";
@@ -69,23 +69,23 @@ public class SearchCenterModeCLI {
             }
 
 
-            controller = new BookingController();
-            beanIn = new SearchResultsBeanIn();
+            this.setController(new BookingController());
+            beanIn = new SearchResultsBeanRequest();
             beanIn.setCli(searchType, field);
             try {
-                bean_out = controller.searchCenters(beanIn);
+                responseBean = this.getController().searchCenters(beanIn);
             } catch (MyException e) {
                 System.out.println("Error connecting data\nWe are working to resolve problem\nTry later.");
                 continue;
             }
 
-            if (bean_out.getListOfCenters().getSportCentersSearchResults().isEmpty()) {
+            if (responseBean.getListOfCenters().isEmpty()) {
                 System.out.println("Not found centers with your inputs.");  //NOSONAR
                 continue;
             }
 
             // Qui sotto sostituire con eccezione!!!!
-            /*else if (bean_out.getDaoResponse().equals("Error data")) {
+            /*else if (responseBean.getDaoResponse().equals("Error data")) {
                 System.out.println("Error connecting data\nWe are working to resolve problem\nTry later.");  //NOSONAR
                 continue;
             }*/
@@ -94,7 +94,7 @@ public class SearchCenterModeCLI {
 
             SportCentersResultsCLI resultsCli = new SportCentersResultsCLI();
             resultsCli.setScanner(console);
-            resultsCli.setCentersResults(bean_out.getListOfCenters().getSportCentersSearchResults());
+            resultsCli.setCentersResults(responseBean.getListOfCenters());
             resultsCli.setController(controller);
             resultsCli.main();
         }
@@ -102,7 +102,7 @@ public class SearchCenterModeCLI {
 
     }
 
-    public SearchResultsBeanIn searchByName() {
+    public SearchResultsBeanRequest searchByName() {
             System.out.println("Type center's name\n\nOr type back or exit.");  //NOSONAR
             String name = "";
             label:
@@ -120,12 +120,16 @@ public class SearchCenterModeCLI {
                         break label;
                 }
             }
-            SearchResultsBeanIn beanIn = new SearchResultsBeanIn();
+            SearchResultsBeanRequest beanIn = new SearchResultsBeanRequest();
             beanIn.setName(name);
             return beanIn;
     }
     public void setScanner(Scanner scanner) {
         this.console = scanner;
+    }
+
+    public BookingController getController() {
+        return controller;
     }
 
     public void setController(BookingController controller) {

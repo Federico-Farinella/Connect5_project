@@ -1,7 +1,7 @@
 package com.example.connect5_project.gui_cntrollers;
 
-import com.example.connect5_project.bean.DailyAvailabilityBeanIn;
-import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
+import com.example.connect5_project.bean.DailyAvailabilityBeanRequest;
+import com.example.connect5_project.bean.DailyAvailabilityBeanResponse;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.history.Navigate;
@@ -11,11 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class ChooseBookingDataGUI {
 
@@ -50,10 +52,10 @@ public class ChooseBookingDataGUI {
             labelNoDate.setVisible(true);
         } else {
             System.out.println("Qui appena spingo bottone dopo la data: " + bookingController.getChoosenCenter().getName());
-            DailyAvailabilityBeanIn beanIn = new DailyAvailabilityBeanIn();
+            DailyAvailabilityBeanRequest beanIn = new DailyAvailabilityBeanRequest();
             beanIn.setDateToSearch(datePicker.getValue());
 
-            DailyAvailabilityBeanOut beanOut;
+            DailyAvailabilityBeanResponse beanOut;
             try {
                 beanOut = bookingController.getDailyAvailability(beanIn);
             } catch (MyException exception) {
@@ -83,6 +85,16 @@ public class ChooseBookingDataGUI {
             labelNoDate.setText("");
             window.setScene(new Scene(root));
         }
+    }
+
+    public void setDatesToChoose(LocalDate minDate, LocalDate maxDate) {
+        this.getDatePicker().setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isAfter(maxDate) || item.isBefore(minDate));
+                    }});
+
     }
 
     public void back(ActionEvent e) throws IOException {

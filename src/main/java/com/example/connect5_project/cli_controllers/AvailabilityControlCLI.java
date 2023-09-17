@@ -1,6 +1,6 @@
 package com.example.connect5_project.cli_controllers;
 
-import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
+import com.example.connect5_project.bean.DailyAvailabilityBeanResponse;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.utility.SharedStateSingletonCLI;
 
@@ -13,7 +13,7 @@ public class AvailabilityControlCLI {
     private Scanner console;
     private BookingController bookingController;
 
-    public void main(DailyAvailabilityBeanOut beanOut) {
+    public void execute(DailyAvailabilityBeanResponse beanOut) {
         /*if (beanOut.getDailyAvailability() == null) {
             System.out.println("Insert a valid numeric input.\n\n");
         }*/

@@ -1,8 +1,7 @@
 package com.example.connect5_project.controllers;
 
 import com.example.connect5_project.dao.FootballPlayerDao;
-import com.example.connect5_project.bean.LoginBeanIn;
-import com.example.connect5_project.bean.LoginBeanOut;
+import com.example.connect5_project.bean.LoginBeanRequest;
 import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
@@ -13,7 +12,7 @@ import com.example.connect5_project.utility.CurrentUser;
 
 public class LoginController {
 
-    public boolean loginVerify(LoginBeanIn beanIn) throws MyException, LoginException {
+    public boolean loginVerify(LoginBeanRequest beanIn) throws MyException, LoginException {
         boolean ret;
 
         String email = beanIn.getEmail();

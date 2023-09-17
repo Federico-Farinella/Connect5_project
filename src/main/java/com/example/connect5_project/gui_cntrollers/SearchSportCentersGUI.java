@@ -1,7 +1,7 @@
 package com.example.connect5_project.gui_cntrollers;
 
-import com.example.connect5_project.bean.SearchResultBeanOut;
-import com.example.connect5_project.bean.SearchResultsBeanIn;
+import com.example.connect5_project.bean.SearchResultBeanResponse;
+import com.example.connect5_project.bean.SearchResultsBeanRequest;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.exceptions.SportCenterException;
 import com.example.connect5_project.history.Navigate;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class SearchSportCentersGUI {
     private Navigate navigate;
-    private BookingController booking_controller;
+    private BookingController bookingController;
     @FXML private TextField nomeCentroS;
     @FXML private TextField cittaCentroS;
     @FXML private TextField viaCentroS;
@@ -64,9 +64,9 @@ public class SearchSportCentersGUI {
     public void search(ActionEvent e) throws Exception {
         String name = nomeCentroS.getText();
         String city = cittaCentroS.getText();
-        SearchResultBeanOut searchResultsBeanOut;
-        booking_controller = new BookingController();
-        SearchResultsBeanIn bean_in = new SearchResultsBeanIn();
+        SearchResultBeanResponse searchResultsBeanOut;
+        bookingController = new BookingController();
+        SearchResultsBeanRequest bean_in = new SearchResultsBeanRequest();
         if (name.equals("") && city.equals("")) {
             errorLab.setText("All fields empty");
             errorLab.setVisible(true);
@@ -92,13 +92,13 @@ public class SearchSportCentersGUI {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/SportCentersResults.fxml"));
         Parent root = loader.load();
         SportCentersResultsGUI controlGui = loader.getController();
-        controlGui.setBookingController(this.booking_controller);
+        controlGui.setBookingController(this.getBookingController());
         controlGui.setNavigate(navigate);
 
         try {
-            searchResultsBeanOut = booking_controller.searchCenters(bean_in);
-            controlGui.setList(searchResultsBeanOut.getListOfCenters().getSportCentersSearchResults());
-            SportCenterElements centerElement = new SportCenterElements(searchResultsBeanOut.getListOfCenters().getSportCentersSearchResults(), controlGui);
+            searchResultsBeanOut = this.getBookingController().searchCenters(bean_in);
+            controlGui.setList(searchResultsBeanOut.getListOfCenters());
+            SportCenterElements centerElement = new SportCenterElements(searchResultsBeanOut.getListOfCenters(), controlGui);
             ArrayList<GridPane> array = centerElement.getPanels();
 
             // Qui aggiungo uno per uno allo ScrollPane gli elementi trovati messi nella searchResultsBeanOut.
@@ -123,7 +123,7 @@ public class SearchSportCentersGUI {
 
         }
 
-        System.out.println("Booking_controller: " + booking_controller);
+        System.out.println("Booking_controller: " + bookingController);
         Stage window =(Stage) btnSearch.getScene().getWindow();
         System.out.println("SearchSportCentersGui qui sono:3");
         window.setScene(new Scene(root));
@@ -131,4 +131,11 @@ public class SearchSportCentersGUI {
 
     }
 
+    public BookingController getBookingController() {
+        return bookingController;
+    }
+
+    public void setBookingController(BookingController bookingController) {
+        this.bookingController = bookingController;
+    }
 }

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 
-public class WeatherApiBeanOut {
+public class WeatherApiBeanRequest {
     private int gapDay;
     private String city;
 

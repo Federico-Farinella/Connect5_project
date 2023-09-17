@@ -1,6 +1,6 @@
 package com.example.connect5_project.bean;
 
-public class LoginBeanIn {
+public class LoginBeanRequest {
     private String email;
     private String password;
 

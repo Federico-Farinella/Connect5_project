@@ -1,7 +1,7 @@
 package com.example.connect5_project.cli_controllers;
 
-import com.example.connect5_project.bean.DailyAvailabilityBeanIn;
-import com.example.connect5_project.bean.DailyAvailabilityBeanOut;
+import com.example.connect5_project.bean.DailyAvailabilityBeanRequest;
+import com.example.connect5_project.bean.DailyAvailabilityBeanResponse;
 import com.example.connect5_project.controllers.BookingController;
 import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.DailyAvailabilityException;
@@ -16,7 +16,7 @@ public class ChooseBookingDataCLI {
     private Scanner console;
     private BookingController controller;
 
-    public void main() {
+    public void execute() {
         while(!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             System.out.println("Center choosen: " + controller.getChoosenCenter().getName() + "\n" +
                     "Choose a date from those proposed.\n");
@@ -55,10 +55,10 @@ public class ChooseBookingDataCLI {
              }
             if ((chooseInt < daysAfter+1 && chooseInt >= 1)) {
                 //this.getController().setChoosenDate(dates.get(choose));
-                DailyAvailabilityBeanIn beanRequest = new DailyAvailabilityBeanIn();
+                DailyAvailabilityBeanRequest beanRequest = new DailyAvailabilityBeanRequest();
                 beanRequest.setDateToSearch(dates.get(choose));
                 //DailyAvailabilityBeanOut beanResponse = this.getController().getDailyWeather(beanRequest);
-                DailyAvailabilityBeanOut beanResponse;
+                DailyAvailabilityBeanResponse beanResponse;
                 try {
                     beanResponse = this.getController().getDailyAvailability(beanRequest);
                 } catch (ConnectionDBException e0) {
@@ -74,7 +74,7 @@ public class ChooseBookingDataCLI {
                 AvailabilityControlCLI availabilityControlCLI = new AvailabilityControlCLI();
                 availabilityControlCLI.setBookingController(this.getController());
                 availabilityControlCLI.setConsole(this.getScanner());
-                availabilityControlCLI.main(beanResponse);
+                availabilityControlCLI.execute(beanResponse);
 
             } else {
                 System.out.println("Choose one of the options shown.\n\n");

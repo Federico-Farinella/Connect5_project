@@ -85,6 +85,7 @@ public class SetBookingOptionalGUI {
             controlGui.setImageResponse(false);
             controlGui.setLabResponse(false);
         } catch (MyException exception2) {
+            System.out.println("Sono nella MyException SetBookingOptionalGUI confirmBooking");
             controlGui.setImageResponse(false);
             controlGui.setLabResponse(false);
         } finally {

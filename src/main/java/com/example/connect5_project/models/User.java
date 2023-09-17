@@ -1,8 +1,9 @@
 package com.example.connect5_project.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String email;

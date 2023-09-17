@@ -1,6 +1,8 @@
 package com.example.connect5_project.models.bookings_decorator;
 
-public class ConcreteBasic implements Type {
+import java.io.Serializable;
+
+public class ConcreteBasic implements Type, Serializable {
     private final float price;
     private final String description;
 

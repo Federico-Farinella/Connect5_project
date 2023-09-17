@@ -2,18 +2,20 @@ package com.example.connect5_project.controllers;
 
 import com.example.connect5_project.bean.*;
 import com.example.connect5_project.boundary.WeatherBoundary;
-import com.example.connect5_project.dao.BookingDao;
-import com.example.connect5_project.dao.DailyAvailabilityDao;
-import com.example.connect5_project.dao.SportCenterDAO;
+import com.example.connect5_project.dao.*;
 import com.example.connect5_project.exceptions.*;
 import com.example.connect5_project.models.*;
 import com.example.connect5_project.utility.CurrentUser;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Properties;
 
 public class BookingController {
-    SportCentersSearchResults centersResultsList;
-    //private List<CentroSportivo> centersResultsList;
+    private SportCentersSearchResults centersResultsList;
     private CentroSportivo choosenCenter;
     private LocalDate choosenDate;
     private String choosenHour;
@@ -21,26 +23,26 @@ public class BookingController {
 
 
 
-    public SearchResultBeanOut searchCenters(SearchResultsBeanIn bean_in) throws MyException {
+    public SearchResultBeanResponse searchCenters(SearchResultsBeanRequest bean_in) throws MyException {
         String search_mode = bean_in.getSearchMode();
-        SearchResultBeanOut bean_to = new SearchResultBeanOut();
+        SearchResultBeanResponse beanResponse = new SearchResultBeanResponse();
         SportCenterDAO cDao = new SportCenterDAO();
         try {
             switch (search_mode) {
                 case ("Name") -> {
-                    bean_to = cDao.dbSearchCentersByName(bean_in.getName());
+                    beanResponse = cDao.dbSearchCentersByName(bean_in.getName());
                 }
                 case ("City") -> {
 
-                    bean_to = cDao.dbSearchCentersByCity(bean_in.getCity());
+                    beanResponse = cDao.dbSearchCentersByCity(bean_in.getCity());
                 }
                 case ("Name and city") -> {
-                    bean_to = cDao.dbSearchCenters(bean_in.getName(), bean_in.getCity());
+                    beanResponse = cDao.dbSearchCenters(bean_in.getName(), bean_in.getCity());
                 }
             }
-            this.setCentersResultsList(bean_to.getListOfCenters());
+            this.setCentersResultsList(beanResponse.getSearchResults());
 
-            return bean_to;
+            return beanResponse;
 
         } catch (SportCenterException e) {
             if (e.getMessage().equals("Not match"))
@@ -50,44 +52,20 @@ public class BookingController {
         }
     }
 
-    public DailyAvailabilityBeanOut getDailyWeather(DailyAvailabilityBeanIn beanIn) {
+
+    public DailyAvailabilityBeanResponse getDailyAvailability(DailyAvailabilityBeanRequest beanIn) throws MyException {
         this.setChoosenDate(beanIn.getDateToSearch());
-        //choosenDate = beanIn.getDateToSearch();
-        WeatherApiBeanOut weatherRequestBean = new WeatherApiBeanOut();
+
+        WeatherApiBeanRequest weatherRequestBean = new WeatherApiBeanRequest();
         weatherRequestBean.setGapDay(beanIn.getDateToSearch());
         weatherRequestBean.setCity(getChoosenCenter().getCity());
         WeatherBoundary weatherBoundary = new WeatherBoundary();
-        WeatherApiBeanIn weatherResponseBean; //  = new WeatherApiBeanIn();
+        WeatherApiBeanResponse weatherResponseBean;
         weatherResponseBean = weatherBoundary.weitherCity(weatherRequestBean);
 
-        //DailiAvailabilityDao dao = new DailiAvailabilityDao();
-        //FieldDailyAvailability dailyAvailability = dao.dbSearchAvailability(choosenCenter, beanIn.getDateToSearch());
 
+        DailyAvailabilityBeanResponse bean_out = new DailyAvailabilityBeanResponse(weatherResponseBean);
 
-        System.out.println("Booking Controller analyze weatherResponseBean returned: " + weatherResponseBean.getWeatherByHour());
-        DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut(weatherResponseBean);
-        /*DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut();
-        bean_out.setWeatherByHour(weatherResponseBean);*/
-        System.out.println("BookingController: " + bean_out.getWeatherByHour().get(Integer.toString(15)));
-        return bean_out;
-    }
-
-    public DailyAvailabilityBeanOut getDailyAvailability(DailyAvailabilityBeanIn beanIn) throws MyException {
-        this.setChoosenDate(beanIn.getDateToSearch());
-        //choosenDate = beanIn.getDateToSearch();
-        WeatherApiBeanOut weatherRequestBean = new WeatherApiBeanOut();
-        weatherRequestBean.setGapDay(beanIn.getDateToSearch());
-        weatherRequestBean.setCity(getChoosenCenter().getCity());
-        WeatherBoundary weatherBoundary = new WeatherBoundary();
-        WeatherApiBeanIn weatherResponseBean; //  = new WeatherApiBeanIn();
-        weatherResponseBean = weatherBoundary.weitherCity(weatherRequestBean);
-
-        //DailiAvailabilityDao dao = new DailiAvailabilityDao();
-        //FieldDailyAvailability dailyAvailability = dao.dbSearchAvailability(choosenCenter, beanIn.getDateToSearch());
-
-        DailyAvailabilityBeanOut bean_out = new DailyAvailabilityBeanOut(weatherResponseBean);
-
-        ////////////////
         DailyAvailabilityDao dao = new DailyAvailabilityDao();
         this.setChoosenDate(beanIn.getDateToSearch());
         FieldDailyAvailability dailyAvailability;
@@ -102,45 +80,41 @@ public class BookingController {
 
         bean_out.setDailyAvailability(dailyAvailability);
         return bean_out;
-        //return dailyAvailability;
     }
 
     public boolean confirmBooking(boolean withReferee, boolean withTunics) throws MyException {
         User user = CurrentUser.getInstance().getUser();
-        Booking booking = new Booking(choosenCenter, user, choosenDate, choosenHour);
+        Booking booking = new Booking(this.getChoosenCenter(), user, this.getChoosenDate(), this.getChoosenHour());
         if (withReferee)
             booking.setWithReferee();
 
         if (withTunics)
             booking.setWithTunics();
-
-        BookingDao dao = new BookingDao();
-        /*String ret = dao.saveBooking(booking);
-        if (ret.equals("Booking registered"))
-            dao.updateAvailability(booking);
-        System.out.println("Booking Controller: return della DaoBooking: " + ret);
-        return ret.equals("Booking registered");*/
+        boolean isFileSystem;
+        try {
+            isFileSystem = this.isFileSystem();
+        } catch (MyException e) {
+            System.out.println("Sto lanciando la MyException1 da Booking Controller confirmBooking");
+            throw new MyException("System error.");
+        }
+        BookingDao dao;
+        if (!isFileSystem) {
+            dao = new BookingDaoDb();
+        } else {
+            dao = new BookingDaoFs();
+        }
         boolean ret1;
         try {
-            ret1 = dao.saveBooking1(booking);
+            ret1 = dao.saveBooking(booking);
         } catch (TakeBookingException e0) {
-            System.out.println("Error accessing data. Please try later.");
             throw new TakeBookingException("Error accessing data. Please try later.");
         } catch (ConnectionDBException e1) {
             throw new ConnectionDBException("Error connecting database. Please try later.");
+        } catch (MyException e2) {
+            System.out.println("Sto lanciando la MyException2 da Booking Controller confirmBooking");
+            throw new MyException("System error.");
         }
-        System.out.println("Booking result: " + ret1);
         return ret1;
-
-        /*try {
-            BookingDao dao = new BookingDao();
-            String ret = dao.saveBooking(booking);
-            System.out.println("Booking Controller: return della DaoBooking: " + ret);
-            return ret.equals("Booking registered");
-        } catch ()*/
-        // Continua da quiiiiii!!! Sostituisci codice sopra e fai in modo che se non viene correttamente preso
-        // il booking dalla dao allora la dao della disponibilità dei campi non dovrà modificare il valore del campo di quella riga
-        // della disponibilità del centro sportivo. Dai un occhiata anche alla SportCenterDao metodo dbSearchCenterByCity (2o try)
 
     }
 
@@ -180,5 +154,20 @@ public class BookingController {
 
     public void setChoosenHour(String choosenHour) {
         this.choosenHour = choosenHour;
+    }
+
+    public boolean isFileSystem() throws MyException {
+        boolean persistenceIsOnFS;
+        try {
+            FileInputStream propsInput = new FileInputStream("src/main/resources/config.properties");
+            Properties prop = new Properties();
+            prop.load(propsInput);
+            String property = prop.getProperty("daoIsOnFileSystem");
+            persistenceIsOnFS = (property.equals("true"));
+            propsInput.close();
+        } catch (IOException e0) {
+            throw new MyException("System error.");
+        }
+        return persistenceIsOnFS;
     }
 }

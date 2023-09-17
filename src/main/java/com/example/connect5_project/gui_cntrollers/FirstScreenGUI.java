@@ -28,15 +28,13 @@ public class FirstScreenGUI {
         contr.setNavigate(navigate);
 
         window =(Stage) btnLog.getScene().getWindow();
-        System.out.println(btnLog);
         window.setScene(new Scene(root));
-        System.out.println("you clicked me");
-
     }
     public void createAccount(ActionEvent e) throws Exception {
         Stage window;
         History.pagine.add(((Node) e.getSource()).getScene());
-        Parent root = FXMLLoader.load(getClass().getResource("/CreateAccount.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAccount.fxml"));
+        Parent root = loader.load();
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
@@ -44,7 +42,8 @@ public class FirstScreenGUI {
     public void centersOwner(ActionEvent e) throws Exception {
         Stage window;
         History.pagine.add(((Node) e.getSource()).getScene());
-        Parent root = FXMLLoader.load(getClass().getResource("/CentersOwner.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CentersOwner.fxml"));
+        Parent root = loader.load();
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }

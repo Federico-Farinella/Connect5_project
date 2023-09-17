@@ -2,6 +2,7 @@ package com.example.connect5_project;
 
 import com.example.connect5_project.cli_controllers.Connect5CLI;
 import com.example.connect5_project.models.User;
+import com.example.connect5_project.utility.BusinessConstants;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +31,8 @@ public class FirstScreen extends Application {
     }
 
 
-    public static void main(String[] args) throws Exception {  // anche qui riga 35 gestire eccezione
+        public static void main(String[] args) throws Exception {
+            BusinessConstants.initialize();
         if (args.length == 0) {
             launch();
         } else {

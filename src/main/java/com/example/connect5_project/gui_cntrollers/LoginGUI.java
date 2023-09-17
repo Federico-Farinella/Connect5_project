@@ -1,7 +1,7 @@
 package com.example.connect5_project.gui_cntrollers;
 
+import com.example.connect5_project.bean.LoginBeanRequest;
 import com.example.connect5_project.controllers.LoginController;
-import com.example.connect5_project.bean.LoginBeanIn;
 import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
 import com.example.connect5_project.history.Navigate;
@@ -61,11 +61,8 @@ public class LoginGUI {
 
     public void loginVerify(ActionEvent e) throws Exception {
         errorLabel.setVisible(false);
-        System.out.println(insertEmailLog);
         String email = insertEmailLog.getText();
         String password = insertPassLog.getText();
-        System.out.println(email);
-        System.out.println(password);
 
         if (email.equals("") || password.equals("")) {
             errorLabel.setText("Fields cannot be empty");
@@ -73,7 +70,7 @@ public class LoginGUI {
             return;
         }
 
-        LoginBeanIn beanIn = new LoginBeanIn();
+        LoginBeanRequest beanIn = new LoginBeanRequest();
         if (!beanIn.setEmail(email)) {
             errorLabel.setText("Invalid email.  Please insert a valid email");
             errorLabel.setVisible(true);
@@ -118,10 +115,6 @@ public class LoginGUI {
             window = (Stage) ((Node) e.getSource()).getScene().getWindow();
             window.setScene(new Scene(root));
         }
-
-        //errorLabel.setVisible(true);
-
-        //LoginBeanOut ret = loginController.loginVerify(beanIn);
 
     }
 }
