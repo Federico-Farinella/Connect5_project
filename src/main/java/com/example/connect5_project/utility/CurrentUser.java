@@ -1,10 +1,10 @@
 package com.example.connect5_project.utility;
 
-import com.example.connect5_project.models.User;
+import com.example.connect5_project.take_booking.model.bookingsType_decorator.FootballPlayer;
 
 public class CurrentUser {
     private static CurrentUser currentUser;
-    private User user;
+    private FootballPlayer footballPlayer;
     private String firstName;
     private String lastName;
     private String nickName;
@@ -19,12 +19,12 @@ public class CurrentUser {
         return currentUser;
     }
 
-    public User getUser() {
-        return user;
+    public FootballPlayer getUser() {
+        return footballPlayer;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(FootballPlayer footballPlayer) {
+        this.footballPlayer = footballPlayer;
     }
 
     public String getFirstName() {

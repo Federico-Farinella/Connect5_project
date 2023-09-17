@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" prefHeight="570.0" prefWidth="320.0" style="-fx-background-color: GREEN;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.gui_cntrollers.LoggedGUI">
+<AnchorPane maxHeight="-Infinity" prefHeight="570.0" prefWidth="320.0" style="-fx-background-color: GREEN;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect5_project.take_booking.view.GUI.LoggedGUI">
    <children>
       <ImageView fitHeight="469.0" fitWidth="320.0" layoutY="102.0">
          <image>

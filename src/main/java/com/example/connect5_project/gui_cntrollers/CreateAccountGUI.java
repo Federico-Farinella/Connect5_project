@@ -1,7 +1,6 @@
 package com.example.connect5_project.gui_cntrollers;
 
 import com.example.connect5_project.bean.CreateAccountBean;
-import com.example.connect5_project.history.History;
 import com.example.connect5_project.history.Navigate;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +43,7 @@ public class CreateAccountGUI {  // Devo sostituire il ritorno di confirmCreate 
     public void home(MouseEvent e) throws Exception {
         Stage window;
         navigate.getPages().clear();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Connect5.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main.fxml"));
         Parent root = loader.load();
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
