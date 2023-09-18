@@ -8,10 +8,6 @@ import java.util.Map;
 public class FieldDailyAvailability {
     private Map<String, String> dailyAvailability;
 
-     public FieldDailyAvailability() {
-
-     }
-
     public Map<String, String> getDailyAvailability() {
         return dailyAvailability;
     }
