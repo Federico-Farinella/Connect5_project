@@ -8,28 +8,19 @@ import java.util.Map;
 public class FieldDailyAvailability {
     private Map<String, String> dailyAvailability;
 
-     private String response;
-
      public FieldDailyAvailability() {
 
      }
 
-     public FieldDailyAvailability(ResultSet res, String response) {
+     public FieldDailyAvailability(ResultSet res) {
          this.setDailyAvailability(res);
-         this.response = response;
      }
 
     public Map<String, String> getDailyAvailability() {
         return dailyAvailability;
     }
 
-    public String getResponse() {
-        return response;
-    }
 
-    public void setResponse(String response) {
-        this.response = response;
-    }
 
     public void setDailyAvailability(ResultSet rs) {
         Map<String, String> availability = new HashMap<>();
@@ -63,7 +54,7 @@ public class FieldDailyAvailability {
                 availability.put("22", "1");
             }
         } catch (SQLException exception) {
-            this.setResponse("Error reading data");
+
         }
         this.dailyAvailability = availability;
     }

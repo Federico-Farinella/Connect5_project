@@ -10,7 +10,9 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 public class TypeTest {
+    //Test sul funzionamento aspettato del pattern Decorator
     @Test
     public void setBookingWithRedereeTest() {
         SportCenter center = new SportCenter("Sport City", "Rome", "via Campus Biomedico", "sportcity@gmail.com",

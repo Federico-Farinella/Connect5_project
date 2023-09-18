@@ -27,10 +27,8 @@ public class DailyAvailabilityDao {
             String sqlQuery = "SELECT * FROM daily_availability WHERE Sport_Center= '" + center.getName() + "' AND Date= '" + date + "';";
             ResultSet resultSet = stmt.executeQuery(sqlQuery);
             if (!resultSet.first()) {
-                dailyAvailability.setResponse("Not match");
                 throw new DailyAvailabilityException("No daily availability");
             } else {
-                dailyAvailability.setResponse("Match");
                 dailyAvailability.setDailyAvailability(resultSet);
             }
             dailyAvailability.setDailyAvailability(resultSet);
