@@ -20,6 +20,7 @@ import java.util.List;
 
 public class SportCenterElementsGUI {
     private static final String ELEMENT_GRAPHIC = "-fx-background-color :  rgb(0,162,11); -fx-background-radius:10";
+    private static final String BUTTON_GRAPHIC = "-fx-background-color: black; -fx-background-radius:10";
     private List<GridPane> panels;
 
     public List<GridPane> getPanels() {
@@ -58,7 +59,7 @@ public class SportCenterElementsGUI {
             Button go = new Button("Go");
             go.setPrefWidth(70);
             go.setFont(Font.font("Sarpanch", 13));
-            go.setStyle("-fx-background-color: black;" + "-fx-background-radius:10");
+            go.setStyle(BUTTON_GRAPHIC);
             go.setTextFill(Paint.valueOf("white"));
             go.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
