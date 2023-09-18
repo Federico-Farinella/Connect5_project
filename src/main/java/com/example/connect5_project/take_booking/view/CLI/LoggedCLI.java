@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class LoggedCLI {
     Scanner console;
 
-    public void execute() throws Exception {  // Anche qui (riga 25) gestire l eccezione che parte dalla sportcenterdao al posto del responsebean
+    public void run() throws Exception {  // Anche qui (riga 25) gestire l eccezione che parte dalla sportcenterdao al posto del responsebean
         while (true) {
             FootballPlayer user = CurrentUser.getInstance().getUser();
             System.out.println("----- Welcome " + user.getNickName() + " -----\n");
@@ -33,7 +33,7 @@ public class LoggedCLI {
                     searchCenterCli.setScanner(console);
                     System.out.println("Hai scelto di eseguire il login");  //NOSONAR
                     //console.close();
-                    searchCenterCli.main();
+                    searchCenterCli.run();
                     //login.main();
                 }
                 //Devo inserire case 2 manage bookings

@@ -7,7 +7,7 @@ public class BookingResponseCLI {
     private boolean response;
     private BookingController bookingController;
 
-    public void execute() {
+    public void run() {
             if (this.isResponse()) {
                 System.out.println("Congratulations! Your booking has been successfull. You will be redirected to the home page in 5 seconds.\n");
             } else {

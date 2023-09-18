@@ -16,7 +16,7 @@ public class ChooseBookingDataCLI {
     private Scanner console;
     private BookingController controller;
 
-    public void execute() {
+    public void run() {
         while(!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             System.out.println("Center choosen: " + controller.getChoosenCenter().getName() + "\n" +
                     "Choose a date from those proposed.\n");
@@ -74,7 +74,7 @@ public class ChooseBookingDataCLI {
                 AvailabilityControlCLI availabilityControlCLI = new AvailabilityControlCLI();
                 availabilityControlCLI.setBookingController(this.getController());
                 availabilityControlCLI.setConsole(this.getScanner());
-                availabilityControlCLI.execute(beanResponse);
+                availabilityControlCLI.run(beanResponse);
 
             } else {
                 System.out.println("Choose one of the options shown.\n\n");

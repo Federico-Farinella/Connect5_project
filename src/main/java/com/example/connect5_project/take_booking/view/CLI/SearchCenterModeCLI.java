@@ -96,7 +96,7 @@ public class SearchCenterModeCLI {
             resultsCli.setScanner(console);
             resultsCli.setCentersResults(responseBean.getListOfCenters());
             resultsCli.setController(controller);
-            resultsCli.main();
+            resultsCli.run();
         }
 
 

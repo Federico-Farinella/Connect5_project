@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class SearchSportCentersCLI {
     private Scanner console;
 
-    public void main() throws Exception {
+    public void run() throws Exception {
         while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             System.out.println("1- Search by center's name\n2- Search by city\n\n\tOr type back or exit.");  //NOSONAR
             String choose = "";

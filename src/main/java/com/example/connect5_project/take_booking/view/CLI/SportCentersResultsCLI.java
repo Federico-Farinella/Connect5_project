@@ -15,7 +15,7 @@ public class SportCentersResultsCLI {
     private List<SportCenter> centerResults;
     private Map<String, SportCenter> centersResults;
 
-    public void main() {
+    public void run() {
         while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             int i;
             String str = "";
@@ -61,7 +61,7 @@ public class SportCentersResultsCLI {
             ChooseBookingDataCLI controlCli = new ChooseBookingDataCLI();
             controlCli.setScanner(console);
             controlCli.setController(controller);
-            controlCli.execute();
+            controlCli.run();
 
             //System.out.println("Center choosen: " + controller.getChoosenCenter().getName());  //NOSONAR
 

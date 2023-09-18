@@ -14,7 +14,6 @@ public class FootballPlayerDao {
     public FootballPlayer checkUser(LoginBeanRequest beanIn) throws LoginException, ConnectionDBException {
         String email = beanIn.getEmail();
         String password = beanIn.getPassword();
-        LoginBeanResponse beanOut = new LoginBeanResponse();
         JdbcConnect dbInstance;
         FootballPlayer footballPlayer1 = null;
         try {

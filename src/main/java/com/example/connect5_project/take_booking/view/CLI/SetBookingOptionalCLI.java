@@ -95,7 +95,7 @@ public class SetBookingOptionalCLI {
                 isConfirmed = false;
             }
             bookingResponseControlCLI.setResponse(isConfirmed);
-            bookingResponseControlCLI.execute();
+            bookingResponseControlCLI.run();
         }
     }
 

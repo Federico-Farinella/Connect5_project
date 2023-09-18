@@ -33,7 +33,7 @@ public class Start extends Application {
             launch();
         } else {
             FirstScreenCLI firstScreen = new FirstScreenCLI();
-            firstScreen.main();
+            firstScreen.run();
         }
     }
 }

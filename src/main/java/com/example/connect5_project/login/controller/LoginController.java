@@ -14,27 +14,20 @@ public class LoginController {
 
     public boolean loginVerify(LoginBeanRequest beanIn) throws MyException, LoginException {
         boolean ret;
-
-        String email = beanIn.getEmail();
-        String password = beanIn.getPassword();
-        LoggingUser user = new LoggingUser();
-        user.setEmail(email);
-        user.setPassword(password);
         FootballPlayerDao dao = new FootballPlayerDao();
 
         FootballPlayer footballPlayer1;
         try {
-            //user1 = dao.checkUser(user);
             footballPlayer1 = dao.checkUser(beanIn);
-
-            ret = this.updateSession(footballPlayer1);
-
-
         } catch (LoginException e) {
             throw new EmailNotRegisteredException("Email not registered");
-            //ret = false;
         } catch (ConnectionDBException e) {
             throw new ConnectionDBException("Error connecting database");
+        }
+        if (footballPlayer1 == null) {
+            ret = false;
+        } else {
+            ret = this.updateSession(footballPlayer1);
         }
         return ret;
 
@@ -44,10 +37,6 @@ public class LoginController {
     public boolean updateSession(FootballPlayer footballPlayer) {
         try {
             CurrentUser.getInstance().setUser(footballPlayer);
-            //CurrentUser.getInstance().setFirstName(footballPlayer.getFirstName());
-            //CurrentUser.getInstance().setLastName(footballPlayer.getLastName());
-            //CurrentUser.getInstance().setEmail(footballPlayer.getEmail());
-            //CurrentUser.getInstance().setNickName(footballPlayer.getNickName());
         } catch (Exception ex) {
             return false;
         }

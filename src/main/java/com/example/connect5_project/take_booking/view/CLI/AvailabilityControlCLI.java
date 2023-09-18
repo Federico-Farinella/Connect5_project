@@ -13,7 +13,7 @@ public class AvailabilityControlCLI {
     private Scanner console;
     private BookingController bookingController;
 
-    public void execute(DailyAvailabilityBeanResponse beanOut) {
+    public void run(DailyAvailabilityBeanResponse beanOut) {
         /*if (beanOut.getDailyAvailability() == null) {
             System.out.println("Insert a valid numeric input.\n\n");
         }*/

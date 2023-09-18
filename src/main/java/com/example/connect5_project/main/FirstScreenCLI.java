@@ -5,7 +5,7 @@ import com.example.connect5_project.login.view.LoginCLI;
 import java.util.Scanner;
 
 public class FirstScreenCLI {
-    public void main() throws Exception { //anche qui riga 28 gestire eccezione sportcenterdao invece di responsebean
+    public void run() throws Exception { //anche qui riga 28 gestire eccezione sportcenterdao invece di responsebean
         while (true) {
             System.out.println("Welcome in Connect5 family!!!\nAre you signed in?\n" +
                     "1- Login\n2-Create account\n\nType the respective number and press enter");  //NOSONAR
@@ -24,7 +24,7 @@ public class FirstScreenCLI {
                     login.setScanner(console);
                     System.out.println("Hai scelto di eseguire il login");  //NOSONAR
                     //console.close();
-                    login.execute();
+                    login.run();
                     //login.main();
                 }
                 case ("exit") -> {
@@ -34,3 +34,4 @@ public class FirstScreenCLI {
         }
     }
 }
+
