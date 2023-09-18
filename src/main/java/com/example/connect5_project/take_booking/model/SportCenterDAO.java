@@ -15,6 +15,12 @@ import java.util.List;
 import java.util.Properties;
 
 public class SportCenterDAO {
+    private static final String name = "Name";
+    private static final String city = "City";
+    private static final String addr = "Address";
+    private static final String ownerEmail = "OwnerEmail";
+    private static final String img = "Image";
+    private static final String fldPrice = "BasePrice";
 
     public SearchResultBeanResponse dbSearchCenters(String nameToSearch, String cityToSearch) throws SportCenterException {  //Cambiato return da ResultSet a SearchResultBean
         SearchResultBeanResponse responseBean = new SearchResultBeanResponse();
@@ -40,17 +46,11 @@ public class SportCenterDAO {
                 String image;
                 float fieldPrice;
                 do {
-                    String name = "Name";
                     centerName = rs.getString(name);
-                    String city = "City";
                     centerCity = rs.getString(city);
-                    String addr = "Address";
                     address = rs.getString(addr);
-                    String ownerEmail = "OwnerEmail";
                     owner = rs.getString(ownerEmail);
-                    String img = "Image";
                     image = rs.getString(img);
-                    String fldPrice = "BasePrice";
                     fieldPrice = rs.getFloat(fldPrice);
                     center = new SportCenter(centerName, centerCity, address, owner, image, fieldPrice);
                     searchResults.add(center);
@@ -102,17 +102,11 @@ public class SportCenterDAO {
                 String image;
                 float fieldPrice;
                 do {
-                    String name = "Name";
                     centerName = rs.getString(name);
-                    String city = "City";
                     centerCity = rs.getString(city);
-                    String addr = "Address";
                     address = rs.getString(addr);
-                    String ownerEmail = "OwnerEmail";
                     owner = rs.getString(ownerEmail);
-                    String img = "Image";
                     image = rs.getString(img);
-                    String fldPrice = "BasePrice";
                     fieldPrice = rs.getFloat(fldPrice);
                     center = new SportCenter(centerName, centerCity, address, owner, image, fieldPrice);
                     searchResults.add(center);
@@ -151,17 +145,11 @@ public class SportCenterDAO {
                 String image;
                 float fieldPrice;
                 do {
-                    String name = "Name";
                     centerName = rs.getString(name);
-                    String city = "City";
                     centerCity = rs.getString(city);
-                    String addr = "Address";
                     address = rs.getString(addr);
-                    String ownerEmail = "OwnerEmail";
                     owner = rs.getString(ownerEmail);
-                    String img = "Image";
                     image = rs.getString(img);
-                    String fldPrice = "BasePrice";
                     fieldPrice = rs.getFloat(fldPrice);
                     center = new SportCenter(centerName, centerCity, address, owner, image, fieldPrice);
                     searchResults.add(center);
