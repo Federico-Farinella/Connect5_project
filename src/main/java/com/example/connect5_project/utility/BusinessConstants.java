@@ -9,7 +9,7 @@ public class BusinessConstants {
 
     // Le date selezionabili dall' utente per una prenotazione saranno comprese tra la data odierna
     // e i  DAY_TO_CHOOSE prossimi giorni
-    public static int dayToChoose;
+    private static int dayToChoose;
 
     private BusinessConstants() {
 
@@ -26,5 +26,8 @@ public class BusinessConstants {
         }
     }
 
+    public static int getDayToChoose() {
+        return dayToChoose;
+    }
 
 }

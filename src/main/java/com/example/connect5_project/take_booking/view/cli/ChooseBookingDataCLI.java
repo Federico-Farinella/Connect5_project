@@ -21,7 +21,7 @@ public class ChooseBookingDataCLI {
             System.out.println("Center choosen: " + controller.getChoosenCenter().getName() + "\n" +
                     "Choose a date from those proposed.\n");
 
-            int daysAfter = BusinessConstants.dayToChoose;
+            int daysAfter = BusinessConstants.getDayToChoose();
             int i;
             Map<String, LocalDate> dates = new HashMap<>();
             List<LocalDate> date = new ArrayList<>();

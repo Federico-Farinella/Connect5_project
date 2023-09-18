@@ -1,4 +1,4 @@
-package com.example.connect5_project.take_booking.model.bookingsTypeDecorator;
+package com.example.connect5_project.take_booking.model.bookings_type_decorator;
 
 public class BookingWithReferee extends AbstractDecorator {
 

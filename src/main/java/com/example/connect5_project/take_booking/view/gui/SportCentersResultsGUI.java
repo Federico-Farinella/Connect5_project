@@ -99,7 +99,7 @@ public class SportCentersResultsGUI {
         System.out.println("City of choosen center: " + bookingController.getChoosenCenter().getCity());
         chooseDataControllerGUI.setBookingController(bookingController);
         LocalDate minDate = LocalDate.now();
-        LocalDate maxDate = LocalDate.now().plusDays(BusinessConstants.dayToChoose);
+        LocalDate maxDate = LocalDate.now().plusDays(BusinessConstants.getDayToChoose());
         chooseDataControllerGUI.setDatesToChoose(minDate, maxDate);
 
         navigate.pushPage(((Node) e.getSource()).getScene());
