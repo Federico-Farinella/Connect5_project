@@ -12,10 +12,6 @@ public class FieldDailyAvailability {
 
      }
 
-     public FieldDailyAvailability(ResultSet res) {
-         this.setDailyAvailability(res);
-     }
-
     public Map<String, String> getDailyAvailability() {
         return dailyAvailability;
     }
@@ -25,7 +21,11 @@ public class FieldDailyAvailability {
     public void setDailyAvailability(ResultSet rs) {
         Map<String, String> availability = new HashMap<>();
         try {
-            if (rs.first()) {
+            if (rs == null) {
+                this.dailyAvailability = null;
+                return;
+            }
+            else if (rs.first()) {
                 String from15to16 = rs.getString("h15_16");
                 availability.put("15", from15to16);
                 String from16to17 = rs.getString("h16_17");
@@ -43,7 +43,6 @@ public class FieldDailyAvailability {
                 String from22to23 = rs.getString("h22_23");
                 availability.put("22", from22to23);
             } else {
-                System.out.println("Result set vuoto");
                 availability.put("15", "1");
                 availability.put("16", "1");
                 availability.put("17", "1");
@@ -54,7 +53,8 @@ public class FieldDailyAvailability {
                 availability.put("22", "1");
             }
         } catch (SQLException exception) {
-
+            this.setDailyAvailability(null);
+            return;
         }
         this.dailyAvailability = availability;
     }
