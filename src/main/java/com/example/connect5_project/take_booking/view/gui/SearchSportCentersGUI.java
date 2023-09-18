@@ -42,7 +42,6 @@ public class SearchSportCentersGUI {
     public void back(ActionEvent e) throws Exception {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        System.out.println(window);
         window.setScene(navigate.getPages().peek());
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
         navigate.getPages().pop();

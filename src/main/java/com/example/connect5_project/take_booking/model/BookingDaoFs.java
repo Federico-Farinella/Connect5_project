@@ -11,10 +11,7 @@ public class BookingDaoFs implements BookingDao {
     public boolean saveBooking(Booking booking) throws MyException {
         try (FileOutputStream fileOutput = new FileOutputStream(BOOKINGSPATH);
              ObjectOutputStream outputStream = new ObjectOutputStream(fileOutput);){
-            System.out.println("Ho istanziato fileUoutput");
-            System.out.println("Sto per scrivere");
             outputStream.writeObject(booking);
-            System.out.println("Ho scritto");
         } catch (IOException e) {
             throw new MyException("Error saving booking");
         }
