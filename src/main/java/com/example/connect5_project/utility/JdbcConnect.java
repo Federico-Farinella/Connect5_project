@@ -13,13 +13,9 @@ public class JdbcConnect {
     private String user;
     private String password;
     private String url;
-    final private static String dbUrl = "jdbc:mysql://localhost/connect5_db"; // modifico da connect5db a connect5_db
-    //final private static String dbUrl = "jdbc:mariadb://localhost:3306/connect5_db";
-    final private static String driverClassName = "com.mysql.jdbc.Driver";
-    //final private static String driverClassName = "org.mariadb.jdbc.Driver";
+    final private static String DB_URL = "jdbc:mysql://localhost/connect5_db"; // modifico da connect5db a connect5_db
+    final private static String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
-    //private static Connection rootConnection;
-    //private static Connection userConnection;
     private static JdbcConnect jdbcConn;
     private final Connection connection;
     private int id;
@@ -27,7 +23,7 @@ public class JdbcConnect {
     private JdbcConnect() throws ConnectionDBException {  // Aggiunto per perfezionare pattern Singleton, andrebbe cancellato del codice ripetuto piu giu
         // Devo usare questa per centralizzare i dati di configurazione qui
         try {
-            Class.forName(driverClassName);
+            Class.forName(DRIVER_CLASS_NAME);
             this.getDBCredentials();
             this.connection = DriverManager.getConnection(url, user, password);
         } catch (IOException | SQLException | ClassNotFoundException e) {
@@ -37,8 +33,8 @@ public class JdbcConnect {
     }
 
     private JdbcConnect(String dbUser, String password) throws ClassNotFoundException, SQLException {
-        Class.forName(driverClassName);
-        this.connection = DriverManager.getConnection(dbUrl, dbUser, password);
+        Class.forName(DRIVER_CLASS_NAME);
+        this.connection = DriverManager.getConnection(DB_URL, dbUser, password);
     }
 
     public static JdbcConnect getUserConnection(String dbUser, String password) throws ClassNotFoundException, SQLException { //Aggiunto per perfezionare pattern Singleton, andrebbe cancellato del codice ripetuto piu giu
