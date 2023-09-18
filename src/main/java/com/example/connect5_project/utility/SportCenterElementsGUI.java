@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SportCenterElementsGUI {
-    //Continuerò da qui dopo aver fatto pratica nel progetto "TabellaRisultati"
-    ArrayList<GridPane> panels;
+    private final String ELEMENT_GRAPHIC = "-fx-background-color :  rgb(0,162,11);" + "-fx-background-radius:10";
+    private List<GridPane> panels;
 
-    public ArrayList<GridPane> getPanels() {
+    public List<GridPane> getPanels() {
         return panels;
     }
 
@@ -33,13 +33,12 @@ public class SportCenterElementsGUI {
             pane = new GridPane();
             pane.setAlignment(Pos.CENTER);
             pane.setPrefSize(310, 102);
-            pane.setStyle("-fx-background-color :  rgb(0,162,11);" + "-fx-background-radius:10");
+            pane.setStyle(ELEMENT_GRAPHIC);
             Label lab = new Label();
             lab.setPrefWidth(180.0);
             lab.setPrefHeight(70.0);
             lab.setAlignment(Pos.CENTER);
             lab.setTextAlignment(TextAlignment.CENTER);
-            //lab.setText("Tor Pagnotta Sports");
             lab.setText(item.getName());
             lab.setTextFill(Paint.valueOf("black"));
             lab.setFont(Font.font("Stalin One", 10));
@@ -74,9 +73,6 @@ public class SportCenterElementsGUI {
             box.getChildren().add(go);
 
             pane.add(box, 1, 1);
-
-            int col = pane.getColumnCount();
-            System.out.println(col);
             panels.add(pane);
         }
     }
@@ -115,8 +111,5 @@ public class SportCenterElementsGUI {
         box.getChildren().add(go);
 
         pane.add(box,1,1);
-
-        int col = pane.getColumnCount();
-        System.out.println(col);
     }
 }

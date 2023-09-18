@@ -22,7 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class SearchSportCentersGUI {
     private Navigate navigate;
@@ -99,10 +99,9 @@ public class SearchSportCentersGUI {
             searchResultsBeanOut = this.getBookingController().searchCenters(beanRequest);
             controlGui.setList(searchResultsBeanOut.getListOfCenters());
             SportCenterElementsGUI centerElement = new SportCenterElementsGUI(searchResultsBeanOut.getListOfCenters(), controlGui);
-            ArrayList<GridPane> array = centerElement.getPanels();
+            List<GridPane> array = centerElement.getPanels();
 
-            // Qui aggiungo uno per uno allo ScrollPane gli elementi trovati messi nella searchResultsBeanOut.
-            // Voglio vedere se riesco ad indicizzare la lista per permettere click utente su un elemento e ottenerlo direttamente
+            // Qui aggiungo uno per uno allo ScrollPane gli elementi trovati messi nella searchResultsBeanResponse.
             for (GridPane item : array) {
                 controlGui.getBox().getChildren().add(item);
             }
@@ -122,13 +121,8 @@ public class SearchSportCentersGUI {
             controlGui.getBox().getChildren().add(lab);
 
         }
-
-        System.out.println("Booking_controller: " + bookingController);
         Stage window =(Stage) btnSearch.getScene().getWindow();
-        System.out.println("SearchSportCentersGui qui sono:3");
         window.setScene(new Scene(root));
-        System.out.println("SearchSportCentersGui qui sono:4");
-
     }
 
     public BookingController getBookingController() {

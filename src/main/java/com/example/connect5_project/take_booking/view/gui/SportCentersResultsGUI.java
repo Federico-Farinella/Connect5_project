@@ -83,20 +83,15 @@ public class SportCentersResultsGUI {
     }
 
     public void chooseCenter(ActionEvent e) throws Exception {
-        System.out.println("Booking_controller step 2: " + bookingController);
         Node source = (Node) e.getSource();
         GridPane gridPane = (GridPane) source.getParent().getParent();
-        System.out.println(gridPane);
         Label name = (Label) gridPane.lookup("#Name");
-        System.out.println(name.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChooseBookingData.fxml"));
         Parent root = loader.load();
         ChooseBookingDataGUI chooseDataControllerGUI = loader.getController();
         bookingController.setChoosenCenter(name.getText());
 
         /////////
-        System.out.println("Qui di ritorno da setChoosenCenter: " + bookingController.getChoosenCenter().getName());
-        System.out.println("City of choosen center: " + bookingController.getChoosenCenter().getCity());
         chooseDataControllerGUI.setBookingController(bookingController);
         LocalDate minDate = LocalDate.now();
         LocalDate maxDate = LocalDate.now().plusDays(BusinessConstants.getDayToChoose());

@@ -13,8 +13,6 @@ public class JdbcConnect {
     private String user;
     private String password;
     private String url;
-    private static final String DB_URL = "jdbc:mysql://localhost/connect5_db"; // modifico da connect5db a connect5_db
-
     private static JdbcConnect jdbcConn;
     private final Connection connection;
 

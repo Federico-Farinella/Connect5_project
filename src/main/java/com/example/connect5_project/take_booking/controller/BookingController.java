@@ -97,13 +97,12 @@ public class BookingController {
         if (withTunics)
             booking.setWithTunics();
 
-        // la variabile iSfileSystemverrà settata a partire dal valore inserito nel file config.properties
+        // la variabile isFileSystem verrà settata a partire dal valore inserito nel file config.properties
         // se true allora istanzierò BookindDaoFs altrimenti BookingsDaoDb
         boolean isFileSystem;
         try {
             isFileSystem = this.isFileSystem();
         } catch (MyException e) {
-            System.out.println("Sto lanciando la MyException1 da Booking Controller confirmBooking");
             throw new MyException("System error.");
         }
         BookingDao dao;

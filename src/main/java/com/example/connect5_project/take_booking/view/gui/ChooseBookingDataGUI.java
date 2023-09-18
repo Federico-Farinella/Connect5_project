@@ -51,7 +51,6 @@ public class ChooseBookingDataGUI {
             labelNoDate.setText("You have not selected any dates");
             labelNoDate.setVisible(true);
         } else {
-            System.out.println("Qui appena spingo bottone dopo la data: " + bookingController.getChoosenCenter().getName());
             DailyAvailabilityBeanRequest beanIn = new DailyAvailabilityBeanRequest();
             beanIn.setDateToSearch(datePicker.getValue());
 
