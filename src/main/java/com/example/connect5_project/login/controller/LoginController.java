@@ -6,7 +6,6 @@ import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
 import com.example.connect5_project.exceptions.login_exceptions.LoginException;
-import com.example.connect5_project.utility.LoggingUser;
 import com.example.connect5_project.take_booking.model.FootballPlayer;
 import com.example.connect5_project.utility.CurrentUser;
 
