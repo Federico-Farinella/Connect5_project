@@ -6,8 +6,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class Navigate {
-    public Deque<Scene> pages = new LinkedList<>();
-    public int countPagesAfterLogin ;
+    private Deque<Scene> pages = new LinkedList<>();
+    private int countPagesAfterLogin ;
 
     public void pushPage(Scene scene) {
         pages.push(scene);
@@ -16,6 +16,7 @@ public class Navigate {
     public Deque<Scene> getPages() {
         return pages;
     }
+
 
     public int getCountPagesAfterLogin() {
         return countPagesAfterLogin;

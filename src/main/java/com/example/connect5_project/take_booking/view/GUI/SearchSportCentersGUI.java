@@ -45,7 +45,7 @@ public class SearchSportCentersGUI {
         System.out.println(window);
         window.setScene(navigate.getPages().peek());
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
-        navigate.pages.pop();
+        navigate.getPages().pop();
     }
 
     public void home(ActionEvent e) throws Exception {

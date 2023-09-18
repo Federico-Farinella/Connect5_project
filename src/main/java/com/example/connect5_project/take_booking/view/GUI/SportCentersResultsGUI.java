@@ -67,7 +67,7 @@ public class SportCentersResultsGUI {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         window.setScene(navigate.getPages().peek());
-        navigate.pages.pop();
+        navigate.getPages().pop();
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
     }
 

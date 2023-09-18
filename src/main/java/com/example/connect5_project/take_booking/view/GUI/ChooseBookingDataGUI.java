@@ -101,7 +101,7 @@ public class ChooseBookingDataGUI {
 
         System.out.println(window);
         window.setScene(navigate.getPages().peek());
-        navigate.pages.pop();
+        navigate.getPages().pop();
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
     }
 
