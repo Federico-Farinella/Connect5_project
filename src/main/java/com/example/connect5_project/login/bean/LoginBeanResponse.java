@@ -1,6 +1,6 @@
 package com.example.connect5_project.login.bean;
 
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.FootballPlayer;
+import com.example.connect5_project.take_booking.model.FootballPlayer;
 
 public class LoginBeanResponse {
     private boolean success;

@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class CreateAccountGUI {  // Devo sostituire il ritorno di confirmCreate con un bean mettendo dentro un response
+public class CreateAccountGUI {
     @FXML
     TextField insertName;
     @FXML
@@ -49,25 +49,4 @@ public class CreateAccountGUI {  // Devo sostituire il ritorno di confirmCreate 
         window.setScene(new Scene(root));
     }
 
-    public void confirmCreate(){
-        CreateAccountBean bean = new CreateAccountBean(insertName.getText(), insertSurname.getText(), insertEmail.getText(), insertPassword.getText());
-        boolean validEmail = bean.isValidEmail(bean.getEmail());
-        if (!validEmail) {
-            errorLabel.setText("Invalid email.  Please insert a valid email");
-            errorLabel.setVisible(true);
-            return;
-        }
-        else {
-            System.out.println("Valid email. OK");
-        }
-
-        boolean validPass = bean.isValidPassword(bean.getPassword());
-        if (!validPass) {
-            errorLabel.setText("Password contains less than 6 characters");
-            errorLabel.setVisible(true);
-        }
-        else {
-            System.out.println("Valid Password. OK");
-        }
-    }
 }

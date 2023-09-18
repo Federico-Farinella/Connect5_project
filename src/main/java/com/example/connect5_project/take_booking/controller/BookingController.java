@@ -4,7 +4,7 @@ import com.example.connect5_project.take_booking.bean.*;
 import com.example.connect5_project.take_booking.boundary.WeatherBoundary;
 import com.example.connect5_project.exceptions.*;
 import com.example.connect5_project.take_booking.model.*;
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.FootballPlayer;
+import com.example.connect5_project.take_booking.model.FootballPlayer;
 import com.example.connect5_project.utility.CurrentUser;
 
 import java.io.FileInputStream;
@@ -21,7 +21,7 @@ public class BookingController {
 
 
 
-    public SearchResultBeanResponse searchCenters(SearchResultsBeanRequest bean_in) throws MyException {
+    public SearchResultBeanResponse searchCenters(SearchCentersBeanRequest bean_in) throws MyException {
         String search_mode = bean_in.getSearchMode();
         SearchResultBeanResponse beanResponse = new SearchResultBeanResponse();
         SportCenterDAO cDao = new SportCenterDAO();
@@ -51,9 +51,13 @@ public class BookingController {
     }
 
 
+
+
     public DailyAvailabilityBeanResponse getDailyAvailability(DailyAvailabilityBeanRequest beanIn) throws MyException {
         this.setChoosenDate(beanIn.getDateToSearch());
 
+
+        // Qui tratto la situazione relativa al meteo chiamando la WeatherBoundary che si occuperà di gestire l API
         WeatherApiBeanRequest weatherRequestBean = new WeatherApiBeanRequest();
         weatherRequestBean.setGapDay(beanIn.getDateToSearch());
         weatherRequestBean.setCity(getChoosenCenter().getCity());
@@ -66,6 +70,8 @@ public class BookingController {
 
         DailyAvailabilityDao dao = new DailyAvailabilityDao();
         this.setChoosenDate(beanIn.getDateToSearch());
+
+        // Qui mi occupò di leggere dal dB la disponibilità giornaliera (oraria) di quel centro sportivo per i campi da calcetto
         FieldDailyAvailability dailyAvailability;
         try {
             dailyAvailability = dao.dbSearchAvailability(this.getChoosenCenter(), this.getChoosenDate());
@@ -80,14 +86,19 @@ public class BookingController {
         return bean_out;
     }
 
+
     public boolean confirmBooking(boolean withReferee, boolean withTunics) throws MyException {
         FootballPlayer footballPlayer = CurrentUser.getInstance().getUser();
         Booking booking = new Booking(this.getChoosenCenter(), footballPlayer, this.getChoosenDate(), this.getChoosenHour());
+        // Qui viene applicato il pattern Decorator per aggiungere dei plus alla prenotazione in modo dinamico
         if (withReferee)
             booking.setWithReferee();
 
         if (withTunics)
             booking.setWithTunics();
+
+        // la variabile iSfileSystemverrà settata a partire dal valore inserito nel file config.properties
+        // se true allora istanzierò BookindDaoFs altrimenti BookingsDaoDb
         boolean isFileSystem;
         try {
             isFileSystem = this.isFileSystem();
@@ -109,7 +120,6 @@ public class BookingController {
         } catch (ConnectionDBException e1) {
             throw new ConnectionDBException("Error connecting database. Please try later.");
         } catch (MyException e2) {
-            System.out.println("Sto lanciando la MyException2 da Booking Controller confirmBooking");
             throw new MyException("System error.");
         }
         return ret1;

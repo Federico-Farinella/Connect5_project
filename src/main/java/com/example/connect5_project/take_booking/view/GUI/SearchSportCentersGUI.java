@@ -1,7 +1,7 @@
 package com.example.connect5_project.take_booking.view.GUI;
 
 import com.example.connect5_project.take_booking.bean.SearchResultBeanResponse;
-import com.example.connect5_project.take_booking.bean.SearchResultsBeanRequest;
+import com.example.connect5_project.take_booking.bean.SearchCentersBeanRequest;
 import com.example.connect5_project.take_booking.controller.BookingController;
 import com.example.connect5_project.exceptions.SportCenterException;
 import com.example.connect5_project.history.Navigate;
@@ -66,7 +66,7 @@ public class SearchSportCentersGUI {
         String city = cittaCentroS.getText();
         SearchResultBeanResponse searchResultsBeanOut;
         bookingController = new BookingController();
-        SearchResultsBeanRequest bean_in = new SearchResultsBeanRequest();
+        SearchCentersBeanRequest bean_in = new SearchCentersBeanRequest();
         if (name.equals("") && city.equals("")) {
             errorLab.setText("All fields empty");
             errorLab.setVisible(true);

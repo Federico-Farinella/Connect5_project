@@ -7,7 +7,7 @@ import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
 import com.example.connect5_project.exceptions.login_exceptions.LoginException;
 import com.example.connect5_project.utility.LoggingUser;
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.FootballPlayer;
+import com.example.connect5_project.take_booking.model.FootballPlayer;
 import com.example.connect5_project.utility.CurrentUser;
 
 public class LoginController {
@@ -39,30 +39,15 @@ public class LoginController {
         return ret;
 
 
-
-        /*LoginBeanOut beanOut = dao.checkUser(user);
-
-        if (beanOut.getResponse().equals("Config file not found") || beanOut.getResponse().equals("Config file not loaded")
-                || beanOut.getResponse().equals("Error with database connection")
-                || beanOut.getResponse().equals("Error while creating the statement")
-                || beanOut.getResponse().equals("Driver to connect database not found")
-                || beanOut.getResponse().equals("DB Connection failed")) {
-            beanOut.setResponse("Error");
-        } else if (beanOut.getResponse().equals("Match")) {
-            CurrentUser currentUser = CurrentUser.getInstance();
-            currentUser.setUser(beanOut.getUser());
-
-        }
-        return beanOut;*/
     }
 
     public boolean updateSession(FootballPlayer footballPlayer) {
         try {
-            CurrentUser.getInstance().setFirstName(footballPlayer.getFirstName());
-            CurrentUser.getInstance().setLastName(footballPlayer.getLastName());
-            CurrentUser.getInstance().setEmail(footballPlayer.getEmail());
-            CurrentUser.getInstance().setNickName(footballPlayer.getNickName());
-            //CurrentUser.getInstance().setId(user.getUserID());}
+            CurrentUser.getInstance().setUser(footballPlayer);
+            //CurrentUser.getInstance().setFirstName(footballPlayer.getFirstName());
+            //CurrentUser.getInstance().setLastName(footballPlayer.getLastName());
+            //CurrentUser.getInstance().setEmail(footballPlayer.getEmail());
+            //CurrentUser.getInstance().setNickName(footballPlayer.getNickName());
         } catch (Exception ex) {
             return false;
         }

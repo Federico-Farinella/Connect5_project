@@ -1,7 +1,6 @@
 package com.example.connect5_project.main;
 
 import com.example.connect5_project.login.view.LoginGUI;
-import com.example.connect5_project.history.History;
 import com.example.connect5_project.history.Navigate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,23 +30,7 @@ public class FirstScreenGUI {
         window =(Stage) btnLog.getScene().getWindow();
         window.setScene(new Scene(root));
     }
-    public void createAccount(ActionEvent e) throws Exception {
-        Stage window;
-        History.pagine.add(((Node) e.getSource()).getScene());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAccount.fxml"));
-        Parent root = loader.load();
-        window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
 
-    public void centersOwner(ActionEvent e) throws Exception {
-        Stage window;
-        History.pagine.add(((Node) e.getSource()).getScene());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CentersOwner.fxml"));
-        Parent root = loader.load();
-        window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
     public void initialize() {
         navigate = new Navigate();
     }

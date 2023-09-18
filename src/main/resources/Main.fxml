@@ -37,7 +37,7 @@
                   <Font name="Showcard Gothic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnCreatAcc" mnemonicParsing="false" onAction="#createAccount" prefHeight="45.0" prefWidth="120.0" style="-fx-background-color: BLACK; -fx-background-radius: 20; -fx-border-color: BLACK; -fx-border-radius: 20;" text="Create Account" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Button fx:id="btnCreatAcc" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" style="-fx-background-color: BLACK; -fx-background-radius: 20; -fx-border-color: BLACK; -fx-border-radius: 20;" text="Create Account" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Showcard Gothic" size="12.0" />
                </font>

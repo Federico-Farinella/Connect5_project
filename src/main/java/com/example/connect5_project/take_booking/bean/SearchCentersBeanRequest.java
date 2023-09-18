@@ -1,6 +1,6 @@
 package com.example.connect5_project.take_booking.bean;
 
-public class SearchResultsBeanRequest {
+public class SearchCentersBeanRequest {
     String searchMode;
     String name;
     String city;

@@ -1,9 +1,8 @@
 package com.example.connect5_project.take_booking.model;
 
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.FootballPlayer;
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.ConcreteBasic;
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.ConcreteWithReferee;
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.ConcreteWithTunics;
+import com.example.connect5_project.take_booking.model.bookingsType_decorator.BasicBooking;
+import com.example.connect5_project.take_booking.model.bookingsType_decorator.BookingWithReferee;
+import com.example.connect5_project.take_booking.model.bookingsType_decorator.BookingWithTunics;
 import com.example.connect5_project.take_booking.model.bookingsType_decorator.Type;
 
 import java.io.Serializable;
@@ -17,7 +16,7 @@ public class Booking implements Serializable {
     private Type options;
 
     public Booking (SportCenter sportCenter, FootballPlayer footballPlayer, LocalDate date, String hour) {    // price non andrà messo ma andrà messo il centro sportivo
-        this.options = new ConcreteBasic(sportCenter.getFieldPrice());  // qui accederò a price dal centro sportivo
+        this.options = new BasicBooking(sportCenter.getFieldPrice());  // qui accederò a price dal centro sportivo
         this.sportCenter = sportCenter;
         this.footballPlayer = footballPlayer;
         this.date = date;
@@ -25,12 +24,12 @@ public class Booking implements Serializable {
     }
 
     public void setWithReferee() {
-        Type type = new ConcreteWithReferee(this.options);
+        Type type = new BookingWithReferee(this.options);
         this.setOptional(type);
     }
 
     public void setWithTunics() {
-        Type type = new ConcreteWithTunics(this.options);
+        Type type = new BookingWithTunics(this.options);
         this.setOptional(type);
     }
 

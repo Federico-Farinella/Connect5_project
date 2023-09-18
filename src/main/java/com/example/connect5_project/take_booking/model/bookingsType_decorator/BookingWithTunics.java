@@ -1,7 +1,7 @@
 package com.example.connect5_project.take_booking.model.bookingsType_decorator;
 
-public class ConcreteWithTunics extends AbstractDecorator {
-    public  ConcreteWithTunics(Type booking) {
+public class BookingWithTunics extends AbstractDecorator {
+    public BookingWithTunics(Type booking) {
         super(booking);
     }
 

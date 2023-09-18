@@ -1,7 +1,7 @@
 package com.example.connect5_project.take_booking.view.CLI;
 
 import com.example.connect5_project.take_booking.bean.SearchResultBeanResponse;
-import com.example.connect5_project.take_booking.bean.SearchResultsBeanRequest;
+import com.example.connect5_project.take_booking.bean.SearchCentersBeanRequest;
 import com.example.connect5_project.take_booking.controller.BookingController;
 import com.example.connect5_project.exceptions.MyException;
 import com.example.connect5_project.utility.SharedStateSingletonCLI;
@@ -13,7 +13,7 @@ public class SearchCenterModeCLI {
     private BookingController controller;
 
     public void search(String choose) throws Exception {  // devo togliere throws exception e gestirla (riga 77)
-        SearchResultsBeanRequest beanIn = new SearchResultsBeanRequest();
+        SearchCentersBeanRequest beanIn = new SearchCentersBeanRequest();
         SearchResultBeanResponse responseBean;
         while (!SharedStateSingletonCLI.getInstance().isRedirecting()) {
             String field = "";
@@ -70,7 +70,7 @@ public class SearchCenterModeCLI {
 
 
             this.setController(new BookingController());
-            beanIn = new SearchResultsBeanRequest();
+            beanIn = new SearchCentersBeanRequest();
             beanIn.setCli(searchType, field);
             try {
                 responseBean = this.getController().searchCenters(beanIn);
@@ -102,7 +102,7 @@ public class SearchCenterModeCLI {
 
     }
 
-    public SearchResultsBeanRequest searchByName() {
+    public SearchCentersBeanRequest searchByName() {
             System.out.println("Type center's name\n\nOr type back or exit.");  //NOSONAR
             String name = "";
             label:
@@ -120,7 +120,7 @@ public class SearchCenterModeCLI {
                         break label;
                 }
             }
-            SearchResultsBeanRequest beanIn = new SearchResultsBeanRequest();
+            SearchCentersBeanRequest beanIn = new SearchCentersBeanRequest();
             beanIn.setName(name);
             return beanIn;
     }

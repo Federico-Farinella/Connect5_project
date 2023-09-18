@@ -1,6 +1,7 @@
 package com.example.connect5_project.take_booking.model.bookingsType_decorator;
 
 import com.example.connect5_project.take_booking.model.Booking;
+import com.example.connect5_project.take_booking.model.FootballPlayer;
 import com.example.connect5_project.take_booking.model.SportCenter;
 
 import java.time.LocalDate;
@@ -38,11 +39,11 @@ public class Main {
         booking.setWithTunics();
         System.out.println("Step 3 description :" + booking.getOptional().getDescription() + ". Price : " + booking.getOptional().getPrice());
 
-        ConcreteBasic basic = new ConcreteBasic(center.getFieldPrice());
-        ConcreteWithReferee withReferee = new ConcreteWithReferee(basic);
+        BasicBooking basic = new BasicBooking(center.getFieldPrice());
+        BookingWithReferee withReferee = new BookingWithReferee(basic);
         System.out.println(basic.getDescription() + " " + basic.getPrice());
         System.out.println(withReferee.getDescription() + " " + withReferee.getPrice());
-        ConcreteWithTunics withRefereeAndTunics = new ConcreteWithTunics(withReferee);
+        BookingWithTunics withRefereeAndTunics = new BookingWithTunics(withReferee);
         System.out.println(withRefereeAndTunics.getDescription() + " " + withRefereeAndTunics.getPrice());
 
         Type type = withRefereeAndTunics;

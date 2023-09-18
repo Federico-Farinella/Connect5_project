@@ -1,8 +1,8 @@
 package com.example.connect5_project.take_booking.model.bookingsType_decorator;
 
-public class ConcreteWithReferee extends AbstractDecorator {
+public class BookingWithReferee extends AbstractDecorator {
 
-    public ConcreteWithReferee(Type booking) {
+    public BookingWithReferee(Type booking) {
         super(booking);
     }
 

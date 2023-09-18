@@ -1,5 +1,6 @@
 package com.example.connect5_project.take_booking.view.CLI;
 
+import com.example.connect5_project.take_booking.model.FootballPlayer;
 import com.example.connect5_project.utility.CurrentUser;
 
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class LoggedCLI {
 
     public void execute() throws Exception {  // Anche qui (riga 25) gestire l eccezione che parte dalla sportcenterdao al posto del responsebean
         while (true) {
-            CurrentUser user = CurrentUser.getInstance();
+            FootballPlayer user = CurrentUser.getInstance().getUser();
             System.out.println("----- Welcome " + user.getNickName() + " -----\n");
 
             System.out.println("1- Search for sport center\n2- Manage your bookings\n\n\tOr type back or exit.");

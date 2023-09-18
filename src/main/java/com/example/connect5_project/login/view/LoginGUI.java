@@ -4,6 +4,7 @@ import com.example.connect5_project.login.bean.LoginBeanRequest;
 import com.example.connect5_project.login.controller.LoginController;
 import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
+import com.example.connect5_project.take_booking.model.FootballPlayer;
 import com.example.connect5_project.take_booking.view.GUI.LoggedGUI;
 import com.example.connect5_project.history.Navigate;
 import com.example.connect5_project.utility.CurrentUser;
@@ -99,7 +100,7 @@ public class LoginGUI {
             errorLabel.setText("Password incorrect");
             errorLabel.setVisible(true);
         } else {
-            CurrentUser user = CurrentUser.getInstance();
+            FootballPlayer user = CurrentUser.getInstance().getUser();
 
             errorLabel.setText("");
             errorLabel.setVisible(false);
