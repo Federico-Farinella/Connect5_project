@@ -2,7 +2,7 @@ module com.example.connect5_project {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires org.junit.jupiter.api;
+    //requires org.junit.jupiter.api;
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
