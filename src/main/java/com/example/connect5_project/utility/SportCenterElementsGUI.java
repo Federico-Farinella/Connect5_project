@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SportCenterElementsGUI {
-    private final String ELEMENT_GRAPHIC = "-fx-background-color :  rgb(0,162,11);" + "-fx-background-radius:10";
+    private static final String ELEMENT_GRAPHIC = "-fx-background-color :  rgb(0,162,11); -fx-background-radius:10";
     private List<GridPane> panels;
 
     public List<GridPane> getPanels() {
