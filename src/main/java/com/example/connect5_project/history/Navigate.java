@@ -2,17 +2,18 @@ package com.example.connect5_project.history;
 
 import javafx.scene.Scene;
 
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class Navigate {
-    public Stack<Scene> pages = new Stack<>();
+    public Deque<Scene> pages = new LinkedList<>();
     public int countPagesAfterLogin ;
 
     public void pushPage(Scene scene) {
         pages.push(scene);
     }
 
-    public Stack<Scene> getPages() {
+    public Deque<Scene> getPages() {
         return pages;
     }
 

@@ -103,7 +103,7 @@ public class SetBookingOptionalGUI {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
         System.out.println(window);
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
         navigate.pages.pop();
     }
@@ -116,7 +116,7 @@ public class SetBookingOptionalGUI {
         }
         navigate.setCountPagesAfterLogin(0);
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.getPages().pop();
     }
 

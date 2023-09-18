@@ -61,7 +61,7 @@ public class BookingResponseGUI {
                     }
                     navigate.setCountPagesAfterLogin(0);
                     Stage window = (Stage) labResponse.getScene().getWindow();
-                    window.setScene(navigate.getPages().lastElement());
+                    window.setScene(navigate.getPages().peek());
                     navigate.getPages().pop();
                 });
             }
@@ -82,7 +82,7 @@ public class BookingResponseGUI {
         }
         navigate.setCountPagesAfterLogin(0);
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.getPages().pop();
     }
 

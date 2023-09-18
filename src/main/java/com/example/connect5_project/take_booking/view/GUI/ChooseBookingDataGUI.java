@@ -63,8 +63,6 @@ public class ChooseBookingDataGUI {
                 labelNoDate.setVisible(true);
                 return;
             }
-            //beanOut.setDailyAvailability(availability); // non mi convince forse meglio passare alla gui successiva direttamente
-            // il model FieldDailyAvailability!!!
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/daily_availability_weather.fxml"));
             Parent root = loader.load();
@@ -98,26 +96,16 @@ public class ChooseBookingDataGUI {
     }
 
     public void back(ActionEvent e) throws IOException {
-        /*Stage window;
-        window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        window.setScene(navigate.getPages().lastElement());
-        navigate.pages.pop();*/
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
         System.out.println(window);
-        //navigate.pages.pop();
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.pages.pop();
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
     }
 
     public void home (ActionEvent e) throws IOException {
-        /*navigate.pages.clear();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main.fxml"));
-        Parent root = loader.load();
-        Stage window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));*/
         Stage window;
         int currentPagesAfterLogin = navigate.getCountPagesAfterLogin();
         for (int i = 0; i < currentPagesAfterLogin-1 ; i++) {
@@ -125,7 +113,7 @@ public class ChooseBookingDataGUI {
         }
         navigate.setCountPagesAfterLogin(0);
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.getPages().pop();
     }
 }

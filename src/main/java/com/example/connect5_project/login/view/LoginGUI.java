@@ -47,7 +47,7 @@ public class LoginGUI {
     public void back(ActionEvent e) throws Exception {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.getPages().pop();
     }
 

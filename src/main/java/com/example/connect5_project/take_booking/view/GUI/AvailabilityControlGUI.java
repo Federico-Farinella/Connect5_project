@@ -274,7 +274,7 @@ public class AvailabilityControlGUI {
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
         System.out.println(window);
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.pages.pop();
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
     }
@@ -287,7 +287,7 @@ public class AvailabilityControlGUI {
         }
         navigate.setCountPagesAfterLogin(0);
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.getPages().pop();
     }
 }

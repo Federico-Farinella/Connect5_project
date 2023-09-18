@@ -66,7 +66,7 @@ public class SportCentersResultsGUI {
     public void back(MouseEvent e) throws Exception {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.pages.pop();
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
     }
@@ -79,7 +79,7 @@ public class SportCentersResultsGUI {
         }
         navigate.setCountPagesAfterLogin(0);
         window = (Stage)((Node) e.getSource()).getScene().getWindow();
-        window.setScene(navigate.getPages().lastElement());
+        window.setScene(navigate.getPages().peek());
         navigate.getPages().pop();
     }
 
@@ -99,10 +99,9 @@ public class SportCentersResultsGUI {
         System.out.println("Qui di ritorno da setChoosenCenter: " + bookingController.getChoosenCenter().getName());
         System.out.println("City of choosen center: " + bookingController.getChoosenCenter().getCity());
         chooseDataControllerGUI.setBookingController(bookingController);
-        DatePicker datePicker = chooseDataControllerGUI.getDatePicker();
-        LocalDate min_date = LocalDate.now();
-        LocalDate max_date = LocalDate.now().plusDays(BusinessConstants.DAY_TO_CHOOSE);
-        chooseDataControllerGUI.setDatesToChoose(min_date, max_date);
+        LocalDate minDate = LocalDate.now();
+        LocalDate maxDate = LocalDate.now().plusDays(BusinessConstants.DAY_TO_CHOOSE);
+        chooseDataControllerGUI.setDatesToChoose(minDate, maxDate);
 
         navigate.pushPage(((Node) e.getSource()).getScene());
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()+1);
