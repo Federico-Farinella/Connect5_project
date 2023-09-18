@@ -1,7 +1,7 @@
 package com.example.connect5_project.take_booking.view.cli;
 
 import com.example.connect5_project.take_booking.model.FootballPlayer;
-import com.example.connect5_project.utility.CurrentUser;
+import com.example.connect5_project.take_booking.model.CurrentUser;
 
 import java.util.Scanner;
 

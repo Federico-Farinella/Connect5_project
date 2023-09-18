@@ -5,7 +5,7 @@ import com.example.connect5_project.take_booking.boundary.WeatherBoundary;
 import com.example.connect5_project.exceptions.*;
 import com.example.connect5_project.take_booking.model.*;
 import com.example.connect5_project.take_booking.model.FootballPlayer;
-import com.example.connect5_project.utility.CurrentUser;
+import com.example.connect5_project.take_booking.model.CurrentUser;
 
 import java.io.FileInputStream;
 import java.io.IOException;

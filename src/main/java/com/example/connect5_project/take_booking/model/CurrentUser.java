@@ -1,6 +1,4 @@
-package com.example.connect5_project.utility;
-
-import com.example.connect5_project.take_booking.model.FootballPlayer;
+package com.example.connect5_project.take_booking.model;
 
 public class CurrentUser {
     private static CurrentUser currentUser;

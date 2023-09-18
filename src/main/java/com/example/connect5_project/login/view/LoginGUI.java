@@ -7,7 +7,7 @@ import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegister
 import com.example.connect5_project.take_booking.model.FootballPlayer;
 import com.example.connect5_project.take_booking.view.gui.LoggedGUI;
 import com.example.connect5_project.history.Navigate;
-import com.example.connect5_project.utility.CurrentUser;
+import com.example.connect5_project.take_booking.model.CurrentUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
