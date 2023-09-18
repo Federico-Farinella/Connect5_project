@@ -5,7 +5,7 @@ import java.io.Serializable;
 public abstract class AbstractDecorator implements Type, Serializable {
     private final Type type;
 
-    public AbstractDecorator(Type booking) {
+    protected AbstractDecorator(Type booking) {
         this.type = booking;
     }
 

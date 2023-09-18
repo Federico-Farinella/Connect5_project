@@ -13,9 +13,9 @@ public class BasicBooking implements Type, Serializable {
 
     @Override
     public String getDescription () {
-        //return "Basic booking";
         return description;
     }
+
 
     @Override
     public float getPrice() {
