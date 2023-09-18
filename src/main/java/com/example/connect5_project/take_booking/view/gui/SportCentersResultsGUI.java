@@ -1,4 +1,4 @@
-package com.example.connect5_project.take_booking.view.GUI;
+package com.example.connect5_project.take_booking.view.gui;
 
 
 import com.example.connect5_project.take_booking.controller.BookingController;
@@ -12,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -47,8 +46,8 @@ public class SportCentersResultsGUI {
         return bookingController;
     }
 
-    public void setBookingController(BookingController booking_controller) {
-        this.bookingController = booking_controller;
+    public void setBookingController(BookingController bookingController) {
+        this.bookingController = bookingController;
     }
 
     public VBox getBox() {
@@ -100,7 +99,7 @@ public class SportCentersResultsGUI {
         System.out.println("City of choosen center: " + bookingController.getChoosenCenter().getCity());
         chooseDataControllerGUI.setBookingController(bookingController);
         LocalDate minDate = LocalDate.now();
-        LocalDate maxDate = LocalDate.now().plusDays(BusinessConstants.DAY_TO_CHOOSE);
+        LocalDate maxDate = LocalDate.now().plusDays(BusinessConstants.dayToChoose);
         chooseDataControllerGUI.setDatesToChoose(minDate, maxDate);
 
         navigate.pushPage(((Node) e.getSource()).getScene());

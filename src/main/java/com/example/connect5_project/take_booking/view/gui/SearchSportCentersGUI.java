@@ -1,4 +1,4 @@
-package com.example.connect5_project.take_booking.view.GUI;
+package com.example.connect5_project.take_booking.view.gui;
 
 import com.example.connect5_project.take_booking.bean.SearchResultBeanResponse;
 import com.example.connect5_project.take_booking.bean.SearchCentersBeanRequest;
@@ -66,23 +66,23 @@ public class SearchSportCentersGUI {
         String city = cittaCentroS.getText();
         SearchResultBeanResponse searchResultsBeanOut;
         bookingController = new BookingController();
-        SearchCentersBeanRequest bean_in = new SearchCentersBeanRequest();
+        SearchCentersBeanRequest beanRequest = new SearchCentersBeanRequest();
         if (name.equals("") && city.equals("")) {
             errorLab.setText("All fields empty");
             errorLab.setVisible(true);
             return;
         } else if (!name.equals("") && city.equals("")) {
-            bean_in.setSearchMode("Name");
-            bean_in.setName(name);
+            beanRequest.setSearchMode("Name");
+            beanRequest.setName(name);
             nomeCentroS.setText("");
         } else if (name.equals("")) {
-            bean_in.setSearchMode("City");
-            bean_in.setCity(city);
+            beanRequest.setSearchMode("City");
+            beanRequest.setCity(city);
             cittaCentroS.setText("");
         } else {
-            bean_in.setSearchMode("Name and city");
-            bean_in.setName(name);
-            bean_in.setCity(city);
+            beanRequest.setSearchMode("Name and city");
+            beanRequest.setName(name);
+            beanRequest.setCity(city);
             nomeCentroS.setText("");
             cittaCentroS.setText("");
         }
@@ -96,7 +96,7 @@ public class SearchSportCentersGUI {
         controlGui.setNavigate(navigate);
 
         try {
-            searchResultsBeanOut = this.getBookingController().searchCenters(bean_in);
+            searchResultsBeanOut = this.getBookingController().searchCenters(beanRequest);
             controlGui.setList(searchResultsBeanOut.getListOfCenters());
             SportCenterElementsGUI centerElement = new SportCenterElementsGUI(searchResultsBeanOut.getListOfCenters(), controlGui);
             ArrayList<GridPane> array = centerElement.getPanels();

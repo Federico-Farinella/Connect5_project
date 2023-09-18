@@ -27,8 +27,8 @@ module com.example.connect5_project {
     opens com.example.connect5_project.login.view to javafx.fxml;
     exports com.example.connect5_project.login.controller;
     opens com.example.connect5_project.login.controller to javafx.fxml;
-    exports com.example.connect5_project.take_booking.view.GUI;
-    opens com.example.connect5_project.take_booking.view.GUI to javafx.fxml;
+    exports com.example.connect5_project.take_booking.view.gui;
+    opens com.example.connect5_project.take_booking.view.gui to javafx.fxml;
     exports com.example.connect5_project.take_booking.model;
     opens com.example.connect5_project.take_booking.model to javafx.fxml;
     opens com.example.connect5_project.take_booking.model.bookingsTypeDecorator to javafx.fxml;

@@ -1,4 +1,4 @@
-package com.example.connect5_project.take_booking.view.GUI;
+package com.example.connect5_project.take_booking.view.gui;
 
 import com.example.connect5_project.history.Navigate;
 import javafx.application.Platform;

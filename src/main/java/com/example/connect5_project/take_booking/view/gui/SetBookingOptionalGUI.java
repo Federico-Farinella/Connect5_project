@@ -1,4 +1,4 @@
-package com.example.connect5_project.take_booking.view.GUI;
+package com.example.connect5_project.take_booking.view.gui;
 
 import com.example.connect5_project.take_booking.controller.BookingController;
 import com.example.connect5_project.exceptions.ConnectionDBException;
@@ -77,11 +77,8 @@ public class SetBookingOptionalGUI {
             isConfirmed = bookingController.confirmBooking(withReferee, withTunics);
             controlGui.setImageResponse(isConfirmed);
             controlGui.setLabResponse(isConfirmed);
-        } catch (TakeBookingException exception0) {
+        } catch (TakeBookingException | ConnectionDBException exception0) {
             // Stampa messaggio dell eccezione!!!!
-            controlGui.setImageResponse(false);
-            controlGui.setLabResponse(false);
-        } catch (ConnectionDBException exception1) {
             controlGui.setImageResponse(false);
             controlGui.setLabResponse(false);
         } catch (MyException exception2) {

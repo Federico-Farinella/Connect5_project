@@ -1,4 +1,4 @@
-package com.example.connect5_project.take_booking.view.GUI;
+package com.example.connect5_project.take_booking.view.gui;
 
 import com.example.connect5_project.take_booking.bean.DailyAvailabilityBeanRequest;
 import com.example.connect5_project.take_booking.bean.DailyAvailabilityBeanResponse;
@@ -42,8 +42,8 @@ public class ChooseBookingDataGUI {
         this.navigate = navigate;
     }
 
-    public void setBookingController(BookingController booking_controller) {
-        this.bookingController = booking_controller;
+    public void setBookingController(BookingController bookingController) {
+        this.bookingController = bookingController;
     }
 
     public void search(ActionEvent e) throws IOException {

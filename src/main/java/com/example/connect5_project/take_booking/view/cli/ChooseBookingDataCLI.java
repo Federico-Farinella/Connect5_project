@@ -1,4 +1,4 @@
-package com.example.connect5_project.take_booking.view.CLI;
+package com.example.connect5_project.take_booking.view.cli;
 
 import com.example.connect5_project.take_booking.bean.DailyAvailabilityBeanRequest;
 import com.example.connect5_project.take_booking.bean.DailyAvailabilityBeanResponse;
@@ -21,7 +21,7 @@ public class ChooseBookingDataCLI {
             System.out.println("Center choosen: " + controller.getChoosenCenter().getName() + "\n" +
                     "Choose a date from those proposed.\n");
 
-            int daysAfter = BusinessConstants.DAY_TO_CHOOSE;
+            int daysAfter = BusinessConstants.dayToChoose;
             int i;
             Map<String, LocalDate> dates = new HashMap<>();
             List<LocalDate> date = new ArrayList<>();

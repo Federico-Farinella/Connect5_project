@@ -1,4 +1,4 @@
-package com.example.connect5_project.take_booking.view.GUI;
+package com.example.connect5_project.take_booking.view.gui;
 
 import com.example.connect5_project.take_booking.bean.DailyAvailabilityBeanResponse;
 import com.example.connect5_project.take_booking.controller.BookingController;

@@ -1,6 +1,6 @@
 package com.example.connect5_project.utility;
 
-import com.example.connect5_project.take_booking.view.GUI.SportCentersResultsGUI;
+import com.example.connect5_project.take_booking.view.gui.SportCentersResultsGUI;
 import com.example.connect5_project.take_booking.model.SportCenter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
