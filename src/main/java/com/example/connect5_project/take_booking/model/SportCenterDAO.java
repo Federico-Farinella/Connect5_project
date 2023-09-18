@@ -22,6 +22,8 @@ public class SportCenterDAO {
     private static final String IMG = "Image";
     private static final String FLD_PRICE = "BasePrice";
 
+    private static final String ERROR_STATEMENT_EXCEPTION = "Error creating statement";
+
     public SearchResultBeanResponse dbSearchCenters(String nameToSearch, String cityToSearch) throws SportCenterException {  //Cambiato return da ResultSet a SearchResultBean
         SearchResultBeanResponse responseBean = new SearchResultBeanResponse();
         JdbcConnect dbInstance;
@@ -60,7 +62,7 @@ public class SportCenterDAO {
                responseBean.setListOfCenters(centersResults);
             }
         } catch (SQLException e) {
-            throw  new SportCenterException("Error creating statement");
+            throw  new SportCenterException(ERROR_STATEMENT_EXCEPTION);
         }
         return responseBean;
     }
@@ -116,7 +118,7 @@ public class SportCenterDAO {
                 resultBean.setListOfCenters(centersResults);
             }
         } catch (SQLException e) {
-            throw new SportCenterException("Error creating statement");
+            throw new SportCenterException(ERROR_STATEMENT_EXCEPTION);
         }
         return resultBean;
     }
@@ -159,7 +161,7 @@ public class SportCenterDAO {
 
             responseBean.setListOfCenters(centersResults);
         } catch (SQLException e) {
-            throw new SportCenterException("Error creating statement");
+            throw new SportCenterException(ERROR_STATEMENT_EXCEPTION);
         }
         return  responseBean;
     }

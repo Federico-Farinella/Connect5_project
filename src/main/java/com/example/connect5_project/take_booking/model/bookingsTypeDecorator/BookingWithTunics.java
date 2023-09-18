@@ -1,4 +1,4 @@
-package com.example.connect5_project.take_booking.model.bookingsType_decorator;
+package com.example.connect5_project.take_booking.model.bookingsTypeDecorator;
 
 public class BookingWithTunics extends AbstractDecorator {
     public BookingWithTunics(Type booking) {

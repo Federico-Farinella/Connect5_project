@@ -18,7 +18,7 @@ module com.example.connect5_project {
     opens com.example.connect5_project.bean to javafx.fxml;
     exports com.example.connect5_project.history;
     exports com.example.connect5_project.weather_service;
-    exports com.example.connect5_project.take_booking.model.bookingsType_decorator;
+    exports com.example.connect5_project.take_booking.model.bookingsTypeDecorator;
     exports com.example.connect5_project.exceptions;
     exports com.example.connect5_project.exceptions.login_exceptions;
     exports com.example.connect5_project.main;
@@ -31,7 +31,7 @@ module com.example.connect5_project {
     opens com.example.connect5_project.take_booking.view.GUI to javafx.fxml;
     exports com.example.connect5_project.take_booking.model;
     opens com.example.connect5_project.take_booking.model to javafx.fxml;
-    opens com.example.connect5_project.take_booking.model.bookingsType_decorator to javafx.fxml;
+    opens com.example.connect5_project.take_booking.model.bookingsTypeDecorator to javafx.fxml;
     exports com.example.connect5_project.utility;
     opens com.example.connect5_project.utility to javafx.fxml;
     exports com.example.connect5_project.take_booking.controller;

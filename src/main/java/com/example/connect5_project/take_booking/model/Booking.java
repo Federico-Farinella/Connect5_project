@@ -1,9 +1,9 @@
 package com.example.connect5_project.take_booking.model;
 
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.BasicBooking;
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.BookingWithReferee;
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.BookingWithTunics;
-import com.example.connect5_project.take_booking.model.bookingsType_decorator.Type;
+import com.example.connect5_project.take_booking.model.bookingsTypeDecorator.BasicBooking;
+import com.example.connect5_project.take_booking.model.bookingsTypeDecorator.BookingWithReferee;
+import com.example.connect5_project.take_booking.model.bookingsTypeDecorator.BookingWithTunics;
+import com.example.connect5_project.take_booking.model.bookingsTypeDecorator.Type;
 
 import java.io.Serializable;
 import java.time.LocalDate;
