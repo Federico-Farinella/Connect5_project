@@ -10,6 +10,6 @@ public class LoginBeanRequestTest {
     public void settingEmail() {
         LoginBeanRequest beanRequest = new LoginBeanRequest();
         boolean isSetted = beanRequest.setEmail("federicogmail.com");
-        assert(isSetted);
+        assertTrue(isSetted);
     }
 }
