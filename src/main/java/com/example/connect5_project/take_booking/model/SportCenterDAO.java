@@ -15,9 +15,8 @@ import java.util.List;
 import java.util.Properties;
 
 public class SportCenterDAO {
-    String configFilePath = "src/main/resources/config.properties";
 
-    public SearchResultBeanResponse dbSearchCenters(String name, String city) throws SportCenterException {  //Cambiato return da ResultSet a SearchResultBean
+    public SearchResultBeanResponse dbSearchCenters(String nameToSearch, String cityToSearch) throws SportCenterException {  //Cambiato return da ResultSet a SearchResultBean
         SearchResultBeanResponse responseBean = new SearchResultBeanResponse();
         JdbcConnect dbInstance;
         try {
@@ -26,13 +25,11 @@ public class SportCenterDAO {
             return responseBean;
         }
 
-        try (Statement stmt = dbInstance.getConnection().createStatement();) {
-            String sql = "SELECT * FROM sport_center WHERE Name = '" + name + "' AND City = '" + city + "';";
+        try (Statement stmt = dbInstance.getConnection().createStatement()) {
+            String sql = "SELECT * FROM sport_center WHERE Name = '" + nameToSearch + "' AND City = '" + cityToSearch + "';";
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.first()) {
-                SportCenterException exception = new SportCenterException("Not match");
-                throw exception;
-                //resultBean.setDaoResponse("Not match");
+                throw new SportCenterException("Not match");
             } else {
                 List<SportCenter> searchResults = new ArrayList<>();
                 SportCenter center;
@@ -43,38 +40,39 @@ public class SportCenterDAO {
                 String image;
                 float fieldPrice;
                 do {
-                    centerName = rs.getString("Name");
-                    centerCity = rs.getString("City");
-                    address = rs.getString("Address");
-                    owner = rs.getString("OwnerEmail");
-                    image = rs.getString("Image");
-                    fieldPrice = rs.getFloat("BasePrice");
+                    String name = "Name";
+                    centerName = rs.getString(name);
+                    String city = "City";
+                    centerCity = rs.getString(city);
+                    String addr = "Address";
+                    address = rs.getString(addr);
+                    String ownerEmail = "OwnerEmail";
+                    owner = rs.getString(ownerEmail);
+                    String img = "Image";
+                    image = rs.getString(img);
+                    String fldPrice = "BasePrice";
+                    fieldPrice = rs.getFloat(fldPrice);
                     center = new SportCenter(centerName, centerCity, address, owner, image, fieldPrice);
                     searchResults.add(center);
                 } while(rs.next());
                 SportCentersSearchResults centersResults = new SportCentersSearchResults(searchResults);
 
                responseBean.setListOfCenters(centersResults);
-                //resultBean.setDaoResponse("Match");
             }
         } catch (SQLException e) {
-            SportCenterException exception = new SportCenterException("Error creating statement");
-            throw exception;
-            //resultBean.setDaoResponse("Error creating statement);
-            //return resultBean;
+            throw  new SportCenterException("Error creating statement");
         }
-        //array = resultBean.setListOfCenters(rs);
         return responseBean;
     }
 
-    public SearchResultBeanResponse dbSearchCentersByName(String name) throws SportCenterException { //Cambiato return anche qui
+    public SearchResultBeanResponse dbSearchCentersByName(String nameToSearch) throws SportCenterException { //Cambiato return anche qui
         String dbUser;
         String pass;
         JdbcConnect jdbc;
 
-        ArrayList<SportCenter> array;
         SearchResultBeanResponse resultBean = new SearchResultBeanResponse();
 
+        String configFilePath = "src/main/resources/config.properties";
         try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
             Properties prop = new Properties();
             prop.load(propsInput);
@@ -82,29 +80,18 @@ public class SportCenterDAO {
             pass = prop.getProperty("pass");
             jdbc = JdbcConnect.getUserConnection(dbUser, pass);
         } catch (IOException e) {
-            SportCenterException exception = new SportCenterException("Config file not found", e);
-            throw exception;
-            //resultBean.setDaoResponse("Config file not found");
-            //return resultBean;
+            throw  new SportCenterException("Config file not found", e);
         } catch (ClassNotFoundException e) {
-            SportCenterException exception = new SportCenterException("Driver to connect database not found", e);
-            throw exception;
-            //resultBean.setDaoResponse("Driver to connect database not found");
-            //return resultBean;
+            throw new SportCenterException("Driver to connect database not found", e);
         } catch (SQLException e) {
-            SportCenterException exception = new SportCenterException("Error with database connection", e);
-            throw exception;
-            //resultBean.setDaoResponse("Error with database connection");
-            //return resultBean;
+            throw new SportCenterException("Error with database connection", e);
         }
 
-        try (Statement stmt = jdbc.getConnection().createStatement();) {
-            String sql = "SELECT * FROM sport_center WHERE Name = '" + name + "';";
+        try (Statement stmt = jdbc.getConnection().createStatement()) {
+            String sql = "SELECT * FROM sport_center WHERE Name = '" + nameToSearch + "';";
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.first()) {
-                SportCenterException exception = new SportCenterException("Not match");
-                throw exception;
-                //resultBean.setDaoResponse("Not match");
+                throw new SportCenterException("Not match");
             } else {
                 List<SportCenter> searchResults = new ArrayList<>();
                 SportCenter center;
@@ -115,30 +102,32 @@ public class SportCenterDAO {
                 String image;
                 float fieldPrice;
                 do {
-                    centerName = rs.getString("Name");
-                    centerCity = rs.getString("City");
-                    address = rs.getString("Address");
-                    owner = rs.getString("OwnerEmail");
-                    image = rs.getString("Image");
-                    fieldPrice = rs.getFloat("BasePrice");
+                    String name = "Name";
+                    centerName = rs.getString(name);
+                    String city = "City";
+                    centerCity = rs.getString(city);
+                    String addr = "Address";
+                    address = rs.getString(addr);
+                    String ownerEmail = "OwnerEmail";
+                    owner = rs.getString(ownerEmail);
+                    String img = "Image";
+                    image = rs.getString(img);
+                    String fldPrice = "BasePrice";
+                    fieldPrice = rs.getFloat(fldPrice);
                     center = new SportCenter(centerName, centerCity, address, owner, image, fieldPrice);
                     searchResults.add(center);
                 } while(rs.next());
                 SportCentersSearchResults centersResults = new SportCentersSearchResults(searchResults);
 
                 resultBean.setListOfCenters(centersResults);
-                //resultBean.setDaoResponse("Match");
             }
         } catch (SQLException e) {
-            SportCenterException exception = new SportCenterException("Error creating statement");
-            throw exception;
-            //resultBean.setDaoResponse("Error creating statement);
-            //return resultBean;
+            throw new SportCenterException("Error creating statement");
         }
         return resultBean;
     }
 
-    public SearchResultBeanResponse dbSearchCentersByCity(String city) throws SportCenterException {
+    public SearchResultBeanResponse dbSearchCentersByCity(String cityToSearch) throws SportCenterException {
 
         SearchResultBeanResponse responseBean = new SearchResultBeanResponse();
         JdbcConnect dbInstance;
@@ -151,19 +140,9 @@ public class SportCenterDAO {
         List<SportCenter> searchResults = new ArrayList<>();
 
         try (Statement stmt = dbInstance.getConnection().createStatement()) {
-            String sql = "SELECT * FROM sport_center WHERE City = '" + city + "';";
+            String sql = "SELECT * FROM sport_center WHERE City = '" + cityToSearch + "';";
             ResultSet rs = stmt.executeQuery(sql);
-            //List<CentroSportivo> searchResults = new ArrayList<>();
-            /*if (!rs.first()) {
-                resultBean.setDaoResponse("Not Match");
-                // Qui posso togliere questa eccezione e impostare direttamente come vuoto il resultBean.list_of_centers
-                SportCenterException exception = new SportCenterException("Not match");
-                throw exception;
-                //resultBean.setDaoResponse("Not match");
-            }*/
             if (rs.first()) {
-                //responseBean.setDaoResponse("Match");
-                //List<CentroSportivo> searchResults = new ArrayList<>();
                 SportCenter center;
                 String centerName;
                 String centerCity;
@@ -172,12 +151,18 @@ public class SportCenterDAO {
                 String image;
                 float fieldPrice;
                 do {
-                    centerName = rs.getString("Name");
-                    centerCity = rs.getString("City");
-                    address = rs.getString("Address");
-                    owner = rs.getString("OwnerEmail");
-                    image = rs.getString("Image");
-                    fieldPrice = rs.getFloat("BasePrice");
+                    String name = "Name";
+                    centerName = rs.getString(name);
+                    String city = "City";
+                    centerCity = rs.getString(city);
+                    String addr = "Address";
+                    address = rs.getString(addr);
+                    String ownerEmail = "OwnerEmail";
+                    owner = rs.getString(ownerEmail);
+                    String img = "Image";
+                    image = rs.getString(img);
+                    String fldPrice = "BasePrice";
+                    fieldPrice = rs.getFloat(fldPrice);
                     center = new SportCenter(centerName, centerCity, address, owner, image, fieldPrice);
                     searchResults.add(center);
                 } while(rs.next());
@@ -191,10 +176,3 @@ public class SportCenterDAO {
         return  responseBean;
     }
 }
-
-// Modificare alcune cose:
-/* 1- Il bean dell API From Controller Logico dovrei popolarlo direttamente dal suo costruttore con parametro Bean
- in entrata dall'utente!! (Meglio!!!)
- 2- Gestire bene la lista di risultati di ricerca centri sportivi. La lista potrebbe (dovrebbe) essere un model
-    e in questo modo potrei accedere più facilmente al centro sportivo che l'utente seleziona dalla lista grafica
-*/

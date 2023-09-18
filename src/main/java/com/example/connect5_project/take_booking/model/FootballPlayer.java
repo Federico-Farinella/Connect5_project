@@ -1,9 +1,6 @@
 package com.example.connect5_project.take_booking.model;
 
-import com.example.connect5_project.take_booking.model.Booking;
-
 import java.io.Serializable;
-import java.util.List;
 
 public class FootballPlayer implements Serializable {
     private String firstName;
@@ -11,13 +8,11 @@ public class FootballPlayer implements Serializable {
     private String email;
     private String nickName;
 
-    private List<Booking> bookings;
 
     public FootballPlayer(String email) {
         this.email = email;
     }
-    // devo togliere password da qui e mantenere solo info del tipo email e nickname nella sessione utente (CurrentUser)
-
+    // Mantengo le info dell utente eccetto la password che una volta effettuato il login non mantengo più
     public FootballPlayer(String firstName, String lastName, String email, String nickName) {
         this.firstName = firstName;
         this.lastName = lastName;

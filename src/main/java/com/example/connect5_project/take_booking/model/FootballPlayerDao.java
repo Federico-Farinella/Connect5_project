@@ -1,7 +1,6 @@
 package com.example.connect5_project.take_booking.model;
 
 import com.example.connect5_project.login.bean.LoginBeanRequest;
-import com.example.connect5_project.login.bean.LoginBeanResponse;
 import com.example.connect5_project.exceptions.ConnectionDBException;
 import com.example.connect5_project.exceptions.login_exceptions.EmailNotRegisteredException;
 import com.example.connect5_project.exceptions.login_exceptions.LoginException;

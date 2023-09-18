@@ -12,13 +12,13 @@ public class SportCenter implements Serializable {
     private Float refereePrice;
     private Float tunics;
 
-    public SportCenter(String nm, String ct, String str, String mng, String img, Float field_price){
+    public SportCenter(String nm, String ct, String str, String mng, String img, Float fieldPrice){
         this.name = nm;
         this.city = ct;
         this.street = str;
         this.manager = mng;
         this.image = img;
-        this.fieldPrice = field_price;
+        this.fieldPrice = fieldPrice;
 
     }
 
