@@ -68,8 +68,6 @@ public class SportCenterDAO {
     }
 
     public SearchResultBeanResponse dbSearchCentersByName(String nameToSearch) throws SportCenterException { //Cambiato return anche qui
-        String dbUser;
-        String pass;
         JdbcConnect jdbc;
 
         SearchResultBeanResponse resultBean = new SearchResultBeanResponse();
@@ -78,12 +76,10 @@ public class SportCenterDAO {
         try (FileInputStream propsInput = new FileInputStream(configFilePath)) {
             Properties prop = new Properties();
             prop.load(propsInput);
-            dbUser = prop.getProperty("dbUser");
-            pass = prop.getProperty("pass");
-            jdbc = JdbcConnect.getUserConnection(dbUser, pass);
+            jdbc = JdbcConnect.getInstance();
         } catch (IOException e) {
             throw  new SportCenterException("Config file not found", e);
-        } catch (ClassNotFoundException e) {
+        } catch (ConnectionDBException e) {
             throw new SportCenterException("Driver to connect database not found", e);
         } catch (SQLException e) {
             throw new SportCenterException("Error with database connection", e);
