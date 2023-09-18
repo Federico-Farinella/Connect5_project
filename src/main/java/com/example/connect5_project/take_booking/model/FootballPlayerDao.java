@@ -17,8 +17,8 @@ public class FootballPlayerDao {
         FootballPlayer footballPlayer1 = null;
         try {
             dbInstance = JdbcConnect.getInstance();
-        } catch (ConnectionDBException e) {
-            throw new ConnectionDBException("DB Connection failed");
+        } catch (ConnectionDBException | SQLException e) {
+            throw new ConnectionDBException("We have problems with system. Try later.");
         }
 
         String querySql = "SELECT * FROM user WHERE email = ?;";

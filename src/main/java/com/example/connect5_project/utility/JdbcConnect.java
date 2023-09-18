@@ -13,27 +13,24 @@ public class JdbcConnect {
     private String user;
     private String password;
     private String url;
-    final private static String DB_URL = "jdbc:mysql://localhost/connect5_db"; // modifico da connect5db a connect5_db
-    final private static String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
+    private final static String DB_URL = "jdbc:mysql://localhost/connect5_db"; // modifico da connect5db a connect5_db
+    private final static String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
     private static JdbcConnect jdbcConn;
     private final Connection connection;
-    private int id;
 
-    private JdbcConnect() throws ConnectionDBException {  // Aggiunto per perfezionare pattern Singleton, andrebbe cancellato del codice ripetuto piu giu
+    private JdbcConnect() throws ConnectionDBException {
         // Devo usare questa per centralizzare i dati di configurazione qui
         try {
-            Class.forName(DRIVER_CLASS_NAME);
             this.getDBCredentials();
             this.connection = DriverManager.getConnection(url, user, password);
-        } catch (IOException | SQLException | ClassNotFoundException e) {
+        } catch (IOException | SQLException e) {
             throw new ConnectionDBException("DB Connection Error");
         }
 
     }
 
     private JdbcConnect(String dbUser, String password) throws ClassNotFoundException, SQLException {
-        Class.forName(DRIVER_CLASS_NAME);
         this.connection = DriverManager.getConnection(DB_URL, dbUser, password);
     }
 
@@ -44,8 +41,8 @@ public class JdbcConnect {
         return jdbcConn;
     }
 
-    public static JdbcConnect getInstance() throws ConnectionDBException {// Devo usare questa
-        if (jdbcConn == null) {
+    public static JdbcConnect getInstance() throws ConnectionDBException, SQLException {// Devo usare questa
+        if (jdbcConn == null || jdbcConn.getConnection().isClosed()) {
             jdbcConn = new JdbcConnect();
         }
         return jdbcConn;

@@ -29,7 +29,7 @@ public class SportCenterDAO {
         JdbcConnect dbInstance;
         try {
             dbInstance = JdbcConnect.getInstance();
-        } catch (ConnectionDBException e) {
+        } catch (ConnectionDBException | SQLException e) {
             return responseBean;
         }
 
@@ -129,7 +129,7 @@ public class SportCenterDAO {
         JdbcConnect dbInstance;
         try {
             dbInstance = JdbcConnect.getInstance();
-        } catch (ConnectionDBException e) {
+        } catch (ConnectionDBException | SQLException e) {
             return responseBean;
         }
 

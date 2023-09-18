@@ -18,8 +18,8 @@ public class DailyAvailabilityDao {
         try {
             jdbcConnect = JdbcConnect.getInstance();
         }
-        catch (ConnectionDBException e) {
-            throw new ConnectionDBException("Driver to connect database not found");
+        catch (ConnectionDBException | SQLException e) {
+            throw new ConnectionDBException("We have problems with system. Try later.");
         }
 
 

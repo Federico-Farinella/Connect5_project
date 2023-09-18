@@ -24,7 +24,7 @@ public class BookingDaoDb implements BookingDao {
 
         try {
             dbInstance = JdbcConnect.getInstance();
-        } catch (ConnectionDBException e) {
+        } catch (ConnectionDBException | SQLException e) {
             return ret;
         }
         String sql1 = "INSERT INTO bookings (`ID_booking`, `Sport_center`, `Football_player`, `Date`, `Hour`, `Description`, `price`)" +
@@ -75,7 +75,7 @@ public class BookingDaoDb implements BookingDao {
 
         try {
             dbInstance = JdbcConnect.getInstance();
-        } catch (ConnectionDBException e) {
+        } catch (ConnectionDBException | SQLException e) {
             throw new ConnectionDBException("We have problems with system. Try later.");
         }
 
