@@ -77,11 +77,8 @@ public class SetBookingOptionalGUI {
             isConfirmed = bookingController.confirmBooking(withReferee, withTunics);
             controlGui.setImageResponse(isConfirmed);
             controlGui.setLabResponse(isConfirmed);
-        } catch (TakeBookingException | ConnectionDBException exception0) {
+        } catch (MyException exception0) {
             // Stampa messaggio dell eccezione!!!!
-            controlGui.setImageResponse(false);
-            controlGui.setLabResponse(false);
-        } catch (MyException exception2) {
             controlGui.setImageResponse(false);
             controlGui.setLabResponse(false);
         } finally {

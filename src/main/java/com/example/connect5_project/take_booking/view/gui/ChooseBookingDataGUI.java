@@ -97,8 +97,6 @@ public class ChooseBookingDataGUI {
     public void back(ActionEvent e) throws IOException {
         Stage window;
         window = (Stage) ((Node) e.getSource()).getScene().getWindow();
-
-        System.out.println(window);
         window.setScene(navigate.getPages().peek());
         navigate.getPages().pop();
         navigate.setCountPagesAfterLogin(navigate.getCountPagesAfterLogin()-1);
